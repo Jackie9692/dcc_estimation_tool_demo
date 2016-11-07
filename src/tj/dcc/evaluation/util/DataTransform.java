@@ -1,4 +1,4 @@
-package util;
+package tj.dcc.evaluation.util;
 
 /**
  * 数组工具类

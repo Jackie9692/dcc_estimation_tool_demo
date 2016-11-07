@@ -1,6 +1,6 @@
-package model;
+package tj.dcc.evaluation.model;
 
-import util.DataTransform;
+import tj.dcc.evaluation.util.DataTransform;
 
 /**
  * M-O 模型

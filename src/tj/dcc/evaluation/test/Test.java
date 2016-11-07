@@ -1,6 +1,6 @@
-package test;
+package tj.dcc.evaluation.test;
 
-import model.JMModel;
+import tj.dcc.evaluation.model.JMModel;
 
 public class Test {
 	

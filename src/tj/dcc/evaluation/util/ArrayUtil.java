@@ -1,4 +1,4 @@
-package util;
+package tj.dcc.evaluation.util;
 
 public class ArrayUtil {
 	public static boolean isEmpty(double []target){

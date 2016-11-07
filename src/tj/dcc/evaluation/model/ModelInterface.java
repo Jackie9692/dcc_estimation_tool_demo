@@ -1,4 +1,4 @@
-package model;
+package tj.dcc.evaluation.model;
 
 /**
  * 模型函数调用接口

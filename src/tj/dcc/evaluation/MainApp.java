@@ -17,7 +17,7 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("¿É¿¿ÐÔÆÀ¹À¹¤¾ß");
+		this.primaryStage.setTitle("ï¿½É¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		initRootLayout();
 		showEvaluationOverview();

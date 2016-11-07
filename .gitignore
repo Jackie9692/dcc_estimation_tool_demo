@@ -1,6 +1,7 @@
 #/.project
 /.settings
 /target
+/bin
 /pom.xml.releaseBackup
 /*.iml
 /.idea

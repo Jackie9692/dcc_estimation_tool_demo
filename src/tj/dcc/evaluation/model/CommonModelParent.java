@@ -1,4 +1,4 @@
-package model;
+package tj.dcc.evaluation.model;
 
 /**
  * 失效数据类

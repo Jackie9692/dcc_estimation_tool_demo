@@ -1,4 +1,4 @@
-package model;
+package tj.dcc.evaluation.model;
 
 /**
  * J-M 模型
