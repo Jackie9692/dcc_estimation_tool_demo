@@ -38,9 +38,10 @@ public class JMModel extends CommonModelParent implements ModelInterface {
 			
 			if (deviation >= Math.abs(result)) {//监测计算阈值
 				this.estimationResults.expectFaultNum = N;//软件的失效总数的期望值
+				this.estimationResults.residualFaultNum = N -n;
 				phi = n / (N*sum2 -sum3);//失效率比例常数
 				this.estimationResults.failureRate = phi * (N - n);//第n个失效发生后的失效率
-				this.estimationResults.reliability = "exp{-" + this.estimationResults.failureRate + "t}";//第n个失效发生后的可靠度函数
+				this.estimationResults.reliability = "exp[-" + this.estimationResults.failureRate + "t]";//第n个失效发生后的可靠度函数
 				if(this.estimationResults.failureRate != 0)
 					this.estimationResults.mttf = 1 / (this.estimationResults.failureRate);//第n个失效发生后的平均失效前时间
 				
@@ -53,7 +54,7 @@ public class JMModel extends CommonModelParent implements ModelInterface {
 				break;
 			} 
 
-			N += 0.0001;//迭代步长
+			N += 0.000001;//迭代步长设置为阈值，也可自定义步长
 		}
 	}
 
@@ -66,6 +67,7 @@ public class JMModel extends CommonModelParent implements ModelInterface {
 		System.out.println("J-M软件可靠性增长模型评估结果");
 		System.out.println("失效数据样本大小： " + this.failureDate.time.length);
 		System.out.println("缺陷总数的期望值: " + this.estimationResults.expectFaultNum);
+		System.out.println("软件中的剩余缺陷数: " + this.estimationResults.residualFaultNum);
 		System.out.println(this.failureDate.time.length + "次可靠性增长后的失效率: " + this.estimationResults.failureRate);
 		System.out.println(this.failureDate.time.length + "次可靠性增长后的可靠度函数: " + this.estimationResults.reliability);
 		System.out.println(this.failureDate.time.length + "次可靠性增长后的平均失效前时间: " + this.estimationResults.mttf);

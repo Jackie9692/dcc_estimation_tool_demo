@@ -7,7 +7,7 @@ package tj.dcc.evaluation.model;
 class FailureDataSet{
 	
 	public double []time;
-	public double []number;
+	public int []number;
 
 	/**
 	 * 完全失效时间构造器
@@ -22,7 +22,7 @@ class FailureDataSet{
 	 * @param time: 失效间隔时间
 	 * @param number: 失效间隔时间内发生的失效数
 	 */
-	public FailureDataSet(double []time, double []number){
+	public FailureDataSet(double []time, int []number){
 		this.time = time;
 		this.number = number;
 	}
@@ -62,7 +62,7 @@ public class CommonModelParent {
 	 * @param time 失效间隔时间
 	 * @param number 失效间隔时间内发生的失效数
 	 */
-	public CommonModelParent(double []time, double []number){
+	public CommonModelParent(double []time, int []number){
 		this.failureDate = new FailureDataSet(time, number);
 		this.estimationResults = new EstimationResults();
 	}

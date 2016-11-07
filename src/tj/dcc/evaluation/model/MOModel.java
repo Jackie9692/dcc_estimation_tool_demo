@@ -13,7 +13,7 @@ public class MOModel extends CommonModelParent implements ModelInterface{
 	 * @param time 累计失效时间
 	 * @param number 累计失效时间内发生的失效数
 	 */
-	public MOModel(double[] time, double[] number) {
+	public MOModel(double[] time, int[] number) {
 		super(time, number);
 	}
 	
@@ -117,7 +117,7 @@ public class MOModel extends CommonModelParent implements ModelInterface{
 //				100,111,125,129,137,142,155,165,181,204};
 		double []time = new double[]{5,9,10,15,18,26,27,35,42,46,50,56,63,67,72};
 
-		double []number = new double[]{1,2,3};
+		int []number = new int[]{1,2,3};
 
 		//choose a model
 		MOModel moModel = new MOModel(DataTransform.accumateTointerval(time), number);
