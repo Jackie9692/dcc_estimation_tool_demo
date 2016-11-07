@@ -1,21 +1,18 @@
 package model;
 
-
 /**
- *ModelInterface is a interface which defines the functions for a model to realize,
- * including calculate, display results and so on.
+ * 模型函数调用接口
  * @author daxu
- *
  */
 public interface ModelInterface {
+	
 	/**
-	 * function to realize the calculation
-	 * param errorValue: define the precision of the method
+	 * 计算软件可靠性度量指标
 	 */
 	void calculate(double deviation);
 
 	/**
-	 * function to print the result
+	 * 输出评估结果到控制台
 	 */
 	void printResult();
 }

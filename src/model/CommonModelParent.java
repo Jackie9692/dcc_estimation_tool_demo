@@ -1,23 +1,26 @@
 package model;
 
-
-
 /**
- * data structure to store the failure dataset
+ * 失效数据类
  * @author daxu
- *
  */
 class FailureDataSet{
-	/**
-	 * private attributes including time and number, time is the array of failure time
-	 */
+	
 	public double []time;
 	public double []number;
 
 	/**
-	 *
-	 * @param time: array of failure time
-	 * @param number: array of failure times within certain time
+	 * 完全失效时间构造器
+	 * @param time: 失效间隔时间
+	 */
+	public FailureDataSet(double []time){
+		this.time = time;
+	}
+	
+	/**
+	 * 不完全失效时间构造器
+	 * @param time: 失效间隔时间
+	 * @param number: 失效间隔时间内发生的失效数
 	 */
 	public FailureDataSet(double []time, double []number){
 		this.time = time;
@@ -26,43 +29,38 @@ class FailureDataSet{
 }
 
 /**
- * data structure to store the estimation results
+ * 软件可靠性度量指标类
  * @author daxu
- *
  */
 class EstimationResults{
-	public double mttf;
-	public double reliability;
-	public double failureRate;
-	public double residualFaultNum;
-	public double expectFaultNum;
-
-	public EstimationResults(){
-		this.mttf = -1.0;
-		this.reliability =  -1.0;
-		this.failureRate =  -1.0;
-		this.residualFaultNum =  -1.0;
-		this.expectFaultNum =  -1.0;
-	}
-
+	public double mttf;//平均失效前时间
+	public String reliability;//可靠度函数
+	public double failureRate;//失效率
+	public double residualFaultNum;//剩余失效数
+	public double expectFaultNum;//失效总数期望值
 }
 
 /**
- *parent of six general models such as JM, GO and so on
+ * 经典模型父类
  * @author daxu
- *
  */
 public class CommonModelParent {
+	public FailureDataSet failureDate;//失效数据
+	public EstimationResults estimationResults;//评估结果
+	
 	/**
-	 *public attribute including failure dateset and estimation result
+	 * 完全失效时间模型父类构造器
+	 * @param time 失效间隔时间
 	 */
-	public FailureDataSet failureDate;
-	public EstimationResults estimationResults;
+	public CommonModelParent(double []time){
+		this.failureDate = new FailureDataSet(time);
+		this.estimationResults = new EstimationResults();
+	}
 
 	/**
-	 * constructor of parent requires parameter including time and number
-	 * @param time
-	 * @param number
+	 * 不完全失效时间模型父类构造器
+	 * @param time 失效间隔时间
+	 * @param number 失效间隔时间内发生的失效数
 	 */
 	public CommonModelParent(double []time, double []number){
 		this.failureDate = new FailureDataSet(time, number);
