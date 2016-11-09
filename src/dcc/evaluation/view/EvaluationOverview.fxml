@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.Evaluation.view.EvaluationOverviewController">
+<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.EvaluationOverviewController">
    <children>
       <Label layoutX="950.0" layoutY="497.0" styleClass="label-welcome" stylesheets="@EvaluationOverview.css" text="可靠性预测与评估工具" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="880.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="480.0">
          <font>
