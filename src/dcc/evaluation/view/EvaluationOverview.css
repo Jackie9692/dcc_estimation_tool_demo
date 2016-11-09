@@ -1,0 +1,10 @@
+.root{
+	-fx-background-image:url("EvaluationOverviewBackground.jpg") ;
+}
+.label-welcome{
+	-fx-text-fill:white;
+	-fx-opacity: 1;
+}
+.menu-bar{
+	-fx-background-color:derive(#BCD2EE,10%) ;
+}

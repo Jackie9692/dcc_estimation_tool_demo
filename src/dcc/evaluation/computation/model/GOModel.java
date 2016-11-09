@@ -1,4 +1,4 @@
-package tj.dcc.evaluation.model;
+package dcc.evaluation.computation.model;
 
 import java.lang.Math;
 
@@ -6,7 +6,7 @@ import java.lang.Math;
  * G-O 模型
  */
 public class GOModel extends CommonModelParent implements ModelInterface{
-	
+
 	/**
 	 * 接收不完全失效数据的模型构造器
 	 * @param time 累计失效时间
@@ -15,7 +15,7 @@ public class GOModel extends CommonModelParent implements ModelInterface{
 	public GOModel(double[] time, int[] number) {
 		super(time, number);
 	}
-	
+
 	/**
 	 * 计算软件可靠性度量指标
 	 * @param deviation 误差阈值
@@ -24,18 +24,18 @@ public class GOModel extends CommonModelParent implements ModelInterface{
 	public void calculate(double deviation) {
 		double left, right, result, a, b;
 		int n = this.failureDate.time.length;//失效数据收集点的个数
-		
+
 		a = 0;
 		b = 0;
-		
+
 		while(true){
 			left = (this.failureDate.number[n-1] /
 					(1 - Math.pow(Math.E, (-1) * b * this.failureDate.time[n-1]))) *
-					this.failureDate.time[n-1] * 
+					this.failureDate.time[n-1] *
 					Math.pow(Math.E, (-1) * b * this.failureDate.time[n-1]);
-			
+
 			right = 0;
-			
+
 			right += (this.failureDate.number[0] - 0) *
 					 (this.failureDate.time[0] * Math.pow(Math.E, (-1) * b * this.failureDate.time[0]) /
 					  (1 - Math.pow(Math.E, (-1) * b * this.failureDate.time[0])));
@@ -46,9 +46,9 @@ public class GOModel extends CommonModelParent implements ModelInterface{
 						  (Math.pow(Math.E, (-1) * b * this.failureDate.time[i]) -
 						   Math.pow(Math.E, (-1) * b * this.failureDate.time[i+1]));
 			}
-			
+
 			result = left - right;
-			
+
 			if(deviation >= Math.abs(result)){
 				a= this.failureDate.number[n-1] /( 1 - Math.pow(Math.E, (-1) * b * this.failureDate.time[n-1]) );
 				this.estimationResults.expectFaultNum = a;
@@ -62,14 +62,14 @@ public class GOModel extends CommonModelParent implements ModelInterface{
 				System.out.println("a= " + a);
 				System.out.println("b= " + b);
 				System.out.println("===================================================");
-				
+
 				break;
 			}
 			else
 				b += 0.000001;
 		}
 	}
-	
+
 	/**
 	 * 输出评估结果到控制台
 	 */

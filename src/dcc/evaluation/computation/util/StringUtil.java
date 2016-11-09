@@ -1,4 +1,4 @@
-package tj.dcc.evaluation.util;
+package dcc.evaluation.computation.util;
 
 public class StringUtil {
 	public static boolean isEmpty(String str){

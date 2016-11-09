@@ -1,6 +1,6 @@
-package tj.dcc.evaluation.model;
+package dcc.evaluation.computation.model;
 
-import tj.dcc.evaluation.util.DataTransform;
+import dcc.evaluation.computation.util.DataTransform;
 
 /**
  * M-O 模型
@@ -16,7 +16,7 @@ public class MOModel extends CommonModelParent implements ModelInterface{
 	public MOModel(double[] time, int[] number) {
 		super(time, number);
 	}
-	
+
 	/**
 	 * 计算软件可靠性度量指标
 	 * @param deviation 误差阈值

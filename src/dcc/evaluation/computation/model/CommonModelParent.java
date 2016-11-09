@@ -1,11 +1,11 @@
-package tj.dcc.evaluation.model;
+package dcc.evaluation.computation.model;
 
 /**
  * 失效数据类
  * @author daxu
  */
 class FailureDataSet{
-	
+
 	public double []time;
 	public int []number;
 
@@ -16,7 +16,7 @@ class FailureDataSet{
 	public FailureDataSet(double []time){
 		this.time = time;
 	}
-	
+
 	/**
 	 * 不完全失效时间构造器
 	 * @param time: 失效间隔时间
@@ -47,7 +47,7 @@ class EstimationResults{
 public class CommonModelParent {
 	public FailureDataSet failureDate;//失效数据
 	public EstimationResults estimationResults;//评估结果
-	
+
 	/**
 	 * 完全失效时间模型父类构造器
 	 * @param time 失效间隔时间

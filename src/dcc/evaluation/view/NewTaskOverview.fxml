@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="237.0" layoutY="53.0" prefHeight="640.0" prefWidth="960.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="开发过程的软件可靠性预测与分析">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane layoutY="532.0" prefHeight="691.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                              <Tab text="开发过程可靠性分析">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TabPane prefHeight="568.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <tabs>
+                                                <Tab text="需求分析阶段">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="533.0" prefWidth="1280.0">
+                                                         <children>
+                                                            <HBox layoutX="14.0" layoutY="14.0" spacing="100.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="481.0" AnchorPane.topAnchor="15.0">
+                                                               <children>
+                                                                  <TitledPane animated="false" layoutX="14.0" layoutY="14.0" text="系统应用类型">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="300.0">
+                                                                           <children>
+                                                                              <VBox layoutX="14.0" layoutY="14.0" spacing="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
+                                                                                 <children>
+                                                                                    <CheckBox layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="机载系统" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="战略信息指挥系统" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="战术指挥系统" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="104.0" mnemonicParsing="false" text="过程控制系统" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="生产系统" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="176.0" mnemonicParsing="false" text="开发工具" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                                  <TitledPane animated="false" layoutX="455.0" layoutY="14.0" text="开发环境">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="400.0">
+                                                                           <children>
+                                                                              <VBox layoutX="22.0" layoutY="14.0" spacing="20.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
+                                                                                 <children>
+                                                                                    <CheckBox layoutX="22.0" layoutY="14.0" mnemonicParsing="false" text="软件的开发团队是所开发软件的整个组织中的一部分" />
+                                                                                    <CheckBox layoutX="22.0" layoutY="43.0" mnemonicParsing="false" text="软件的开发团队有开发目标应用的经验，但是并不直接使用软件" />
+                                                                                    <CheckBox layoutX="22.0" layoutY="74.0" mnemonicParsing="false" text="软件的开发团队有软件开发方面的经验，但是并不熟悉所开发的" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                              <Label layoutX="44.0" layoutY="108.0" text="软件针对的特定领域的知识，系统复杂" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                                <Tab text="设计阶段">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="1280.0">
+                                                         <children>
+                                                            <HBox layoutX="44.0" layoutY="66.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+                                                               <children>
+                                                                  <TitledPane animated="false" layoutX="44.0" layoutY="66.0" prefHeight="450.0" prefWidth="400.0" text="质量评估">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <VBox layoutX="22.0" layoutY="35.0" spacing="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
+                                                                                 <children>
+                                                                                    <CheckBox layoutX="22.0" layoutY="35.0" mnemonicParsing="false" text="所有的处理函数对应的合法输入值有定量的准确性要求" />
+                                                                                    <CheckBox layoutX="32.0" layoutY="66.0" mnemonicParsing="false" text="所有的处理函数对应的输出有定量的准确性要求" />
+                                                                                    <CheckBox layoutX="41.0" layoutY="99.0" mnemonicParsing="false" text="所有的处理函数对应的常数有定量的准确性要求" />
+                                                                                    <CheckBox layoutX="61.0" layoutY="129.0" mnemonicParsing="false" text="现有的数学库程序能满足所要求的精度" />
+                                                                                    <CheckBox layoutX="61.0" layoutY="162.0" mnemonicParsing="false" text="要求工作的系统有独立的电源" />
+                                                                                    <CheckBox layoutX="49.0" layoutY="190.0" mnemonicParsing="false" text="所有的输入、处理、输出有明确的定义" />
+                                                                                    <CheckBox layoutX="32.0" layoutY="213.0" mnemonicParsing="false" text="所有的定义函数均被引用" />
+                                                                                    <CheckBox layoutX="32.0" layoutY="245.0" mnemonicParsing="false" text="所有对相同数据的引用都是用一个唯一的名字" />
+                                                                                    <CheckBox layoutX="41.0" layoutY="269.0" mnemonicParsing="false" text="有具体的标准来规范定义和使用全局变量" />
+                                                                                    <CheckBox layoutX="32.0" layoutY="301.0" mnemonicParsing="false" text="有具体的标准来规范设计中的数据表示" />
+                                                                                    <CheckBox layoutX="41.0" layoutY="327.0" mnemonicParsing="false" text="有具体的标准来规范所有数据的命名" />
+                                                                                    <CheckBox layoutX="32.0" layoutY="361.0" mnemonicParsing="false" text="有具体的标准来规范软件单元间的调用" />
+                                                                                    <CheckBox layoutX="32.0" layoutY="396.0" mnemonicParsing="false" text="所有被引用的函数都经过明确定义" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                                  <TitledPane animated="false" layoutX="519.0" layoutY="66.0" prefHeight="419.0" prefWidth="430.0" text="异常管理评估">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <VBox layoutY="14.0" spacing="20.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
+                                                                                 <children>
+                                                                                    <CheckBox layoutY="14.0" mnemonicParsing="false" text="有一个控制识别错误的标准，使所有错误都能传递给相应的处理函数" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="对输入数据进行错误包容设计" />
+                                                                                    <CheckBox layoutX="22.0" layoutY="53.0" mnemonicParsing="false" text="有从计算失效中恢复的需求" />
+                                                                                    <CheckBox layoutY="69.0" mnemonicParsing="false" text="有从 I/O 错误中恢复的需求" />
+                                                                                    <CheckBox layoutX="22.0" layoutY="102.0" mnemonicParsing="false" text="有从所有和其他系统通信失效中恢复的需求" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="128.0" mnemonicParsing="false" text="提供替代路径策略的需求" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="有当异常发生时保证数据完整性的需求" />
+                                                                                    <CheckBox layoutX="22.0" layoutY="175.0" mnemonicParsing="false" text="有复制关键数据的需求" />
+                                                                                    <CheckBox layoutX="22.0" layoutY="208.0" mnemonicParsing="false" text="有需求从异常中恢复系统各部分的连接，保证计算过程不被打断" />
+                                                                                    <CheckBox layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="有需求对传输误差进行控制" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                                  <TitledPane animated="false" layoutX="981.0" layoutY="66.0" prefHeight="204.0" prefWidth="425.0" text="可溯性评估">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <VBox layoutX="14.0" layoutY="26.0" spacing="20.0">
+                                                                                 <children>
+                                                                                    <CheckBox layoutX="14.0" layoutY="26.0" mnemonicParsing="false" text="软件需求分析所涉及到的各个功能都有相对应的系统或是子系统的设计" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="软件顶层的系统功能划分在概要设计中都有相应的模块与之对应" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="75.0" mnemonicParsing="false" text="软件系统所有功能单元是否满足了上层设计的全部需求" />
+                                                                                    <CheckBox layoutX="14.0" layoutY="91.0" mnemonicParsing="false" text="从顶层设计到底层设计的分解过程是否通过图表清楚的表示" />
+                                                                                 </children>
+                                                                              </VBox>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label layoutX="876.0" layoutY="545.0" text="需求阶段的错误密度" AnchorPane.leftAnchor="863.0" AnchorPane.rightAnchor="309.0" AnchorPane.topAnchor="300.0" />
+                                                            <TextField layoutX="1034.0" layoutY="296.0" prefHeight="23.0" prefWidth="50.0" AnchorPane.leftAnchor="980.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="296.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                                <Tab text="编码阶段">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <GridPane layoutX="98.0" layoutY="34.0" prefHeight="185.0" prefWidth="273.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                                               <children>
+                                                                  <Label text="已完成的软件源代码行数" />
+                                                                  <TextField prefWidth="50.0" GridPane.columnIndex="1" />
+                                                                  <Label text="安装后并初步使用所需的开发月数" GridPane.rowIndex="2" />
+                                                                  <TextField prefHeight="23.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                  <Label text="设计阶段的错误密度" GridPane.rowIndex="3" />
+                                                                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                  <Label text="软件已开发的月数" GridPane.rowIndex="1" />
+                                                                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                               </children>
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="217.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="56.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </Tab>
+                                             </tabs>
+                                          </TabPane>
+                                          <SplitPane dividerPositions="0.03409090909090909" layoutX="7.0" layoutY="550.0" orientation="VERTICAL" prefHeight="95.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="567.0">
+                                             <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <Button layoutX="609.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </AnchorPane>
+                                             </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                            <Tab text="开发过程可靠性预测">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="567.0" prefWidth="1280.0">
+                                       <children>
+                                          <GridPane layoutX="20.0" layoutY="14.0" prefHeight="90.0" prefWidth="233.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="172.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="61.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="15.0" prefWidth="121.0" text="软件模块的千行代码数" />
+                                                <Label text="开发期CMM等级（1-5）" GridPane.rowIndex="1" />
+                                                <Label text="成熟期CMM等级（1-5）" GridPane.rowIndex="2" />
+                                                <TextField GridPane.columnIndex="1" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <Button layoutX="610.0" layoutY="589.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="软件缺陷早期预测">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="402.0">
+                                       <children>
+                                          <SplitPane dividerPositions="0.29797979797979796" layoutX="237.0" layoutY="137.0" prefHeight="662.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                      <TextField layoutX="109.0" layoutY="11.0" prefHeight="23.0" prefWidth="183.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="11.0" />
+                                                      <Label layoutX="14.0" layoutY="19.0" text="请选择导入文件" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                                                      <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
+                                                      <SplitPane dividerPositions="0.04950495049504951" layoutX="122.0" layoutY="52.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                                        <items>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                               <children>
+                                                                  <Label layoutX="13.0" layoutY="6.0" text="缺陷数据" AnchorPane.leftAnchor="15.0" />
+                                                               </children>
+                                                            </AnchorPane>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                               <children>
+                                                                  <SplitPane dividerPositions="0.8760907504363001" layoutX="74.0" layoutY="111.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="376.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <items>
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="374.0">
+                                                                           <children>
+                                                                              <TableView layoutX="87.0" layoutY="71.0" prefHeight="524.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                <columns>
+                                                                                  <TableColumn prefWidth="119.0" text="月数" />
+                                                                                  <TableColumn prefWidth="243.0" text="当月发现的缺陷数" />
+                                                                                </columns>
+                                                                                 <columnResizePolicy>
+                                                                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                                                 </columnResizePolicy>
+                                                                              </TableView>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
+                                                                           <children>
+                                                                              <Button layoutX="100.0" layoutY="8.0" mnemonicParsing="false" text="增加一行" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="8.0" />
+                                                                              <Button layoutX="147.0" layoutY="52.0" mnemonicParsing="false" text="输入完毕" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="38.0" />
+                                                                              <Button layoutX="179.0" layoutY="8.0" mnemonicParsing="false" text="清楚所有数据" AnchorPane.rightAnchor="50.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                    </items>
+                                                                  </SplitPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </items>
+                                                      </SplitPane>
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                      <TableView layoutX="195.0" layoutY="108.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="月数" />
+                                                          <TableColumn prefWidth="75.0" text="当月发现的缺陷数" />
+                                                            <TableColumn prefWidth="75.0" text="截止当月发现的累积缺陷数" />
+                                                        </columns>
+                                                         <columnResizePolicy>
+                                                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                         </columnResizePolicy>
+                                                      </TableView>
+                                                      <Label layoutX="387.0" layoutY="1.0" text="缺陷发现历史" AnchorPane.bottomAnchor="623.0" AnchorPane.leftAnchor="387.0" AnchorPane.rightAnchor="387.0" AnchorPane.topAnchor="10.0">
+                                                         <font>
+                                                            <Font size="20.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Button layoutX="417.0" layoutY="593.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="35.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Button>
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="测试阶段的软件可靠性评估">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.29797979797979796" prefHeight="662.0" prefWidth="1280.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TextField layoutX="109.0" layoutY="11.0" prefHeight="23.0" prefWidth="183.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="11.0" />
+                                    <Label layoutX="14.0" layoutY="19.0" text="请选择导入文件" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                                    <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
+                                    <SplitPane dividerPositions="0.04950495049504951" layoutX="122.0" layoutY="52.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                       <items>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <CheckBox layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="CheckBox" />
+                                                <CheckBox layoutX="245.0" layoutY="6.0" mnemonicParsing="false" text="CheckBox" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <SplitPane dividerPositions="0.8760907504363001" layoutX="74.0" layoutY="111.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="376.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <items>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="374.0">
+                                                         <children>
+                                                            <TableView layoutX="87.0" layoutY="71.0" prefHeight="524.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <columnResizePolicy>
+                                                                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                               </columnResizePolicy>
+                                                               <columns>
+                                                                  <TableColumn prefWidth="119.0" text="月数" />
+                                                                  <TableColumn prefWidth="243.0" text="当月发现的缺陷数" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
+                                                         <children>
+                                                            <Button layoutX="100.0" layoutY="8.0" mnemonicParsing="false" text="增加一行" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="8.0" />
+                                                            <Button layoutX="147.0" layoutY="52.0" mnemonicParsing="false" text="输入完毕" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="38.0" />
+                                                            <Button layoutX="179.0" layoutY="8.0" mnemonicParsing="false" text="清楚所有数据" AnchorPane.rightAnchor="50.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Button layoutX="417.0" layoutY="593.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="35.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

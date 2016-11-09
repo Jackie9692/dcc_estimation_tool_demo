@@ -1,11 +1,11 @@
-package tj.dcc.evaluation.model;
+package dcc.evaluation.computation.model;
 
 /**
  * 模型函数调用接口
  * @author daxu
  */
 public interface ModelInterface {
-	
+
 	/**
 	 * 计算软件可靠性度量指标
 	 */

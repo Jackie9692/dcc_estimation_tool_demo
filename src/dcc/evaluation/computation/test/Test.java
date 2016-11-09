@@ -1,9 +1,9 @@
-package tj.dcc.evaluation.test;
+package dcc.evaluation.computation.test;
 
-import tj.dcc.evaluation.model.*;
+import dcc.evaluation.computation.model.*;
 
 public class Test {
-	
+
 	/**
 	 * J-M模型 期望结果：
 	 * 缺陷总数的期望值N=31.2
@@ -16,7 +16,7 @@ public class Test {
 		jmModel.calculate(0.000001);//设置计算阈值为0.000001
 		jmModel.printResult();//输出计算结果到控制台
 	}
-	
+
 	/**
 	 * G-O模型 期望结果：
 	 * 缺陷总数的期望值a=142.32
