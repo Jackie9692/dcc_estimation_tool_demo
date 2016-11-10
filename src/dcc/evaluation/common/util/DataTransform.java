@@ -1,4 +1,4 @@
-package dcc.evaluation.computation.util;
+package dcc.evaluation.common.util;
 
 /**
  * 数组工具类

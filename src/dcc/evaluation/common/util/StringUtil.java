@@ -1,4 +1,4 @@
-package dcc.evaluation.computation.util;
+package dcc.evaluation.common.util;
 
 public class StringUtil {
 	public static boolean isEmpty(String str){
