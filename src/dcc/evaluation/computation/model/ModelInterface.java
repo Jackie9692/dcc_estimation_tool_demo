@@ -1,4 +1,4 @@
-package dcc.rsrept.controller.model;
+package dcc.evaluation.computation.model;
 
 /**
  * 模型函数调用接口

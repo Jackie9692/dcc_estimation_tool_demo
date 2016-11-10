@@ -1,4 +1,4 @@
-package dcc.rsrept.controller.model;
+package dcc.evaluation.computation.model;
 
 /**
  * J-M 模型

@@ -1,6 +1,6 @@
-package dcc.rsrept.controller.test;
+package dcc.evaluation.computation.test;
 
-import dcc.rsrept.controller.model.*;
+import dcc.evaluation.computation.model.*;
 
 public class Test {
 	
