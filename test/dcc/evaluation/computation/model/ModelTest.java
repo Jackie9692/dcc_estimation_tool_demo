@@ -1,9 +1,7 @@
 package dcc.evaluation.computation.model;
 
-import dcc.evaluation.computation.model.*;
-
 public class ModelTest {
-	
+
 	/**
 	 * J-M模型 期望结果：
 	 * 缺陷总数的期望值N=31.2
@@ -17,12 +15,12 @@ public class ModelTest {
 		jmModel.calculate(0.000001);//设置计算阈值为0.000001
 		jmModel.printResult();//输出计算结果到控制台
 	}
-	
+
 	/**
 	 * G-O模型 期望结果：
 	 * 缺陷总数的期望值a=142.32
 	 * 失效率比例常数b=0.1246
-	 * 测试数据来源： Musa J D. Software Reliability Data[M].  A real-time, command and control system, 
+	 * 测试数据来源： Musa J D. Software Reliability Data[M].  A real-time, command and control system,
 	 * 			The delivered object instructions for this system was developed by Bell Laboratories.
 	 */
 	@org.junit.Test
@@ -33,7 +31,7 @@ public class ModelTest {
 		goModel.calculate(0.000001);//设置计算阈值为0.001
 		goModel.printResult();//输出计算结果到控制台
 	}
-	
+
 	/**
 	 * M-O模型 期望结果：
 	 * 缺陷总数的期望值b0=42.3
@@ -53,7 +51,7 @@ public class ModelTest {
 		moModel.calculate(0.000001);//设置计算阈值为0.00000001
 		moModel.printResult();//输出计算结果到控制台
 	}
-	
+
 	/**
 	 * Schneidewind模型 期望结果：
 	 * 初始故障率a=0.1817663
