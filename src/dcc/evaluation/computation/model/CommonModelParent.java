@@ -1,13 +1,14 @@
-package dcc.evaluation.computation.model;
+package dcc.rsrept.controller.model;
 
 /**
  * 失效数据类
  * @author daxu
  */
 class FailureDataSet{
-
+	
 	public double []time;
 	public int []number;
+	public double terminateTime;//测试终止时间
 
 	/**
 	 * 完全失效时间构造器
@@ -15,8 +16,19 @@ class FailureDataSet{
 	 */
 	public FailureDataSet(double []time){
 		this.time = time;
+		this.terminateTime = time[time.length-1];//默认测试终止时间为最后一次失效发生的时间
 	}
-
+	
+	/**
+	 * 完全失效时间构造器
+	 * @param time: 失效间隔时间
+	 * @param terminateTime： 测试终止时间
+	 */
+	public FailureDataSet(double []time, double terminateTime){
+		this.time = time;
+		this.terminateTime = terminateTime;
+	}
+	
 	/**
 	 * 不完全失效时间构造器
 	 * @param time: 失效间隔时间
@@ -38,6 +50,7 @@ class EstimationResults{
 	public double failureRate;//失效率
 	public double residualFaultNum;//剩余失效数
 	public double expectFaultNum;//失效总数期望值
+	public String meanFunction;//累计失效数均值函数
 }
 
 /**
@@ -47,13 +60,22 @@ class EstimationResults{
 public class CommonModelParent {
 	public FailureDataSet failureDate;//失效数据
 	public EstimationResults estimationResults;//评估结果
-
+	
 	/**
 	 * 完全失效时间模型父类构造器
 	 * @param time 失效间隔时间
 	 */
 	public CommonModelParent(double []time){
 		this.failureDate = new FailureDataSet(time);
+		this.estimationResults = new EstimationResults();
+	}
+	
+	/**
+	 * 完全失效时间模型父类构造器
+	 * @param time 失效间隔时间
+	 */
+	public CommonModelParent(double []time, double terminateTime){
+		this.failureDate = new FailureDataSet(time, terminateTime);
 		this.estimationResults = new EstimationResults();
 	}
 
