@@ -6,7 +6,7 @@
 	<session-factory>
 		<!-- 配置数据库信息 -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/test</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/dcc_rsrept</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.username">root</property>
 		<property name="hibernate.connection.password">admin</property>
@@ -23,8 +23,7 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 
-		<mapping class="mtm_fk.Students"></mapping>
-		<mapping class="mtm_fk.Teachers"></mapping>
+		<mapping class="dcc.evaluation.database.entity.Project"></mapping>
 
 	</session-factory>
 </hibernate-configuration>
