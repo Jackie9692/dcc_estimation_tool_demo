@@ -1,8 +1,8 @@
-package dcc.evaluation.computation.test;
+package dcc.evaluation.computation.model;
 
 import dcc.evaluation.computation.model.*;
 
-public class Test {
+public class ModelTest {
 	
 	/**
 	 * J-M模型 期望结果：

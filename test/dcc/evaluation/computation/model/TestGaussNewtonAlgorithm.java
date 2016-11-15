@@ -1,4 +1,4 @@
-package dcc.evaluation.computation.test;
+package dcc.evaluation.computation.model;
 
 public class TestGaussNewtonAlgorithm {
 
