@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.EvaluationOverviewController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.EvaluationOverviewController">
    <children>
       <Label layoutX="950.0" layoutY="497.0" styleClass="label-welcome" stylesheets="@EvaluationOverview.css" text="可靠性预测与评估工具" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="880.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="480.0">
          <font>
