@@ -1,7 +1,12 @@
 package dcc.evaluation;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
+
+import dcc.evaluation.view.InputFileController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -130,13 +135,20 @@ public class MainApp extends Application {
 	}
 	/**
 	 *打开导入文件框
+	 * @throws FileFormatException 
+	 * @throws FileNotFoundException 
 	 *
 	 */
-	public static void showFileChooserOverview(){
+	public static void showFileChooserOverview() throws FileNotFoundException, FileFormatException{
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
-		fileChooser.showOpenDialog(primaryStage);
+		File file = fileChooser.showOpenDialog(primaryStage);
+		if(file != null){
+			InputFileController ifc = new InputFileController();
+			ifc.readExcel(file.getAbsolutePath());
+		}
 	}
+
 	/**
 	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @return

@@ -2,14 +2,17 @@ package dcc.evaluation.view;
 
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
-import javafx.stage.FileChooser;
-import javafx.stage.Window;
+
+
 
 
 
@@ -236,7 +239,7 @@ public class NewTaskOverviewController {
 	}
 	
 	@FXML
-	private void importFileWindow(){
+	private void importFileWindow() throws FileNotFoundException, FileFormatException{
 		MainApp.showFileChooserOverview();
 	}
 	
