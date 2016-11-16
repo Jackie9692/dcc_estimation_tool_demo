@@ -1,4 +1,4 @@
-package dcc.evaluation.model.DevelopmentLifecycle;
+package dcc.evaluation.computation.model;
 
 public class RequirementAnalysis {
 	 private int systemType = 0;

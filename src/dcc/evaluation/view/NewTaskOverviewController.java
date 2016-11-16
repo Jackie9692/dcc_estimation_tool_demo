@@ -4,9 +4,12 @@ package dcc.evaluation.view;
 
 import java.util.ArrayList;
 
+import dcc.evaluation.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 
 
@@ -230,6 +233,11 @@ public class NewTaskOverviewController {
 		
 		
 		
+	}
+	
+	@FXML
+	private void importFileWindow(){
+		MainApp.showFileChooserOverview();
 	}
 	
 

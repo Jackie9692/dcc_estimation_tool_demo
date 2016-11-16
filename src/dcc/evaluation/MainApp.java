@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -127,7 +128,15 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 *打开导入文件框
+	 *
+	 */
+	public static void showFileChooserOverview(){
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("选择导入文件");
+		fileChooser.showOpenDialog(primaryStage);
+	}
 	/**
 	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	 * @return

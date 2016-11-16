@@ -254,7 +254,7 @@
                                                    <children>
                                                       <TextField layoutX="109.0" layoutY="11.0" prefHeight="23.0" prefWidth="183.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="11.0" />
                                                       <Label layoutX="14.0" layoutY="19.0" text="请选择导入文件" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                                                      <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
+                                                      <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" onAction="#importFileWindow" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
                                                       <SplitPane dividerPositions="0.04950495049504951" layoutX="122.0" layoutY="52.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                                                         <items>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -340,7 +340,7 @@
                                  <children>
                                     <TextField layoutX="109.0" layoutY="11.0" prefHeight="23.0" prefWidth="183.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="11.0" />
                                     <Label layoutX="14.0" layoutY="19.0" text="请选择导入文件" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                                    <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
+                                    <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" onAction="#importFileWindow" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
                                     <SplitPane dividerPositions="0.04950495049504951" layoutX="122.0" layoutY="52.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                                        <items>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
