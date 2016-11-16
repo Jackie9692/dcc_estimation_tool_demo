@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.Evaluation.view.NewTaskOverviewController">
    <children>
-      <TabPane layoutX="237.0" layoutY="53.0" prefHeight="640.0" prefWidth="960.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutX="237.0" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="开发过程的软件可靠性预测与分析">
             <content>
@@ -26,38 +40,41 @@
                                                    <content>
                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="533.0" prefWidth="1280.0">
                                                          <children>
-                                                            <HBox layoutX="14.0" layoutY="14.0" spacing="100.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="481.0" AnchorPane.topAnchor="15.0">
+                                                            <HBox layoutX="14.0" layoutY="14.0" spacing="100.0">
                                                                <children>
-                                                                  <TitledPane animated="false" layoutX="14.0" layoutY="14.0" text="系统应用类型">
+                                                                  <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="14.0" text="系统应用类型">
                                                                      <content>
                                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="300.0">
                                                                            <children>
-                                                                              <VBox layoutX="14.0" layoutY="14.0" spacing="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
+                                                                              <VBox layoutX="163.0" layoutY="20.0" spacing="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
                                                                                  <children>
-                                                                                    <CheckBox layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="机载系统" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="战略信息指挥系统" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="战术指挥系统" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="104.0" mnemonicParsing="false" text="过程控制系统" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="生产系统" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="176.0" mnemonicParsing="false" text="开发工具" />
+                                                                                    <RadioButton fx:id="rbSystemType1" layoutX="175.0" layoutY="20.0" mnemonicParsing="false" text="机载系统">
+                                                                                       <toggleGroup>
+                                                                                          <ToggleGroup fx:id="systemTypeGroup" />
+                                                                                       </toggleGroup></RadioButton>
+                                                                                    <RadioButton fx:id="rbSystemType2" layoutX="163.0" layoutY="51.0" mnemonicParsing="false" text="战略信息指挥系统" toggleGroup="$systemTypeGroup" />
+                                                                                    <RadioButton fx:id="rbSystemType3" layoutX="163.0" layoutY="83.0" mnemonicParsing="false" text="战术指挥系统" toggleGroup="$systemTypeGroup" />
+                                                                                    <RadioButton fx:id="rbSystemType4" layoutX="163.0" layoutY="120.0" mnemonicParsing="false" text="过程控制系统" toggleGroup="$systemTypeGroup" />
+                                                                                    <RadioButton fx:id="rbSystemType5" layoutX="175.0" layoutY="150.0" mnemonicParsing="false" text="生产系统" toggleGroup="$systemTypeGroup" />
+                                                                                    <RadioButton fx:id="rbSystemType6" layoutX="175.0" layoutY="183.0" mnemonicParsing="false" text="开发工具" toggleGroup="$systemTypeGroup" />
                                                                                  </children>
                                                                               </VBox>
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </content>
                                                                   </TitledPane>
-                                                                  <TitledPane animated="false" layoutX="455.0" layoutY="14.0" text="开发环境">
+                                                                  <TitledPane animated="false" collapsible="false" layoutX="455.0" layoutY="14.0" text="开发环境">
                                                                      <content>
                                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="400.0">
                                                                            <children>
-                                                                              <VBox layoutX="22.0" layoutY="14.0" spacing="20.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
-                                                                                 <children>
-                                                                                    <CheckBox layoutX="22.0" layoutY="14.0" mnemonicParsing="false" text="软件的开发团队是所开发软件的整个组织中的一部分" />
-                                                                                    <CheckBox layoutX="22.0" layoutY="43.0" mnemonicParsing="false" text="软件的开发团队有开发目标应用的经验，但是并不直接使用软件" />
-                                                                                    <CheckBox layoutX="22.0" layoutY="74.0" mnemonicParsing="false" text="软件的开发团队有软件开发方面的经验，但是并不熟悉所开发的" />
-                                                                                 </children>
-                                                                              </VBox>
                                                                               <Label layoutX="44.0" layoutY="108.0" text="软件针对的特定领域的知识，系统复杂" />
+                                                                              <RadioButton fx:id="rbDevelopmentEnvironment1" layoutX="22.600000381469727" layoutY="19.600000381469727" mnemonicParsing="false" text="软件的开发团队是所开发软件的整个组织中的一部分">
+                                                                                 <toggleGroup>
+                                                                                    <ToggleGroup fx:id="developmentEnvironmentGroup" />
+                                                                                 </toggleGroup>
+                                                                              </RadioButton>
+                                                                              <RadioButton fx:id="rbDevelopmentEnvironment2" layoutX="22.600000381469727" layoutY="55.599998474121094" mnemonicParsing="false" text="软件的开发团队有开发目标应用的经验，但是并不直接使用软件" toggleGroup="$developmentEnvironmentGroup" />
+                                                                              <RadioButton fx:id="rbDevelopmentEnvironment3" layoutX="22.600000381469727" layoutY="91.5999984741211" mnemonicParsing="false" text="软件的开发团队有软件开发方面的经验，但是并不熟悉所开发的" textOverrun="CLIP" toggleGroup="$developmentEnvironmentGroup" wrapText="true" />
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </content>
@@ -74,63 +91,63 @@
                                                          <children>
                                                             <HBox layoutX="44.0" layoutY="66.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
                                                                <children>
-                                                                  <TitledPane animated="false" layoutX="44.0" layoutY="66.0" prefHeight="450.0" prefWidth="400.0" text="质量评估">
+                                                                  <TitledPane animated="false" collapsible="false" layoutX="44.0" layoutY="66.0" prefHeight="450.0" prefWidth="400.0" text="质量评估">
                                                                      <content>
                                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="200.0">
                                                                            <children>
                                                                               <VBox layoutX="22.0" layoutY="35.0" spacing="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
                                                                                  <children>
-                                                                                    <CheckBox layoutX="22.0" layoutY="35.0" mnemonicParsing="false" text="所有的处理函数对应的合法输入值有定量的准确性要求" />
-                                                                                    <CheckBox layoutX="32.0" layoutY="66.0" mnemonicParsing="false" text="所有的处理函数对应的输出有定量的准确性要求" />
-                                                                                    <CheckBox layoutX="41.0" layoutY="99.0" mnemonicParsing="false" text="所有的处理函数对应的常数有定量的准确性要求" />
-                                                                                    <CheckBox layoutX="61.0" layoutY="129.0" mnemonicParsing="false" text="现有的数学库程序能满足所要求的精度" />
-                                                                                    <CheckBox layoutX="61.0" layoutY="162.0" mnemonicParsing="false" text="要求工作的系统有独立的电源" />
-                                                                                    <CheckBox layoutX="49.0" layoutY="190.0" mnemonicParsing="false" text="所有的输入、处理、输出有明确的定义" />
-                                                                                    <CheckBox layoutX="32.0" layoutY="213.0" mnemonicParsing="false" text="所有的定义函数均被引用" />
-                                                                                    <CheckBox layoutX="32.0" layoutY="245.0" mnemonicParsing="false" text="所有对相同数据的引用都是用一个唯一的名字" />
-                                                                                    <CheckBox layoutX="41.0" layoutY="269.0" mnemonicParsing="false" text="有具体的标准来规范定义和使用全局变量" />
-                                                                                    <CheckBox layoutX="32.0" layoutY="301.0" mnemonicParsing="false" text="有具体的标准来规范设计中的数据表示" />
-                                                                                    <CheckBox layoutX="41.0" layoutY="327.0" mnemonicParsing="false" text="有具体的标准来规范所有数据的命名" />
-                                                                                    <CheckBox layoutX="32.0" layoutY="361.0" mnemonicParsing="false" text="有具体的标准来规范软件单元间的调用" />
-                                                                                    <CheckBox layoutX="32.0" layoutY="396.0" mnemonicParsing="false" text="所有被引用的函数都经过明确定义" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation1" layoutX="22.0" layoutY="35.0" mnemonicParsing="false" text="所有的处理函数对应的合法输入值有定量的准确性要求" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation2" layoutX="32.0" layoutY="66.0" mnemonicParsing="false" text="所有的处理函数对应的输出有定量的准确性要求" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation3" layoutX="41.0" layoutY="99.0" mnemonicParsing="false" text="所有的处理函数对应的常数有定量的准确性要求" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation4" layoutX="61.0" layoutY="129.0" mnemonicParsing="false" text="现有的数学库程序能满足所要求的精度" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation5" layoutX="61.0" layoutY="162.0" mnemonicParsing="false" text="要求工作的系统有独立的电源" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation6" layoutX="49.0" layoutY="190.0" mnemonicParsing="false" text="所有的输入、处理、输出有明确的定义" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation7" layoutX="32.0" layoutY="213.0" mnemonicParsing="false" text="所有的定义函数均被引用" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation8" layoutX="32.0" layoutY="245.0" mnemonicParsing="false" text="所有对相同数据的引用都是用一个唯一的名字" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation9" layoutX="41.0" layoutY="269.0" mnemonicParsing="false" text="有具体的标准来规范定义和使用全局变量" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation10" layoutX="32.0" layoutY="301.0" mnemonicParsing="false" text="有具体的标准来规范设计中的数据表示" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation11" layoutX="41.0" layoutY="327.0" mnemonicParsing="false" text="有具体的标准来规范所有数据的命名" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation12" layoutX="32.0" layoutY="361.0" mnemonicParsing="false" text="有具体的标准来规范软件单元间的调用" />
+                                                                                    <CheckBox fx:id="cbQualityEvaluation13" layoutX="32.0" layoutY="396.0" mnemonicParsing="false" text="所有被引用的函数都经过明确定义" />
                                                                                  </children>
                                                                               </VBox>
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </content>
                                                                   </TitledPane>
-                                                                  <TitledPane animated="false" layoutX="519.0" layoutY="66.0" prefHeight="419.0" prefWidth="430.0" text="异常管理评估">
+                                                                  <TitledPane animated="false" collapsible="false" layoutX="519.0" layoutY="66.0" prefHeight="419.0" prefWidth="430.0" text="异常管理评估">
                                                                      <content>
                                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="200.0">
                                                                            <children>
                                                                               <VBox layoutY="14.0" spacing="20.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="10.0">
                                                                                  <children>
-                                                                                    <CheckBox layoutY="14.0" mnemonicParsing="false" text="有一个控制识别错误的标准，使所有错误都能传递给相应的处理函数" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="对输入数据进行错误包容设计" />
-                                                                                    <CheckBox layoutX="22.0" layoutY="53.0" mnemonicParsing="false" text="有从计算失效中恢复的需求" />
-                                                                                    <CheckBox layoutY="69.0" mnemonicParsing="false" text="有从 I/O 错误中恢复的需求" />
-                                                                                    <CheckBox layoutX="22.0" layoutY="102.0" mnemonicParsing="false" text="有从所有和其他系统通信失效中恢复的需求" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="128.0" mnemonicParsing="false" text="提供替代路径策略的需求" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="有当异常发生时保证数据完整性的需求" />
-                                                                                    <CheckBox layoutX="22.0" layoutY="175.0" mnemonicParsing="false" text="有复制关键数据的需求" />
-                                                                                    <CheckBox layoutX="22.0" layoutY="208.0" mnemonicParsing="false" text="有需求从异常中恢复系统各部分的连接，保证计算过程不被打断" />
-                                                                                    <CheckBox layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="有需求对传输误差进行控制" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement1" layoutY="14.0" mnemonicParsing="false" text="有一个控制识别错误的标准，使所有错误都能传递给相应的处理函数" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement2" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" text="对输入数据进行错误包容设计" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement3" layoutX="22.0" layoutY="53.0" mnemonicParsing="false" text="有从计算失效中恢复的需求" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement4" layoutY="69.0" mnemonicParsing="false" text="有从 I/O 错误中恢复的需求" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement5" layoutX="22.0" layoutY="102.0" mnemonicParsing="false" text="有从所有和其他系统通信失效中恢复的需求" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement6" layoutX="14.0" layoutY="128.0" mnemonicParsing="false" text="提供替代路径策略的需求" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement7" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" text="有当异常发生时保证数据完整性的需求" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement8" layoutX="22.0" layoutY="175.0" mnemonicParsing="false" text="有复制关键数据的需求" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement9" layoutX="22.0" layoutY="208.0" mnemonicParsing="false" text="有需求从异常中恢复系统各部分的连接，保证计算过程不被打断" />
+                                                                                    <CheckBox fx:id="cbExceptionManagement10" layoutX="29.0" layoutY="238.0" mnemonicParsing="false" text="有需求对传输误差进行控制" />
                                                                                  </children>
                                                                               </VBox>
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </content>
                                                                   </TitledPane>
-                                                                  <TitledPane animated="false" layoutX="981.0" layoutY="66.0" prefHeight="204.0" prefWidth="425.0" text="可溯性评估">
+                                                                  <TitledPane animated="false" collapsible="false" layoutX="981.0" layoutY="66.0" prefHeight="204.0" prefWidth="425.0" text="可溯性评估">
                                                                      <content>
                                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                                                            <children>
                                                                               <VBox layoutX="14.0" layoutY="26.0" spacing="20.0">
                                                                                  <children>
-                                                                                    <CheckBox layoutX="14.0" layoutY="26.0" mnemonicParsing="false" text="软件需求分析所涉及到的各个功能都有相对应的系统或是子系统的设计" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="软件顶层的系统功能划分在概要设计中都有相应的模块与之对应" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="75.0" mnemonicParsing="false" text="软件系统所有功能单元是否满足了上层设计的全部需求" />
-                                                                                    <CheckBox layoutX="14.0" layoutY="91.0" mnemonicParsing="false" text="从顶层设计到底层设计的分解过程是否通过图表清楚的表示" />
+                                                                                    <CheckBox fx:id="cbLimbernessEvaluation1" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" text="软件需求分析所涉及到的各个功能都有相对应的系统或是子系统的设计" />
+                                                                                    <CheckBox fx:id="cbLimbernessEvaluation2" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="软件顶层的系统功能划分在概要设计中都有相应的模块与之对应" />
+                                                                                    <CheckBox fx:id="cbLimbernessEvaluation3" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" text="软件系统所有功能单元是否满足了上层设计的全部需求" />
+                                                                                    <CheckBox fx:id="cbLimbernessEvaluation4" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" text="从顶层设计到底层设计的分解过程是否通过图表清楚的表示" />
                                                                                  </children>
                                                                               </VBox>
                                                                            </children>
@@ -182,7 +199,7 @@
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
-                                                      <Button layoutX="609.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
+                                                      <Button layoutX="609.0" layoutY="14.0" mnemonicParsing="false" onAction="#evaluateIsClicked" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -210,7 +227,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label prefHeight="15.0" prefWidth="121.0" text="软件模块的千行代码数" />
+                                                <Label prefHeight="20.0" prefWidth="171.0" text="软件模块的千行代码数" />
                                                 <Label text="开发期CMM等级（1-5）" GridPane.rowIndex="1" />
                                                 <Label text="成熟期CMM等级（1-5）" GridPane.rowIndex="2" />
                                                 <TextField GridPane.columnIndex="1" />
@@ -328,8 +345,8 @@
                                        <items>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
-                                                <CheckBox layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="CheckBox" />
-                                                <CheckBox layoutX="245.0" layoutY="6.0" mnemonicParsing="false" text="CheckBox" />
+                                                <CheckBox layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="完全失效数据" />
+                                                <CheckBox layoutX="245.0" layoutY="6.0" mnemonicParsing="false" text="不完全失效数据" />
                                              </children>
                                           </AnchorPane>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
