@@ -6,9 +6,13 @@ import java.util.ArrayList;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.MainApp;
+import dcc.evaluation.computation.model.DefectAmount;
+import javafx.beans.property.IntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class NewTaskOverviewController {
 	// 需求分析阶段的按钮
@@ -226,6 +230,20 @@ public class NewTaskOverviewController {
 	private void importFileWindow() throws FileNotFoundException, FileFormatException {
 		MainApp.showFileChooserOverview();
 	}
+	
+	//软件缺陷早期预测中缺陷数据表格
+	
+	@FXML
+	private TableView<DefectAmount> defectTable;
+	
+	@FXML
+	private TableColumn<DefectAmount, String> mounthColumn;
+	@FXML
+	private TableColumn<DefectAmount, String> defectAmountColumn;
+	
+
+	
+	
 
 	@FXML
 	private void evaluateIsClicked() {

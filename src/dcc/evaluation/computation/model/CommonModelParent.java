@@ -1,5 +1,7 @@
 package dcc.evaluation.computation.model;
 
+import javafx.beans.property.IntegerProperty;
+
 /**
  * 失效数据类
  * @author daxu
@@ -9,6 +11,9 @@ class FailureDataSet{
 	public double []time;
 	public int []number;
 	public double terminateTime;//测试终止时间
+
+
+	
 
 	/**
 	 * 完全失效时间构造器

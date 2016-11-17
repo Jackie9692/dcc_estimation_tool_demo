@@ -14,10 +14,23 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
+import dcc.evaluation.computation.model.DefectAmount;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class InputFileController {
 
 	private static final String EXTENSION_XLS = "xls";
 	private static final String EXTENSION_XLSX = "xlsx";
+	
+	
+	
+	/*
+	 * 将导入的软件缺陷早期预测失效数据存储在集合中
+	 */
+	private ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
+	
+	
 	// public static void main(String[] args) throws FileNotFoundException,
 	// FileFormatException {
 	// ReadExcelTest ret = new ReadExcelTest();
@@ -56,11 +69,11 @@ public class InputFileController {
 		// 常规检查
 		File file = new File(filePath);
 		if (!file.exists()) {
-			throw new FileNotFoundException("������ļ������ڣ�" + filePath);
+			throw new FileNotFoundException("传入的文件不存在：" + filePath);
 		}
 
 		if (!(filePath.endsWith(EXTENSION_XLS) || filePath.endsWith(EXTENSION_XLSX))) {
-			throw new FileFormatException("������ļ�����excel");
+			throw new FileFormatException("传入的文件不是excel");
 		}
 	}
 
@@ -96,22 +109,25 @@ public class InputFileController {
 				for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
 					Cell cell = firstRow.getCell(i);
 					String cellValue = this.getCellValue(cell, true);
-					System.out.print(" " + cellValue + "\t");
+					//System.out.print(" " + cellValue + "\t");
 				}
 				System.out.println("");
 
 				// 读取数据行
-				for (int rowIndex = firstRowIndex + 1; rowIndex <= lastRowIndex; rowIndex++) {
+				for (int rowIndex = firstRowIndex + 1 , x = 1; rowIndex <= lastRowIndex; rowIndex++) {
 					Row currentRow = sheet.getRow(rowIndex);// 当前行
 					int firstColumnIndex = currentRow.getFirstCellNum(); // 首列
 					int lastColumnIndex = currentRow.getLastCellNum();// 最后一列
 					for (int columnIndex = firstColumnIndex; columnIndex <= lastColumnIndex; columnIndex++) {
 						Cell currentCell = currentRow.getCell(columnIndex);// 当前单元格
 						String currentCellValue = this.getCellValue(currentCell, true);// 当前单元格的值ֵ
-						System.out.print(currentCellValue + "\t");
+						//System.out.print(currentCellValue + "\t");
+						defectData.add(new DefectAmount(Integer.toString(x),currentCellValue));
+						x++;
 					}
-					System.out.println("");
+					//System.out.println("");
 				}
+				
 				// System.out.println("======================================================");
 			}
 		} catch (Exception e) {

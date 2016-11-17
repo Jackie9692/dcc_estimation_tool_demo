@@ -6,8 +6,11 @@ import java.io.IOException;
 
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
+import dcc.evaluation.computation.model.DefectAmount;
 import dcc.evaluation.view.InputFileController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -148,7 +151,11 @@ public class MainApp extends Application {
 			ifc.readExcel(file.getAbsolutePath());
 		}
 	}
+	
 
+	
+	
+	
 	/**
 	 * 返回主场景
 	 * @return
