@@ -24,24 +24,24 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("�ɿ���Ԥ������������");
+		this.primaryStage.setTitle("可靠性预测与评估工具");
 
 		initRootLayout();
 		showEvaluationOverview();
 
 	}
 	/**
-	 * ��ʾ�������ߵĳ�ʼ����
+	 * 显示评估工具的初始界面
 	 */
 	public void showEvaluationOverview() {
 
 		try {
-			//��fxml�ļ��м����������߳�ʼ����
+			//从fxml文件中加载评估工具初始布局
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/EvaluationOverview.fxml"));
 			AnchorPane evaluationOverview = (AnchorPane)loader.load();
 
-			//���������ߵĳ�ʼ���������ڵײ㲼�ֵ�����
+			//将评估工具的初始布局设置在底层布局的中心
 			rootLayout.setCenter(evaluationOverview);
 
 		} catch (IOException e) {
@@ -51,17 +51,17 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * ��ʼ���ײ㲼��
+	 * 初始化底层布局
 	 */
 	public void initRootLayout() {
 
 		try {
-			// ��fxml�ļ��м��صײ㲼��
+			// 从fxml文件中加载底层布局
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
-			//��ʾ���еײ㲼�ֵĳ���
+			//显示带有底层布局的场景
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			//scene.getStylesheets().add(MainApp.class.getResource("view/EvaluationOverview.css").toExternalForm());
@@ -74,27 +74,27 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 *���½���Ŀ����
+	 * 打开新建项目界面
 	 *
 	 */
 	public static void showNewTaskOverview(){
 
 		try {
-			//��fxml�ļ��м����½���Ŀ�Ի�
+			//从fxml文件中加载新建项目对话
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/NewTaskOverview.fxml"));
 			AnchorPane newTasksOverview = (AnchorPane)loader.load();
 
-			//�����½���Ŀ�Ի���
+			//创建新建项目对话框
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("�½���Ŀ");
+			dialogStage.setTitle("新建项目");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(newTasksOverview);
 			dialogStage.setScene(scene);
 
-			//չʾ�½���Ŀ�Ի���ֱ���û��ر���
+			//展示新建项目对话框直到用户关闭它
 			dialogStage.showAndWait();
 
 
@@ -105,26 +105,26 @@ public class MainApp extends Application {
 
 	}
 	/**
-	 *����ʷ��Ŀ����
+	 *打开历史项目界面
 	 *
 	 */
 	public static void showHistoricTasksOverview(){
 		try {
-			//��fxml�ļ��м����½���Ŀ�Ի�
+			//从fxml文件中加载新建项目对话
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/HistoricTasksOverview.fxml"));
 			AnchorPane HistoricTasksOverview = (AnchorPane)loader.load();
 
-			//�����½���Ŀ�Ի���
+			//创建新建项目对话框
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("��ʷ��Ŀ");
+			dialogStage.setTitle("历史项目");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(HistoricTasksOverview);
 			dialogStage.setScene(scene);
 
-			//չʾ�½���Ŀ�Ի���ֱ���û��ر���
+			//展示新建项目对话框直到用户关闭它
 			dialogStage.showAndWait();
 
 
@@ -134,14 +134,14 @@ public class MainApp extends Application {
 		}
 	}
 	/**
-	 *�򿪵����ļ���
+	 *打开导入文件框
 	 * @throws FileFormatException 
 	 * @throws FileNotFoundException 
 	 *
 	 */
 	public static void showFileChooserOverview() throws FileNotFoundException, FileFormatException{
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("ѡ�����ļ�");
+		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(primaryStage);
 		if(file != null){
 			InputFileController ifc = new InputFileController();
@@ -150,7 +150,7 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * ����������
+	 * 返回主场景
 	 * @return
 	 */
 	public Stage getPrimaryStage(){

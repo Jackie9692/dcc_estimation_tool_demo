@@ -5,19 +5,19 @@ import javafx.fxml.FXML;
 import javafx.stage.Window;
 
 public class EvaluationOverviewController {
-	// ����������
+	// 引用主程序
 //	private MainApp mainApp;
 //	private Window primaryStage;
 
 	/**
-	 * ���췽��
+	 * 构造方法
 	 */
 	public EvaluationOverviewController() {
 
 	}
 
 	/**
-	 * ���û�����½���Ŀ��ťʱ�����½���Ŀ�Ի������½���Ŀ
+	 * 当用户点击新建项目按钮时，打开新建项目对话框以新建项目
 	 */
 	@FXML
 	private void HandleNewTask() {

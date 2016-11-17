@@ -14,144 +14,143 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
-
-
 public class InputFileController {
 
-	 	private static final String EXTENSION_XLS = "xls";
-	    private static final String EXTENSION_XLSX = "xlsx";
-//	    public static void main(String[] args) throws FileNotFoundException, FileFormatException {
-//	    	ReadExcelTest ret = new ReadExcelTest();
-//	    	ret.readExcel("C:\\Users\\admin\\Downloads\\project\\test.xlsx");
-//		}
+	private static final String EXTENSION_XLS = "xls";
+	private static final String EXTENSION_XLSX = "xlsx";
+	// public static void main(String[] args) throws FileNotFoundException,
+	// FileFormatException {
+	// ReadExcelTest ret = new ReadExcelTest();
+	// ret.readExcel("C:\\Users\\admin\\Downloads\\project\\test.xlsx");
+	// }
 
-	    /***
-	     * <pre>
-	     * È¡µÃWorkbook¶ÔÏó(xlsºÍxlsx¶ÔÏó²»Í¬,²»¹ı¶¼ÊÇWorkbookµÄÊµÏÖÀà)
-	     *   xls:HSSFWorkbook
-	     *   xlsx£ºXSSFWorkbook
-	     * @param filePath
-	     * @return
-	     * @throws IOException
-	     * </pre>
-	     */
-	    private Workbook getWorkbook(String filePath) throws IOException {
-	        Workbook workbook = null;
-	        InputStream is = new FileInputStream(filePath);
-	        if (filePath.endsWith(EXTENSION_XLS)) {
-	            workbook = new HSSFWorkbook(is);
-	        } else if (filePath.endsWith(EXTENSION_XLSX)) {
-	            workbook = new XSSFWorkbook(is);
-	        }
-	        return workbook;
-	    }
+	/***
+	 * <pre>
+	 * å–å¾—Workbookå¯¹è±¡(xlså’Œxlsxå¯¹è±¡ä¸åŒ,ä¸è¿‡éƒ½æ˜¯Workbookçš„å®ç°ç±»)
+	 *   xls:HSSFWorkbook
+	 *   xlsxï¼šXSSFWorkbook
+	 * &#64;param filePath
+	 * &#64;return
+	 * &#64;throws IOException
+	 * </pre>
+	 */
+	private Workbook getWorkbook(String filePath) throws IOException {
+		Workbook workbook = null;
+		InputStream is = new FileInputStream(filePath);
+		if (filePath.endsWith(EXTENSION_XLS)) {
+			workbook = new HSSFWorkbook(is);
+		} else if (filePath.endsWith(EXTENSION_XLSX)) {
+			workbook = new XSSFWorkbook(is);
+		}
+		return workbook;
+	}
 
-	    /**
-	     * ÎÄ¼ş¼ì²é
-	     * @param filePath
-	     * @throws FileNotFoundException
-	     * @throws FileFormatException
-	     */
-	    private void preReadCheck(String filePath) throws FileNotFoundException, FileFormatException {
-	        // ³£¹æ¼ì²é
-	        File file = new File(filePath);
-	        if (!file.exists()) {
-	            throw new FileNotFoundException("´«ÈëµÄÎÄ¼ş²»´æÔÚ£º" + filePath);
-	        }
+	/**
+	 * æ–‡ä»¶æ£€æŸ¥
+	 * 
+	 * @param filePath
+	 * @throws FileNotFoundException
+	 * @throws FileFormatException
+	 */
+	private void preReadCheck(String filePath) throws FileNotFoundException, FileFormatException {
+		// å¸¸è§„æ£€æŸ¥
+		File file = new File(filePath);
+		if (!file.exists()) {
+			throw new FileNotFoundException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½" + filePath);
+		}
 
-	        if (!(filePath.endsWith(EXTENSION_XLS) || filePath.endsWith(EXTENSION_XLSX))) {
-	            throw new FileFormatException("´«ÈëµÄÎÄ¼ş²»ÊÇexcel");
-	        }
-	    }
+		if (!(filePath.endsWith(EXTENSION_XLS) || filePath.endsWith(EXTENSION_XLSX))) {
+			throw new FileFormatException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½excel");
+		}
+	}
 
-	    /**
-	     * ¶ÁÈ¡excelÎÄ¼şÄÚÈİ
-	     * @param filePath
-	     * @throws FileNotFoundException
-	     * @throws FileFormatException
-	     */
-	    public void readExcel(String filePath) throws FileNotFoundException, FileFormatException {
-	        // ¼ì²é
-	        this.preReadCheck(filePath);
-	        // »ñÈ¡workbook¶ÔÏó
-	        Workbook workbook = null;
+	/**
+	 * è¯»å–excelæ–‡ä»¶å†…å®¹
+	 * 
+	 * @param filePath
+	 * @throws FileNotFoundException
+	 * @throws FileFormatException
+	 */
+	public void readExcel(String filePath) throws FileNotFoundException, FileFormatException {
+		// æ£€æŸ¥
+		this.preReadCheck(filePath);
+		// è·å–workbookå¯¹è±¡
+		Workbook workbook = null;
 
-	        try {
-	            workbook = this.getWorkbook(filePath);
-	            // ¶ÁÎÄ¼ş Ò»¸ösheetÒ»¸ösheetµØ¶ÁÈ¡
-	            for (int numSheet = 0; numSheet < workbook.getNumberOfSheets(); numSheet++) {
-	                Sheet sheet = workbook.getSheetAt(numSheet);
-	                if (sheet == null) {
-	                    continue;
-	                }
-//	                System.out.println("=======================" + sheet.getSheetName() + "=========================");
+		try {
+			workbook = this.getWorkbook(filePath);
+			// è¯»æ–‡ä»¶ ä¸€ä¸ªsheetä¸€ä¸ªsheetåœ°è¯»å–
+			for (int numSheet = 0; numSheet < workbook.getNumberOfSheets(); numSheet++) {
+				Sheet sheet = workbook.getSheetAt(numSheet);
+				if (sheet == null) {
+					continue;
+				}
+				// System.out.println("=======================" +
+				// sheet.getSheetName() + "=========================");
 
-	                int firstRowIndex = sheet.getFirstRowNum();
-	                int lastRowIndex = sheet.getLastRowNum();
+				int firstRowIndex = sheet.getFirstRowNum();
+				int lastRowIndex = sheet.getLastRowNum();
 
-	                // ¶ÁÈ¡Ê×ĞĞ ¼´,±íÍ·
-	                Row firstRow = sheet.getRow(firstRowIndex);
-	                for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
-	                    Cell cell = firstRow.getCell(i);
-	                    String cellValue = this.getCellValue(cell, true);
-	                    System.out.print(" " + cellValue + "\t");
-	                }
-	                System.out.println("");
+				// è¯»å–é¦–è¡Œï¼Œå³è¡¨å¤´
+				Row firstRow = sheet.getRow(firstRowIndex);
+				for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
+					Cell cell = firstRow.getCell(i);
+					String cellValue = this.getCellValue(cell, true);
+					System.out.print(" " + cellValue + "\t");
+				}
+				System.out.println("");
 
-	                // ¶ÁÈ¡Êı¾İĞĞ
-	                for (int rowIndex = firstRowIndex + 1; rowIndex <= lastRowIndex; rowIndex++) {
-	                    Row currentRow = sheet.getRow(rowIndex);// µ±Ç°ĞĞ
-	                    int firstColumnIndex = currentRow.getFirstCellNum(); // Ê×ÁĞ
-	                    int lastColumnIndex = currentRow.getLastCellNum();// ×îºóÒ»ÁĞ
-	                    for (int columnIndex = firstColumnIndex; columnIndex <= lastColumnIndex; columnIndex++) {
-	                        Cell currentCell = currentRow.getCell(columnIndex);// µ±Ç°µ¥Ôª¸ñ
-	                        String currentCellValue = this.getCellValue(currentCell, true);// µ±Ç°µ¥Ôª¸ñµÄÖµ
-	                        System.out.print(currentCellValue + "\t");
-	                    }
-	                    System.out.println("");
-	                }
-//	                System.out.println("======================================================");
-	            }
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            if (workbook != null) {
-	                try {
-	                    workbook.close();
-	                } catch (IOException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        }
-	    }
+				// è¯»å–æ•°æ®è¡Œ
+				for (int rowIndex = firstRowIndex + 1; rowIndex <= lastRowIndex; rowIndex++) {
+					Row currentRow = sheet.getRow(rowIndex);// å½“å‰è¡Œ
+					int firstColumnIndex = currentRow.getFirstCellNum(); // é¦–åˆ—
+					int lastColumnIndex = currentRow.getLastCellNum();// æœ€åä¸€åˆ—
+					for (int columnIndex = firstColumnIndex; columnIndex <= lastColumnIndex; columnIndex++) {
+						Cell currentCell = currentRow.getCell(columnIndex);// å½“å‰å•å…ƒæ ¼
+						String currentCellValue = this.getCellValue(currentCell, true);// å½“å‰å•å…ƒæ ¼çš„å€¼Öµ
+						System.out.print(currentCellValue + "\t");
+					}
+					System.out.println("");
+				}
+				// System.out.println("======================================================");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (workbook != null) {
+				try {
+					workbook.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-	    /**
-	     * È¡µ¥Ôª¸ñµÄÖµ
-	     * @param cell µ¥Ôª¸ñ¶ÔÏó
-	     * @param treatAsStr ÎªtrueÊ±£¬µ±×öÎÄ±¾À´È¡Öµ (È¡µ½µÄÊÇÎÄ±¾£¬²»»á°Ñ¡°1¡±È¡³É¡°1.0¡±)
-	     * @return
-	     */
-	    private String getCellValue(Cell cell, boolean treatAsStr) {
-	        if (cell == null) {
-	            return "";
-	        }
+	/**
+     * å–å•å…ƒæ ¼çš„å€¼
+     * @param cell å•å…ƒæ ¼å¯¹è±¡
+     * @param treatAsStr ä¸ºtrueæ—¶ï¼Œå½“åšæ–‡æœ¬æ¥å–å€¼ (å–åˆ°çš„æ˜¯æ–‡æœ¬ï¼Œä¸ä¼šæŠŠâ€œ1â€å–æˆâ€œ1.0â€)
+     * @return
+     */
+	private String getCellValue(Cell cell, boolean treatAsStr) {
+		if (cell == null) {
+			return "";
+		}
 
-	        if (treatAsStr) {
-	            // ËäÈ»excelÖĞÉèÖÃµÄ¶¼ÊÇÎÄ±¾£¬µ«ÊÇÊı×ÖÎÄ±¾»¹±»¶Á´í£¬Èç¡°1¡±È¡³É¡°1.0¡±
-	            // ¼ÓÉÏÏÂÃæÕâ¾ä£¬ÁÙÊ±°ÑËüµ±×öÎÄ±¾À´¶ÁÈ¡
-	            cell.setCellType(Cell.CELL_TYPE_STRING);
-	        }
+		if (treatAsStr) {
+			 // è™½ç„¶excelä¸­è®¾ç½®çš„éƒ½æ˜¯æ–‡æœ¬ï¼Œä½†æ˜¯æ•°å­—æ–‡æœ¬è¿˜è¢«è¯»é”™ï¼Œå¦‚â€œ1â€å–æˆâ€œ1.0â€
+            // åŠ ä¸Šä¸‹é¢è¿™å¥ï¼Œä¸´æ—¶æŠŠå®ƒå½“åšæ–‡æœ¬æ¥è¯»å–
+			cell.setCellType(Cell.CELL_TYPE_STRING);
+		}
 
-	        if (cell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
-	            return String.valueOf(cell.getBooleanCellValue());
-	        } else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
-	            return String.valueOf(cell.getNumericCellValue());
-	        } else {
-	            return String.valueOf(cell.getStringCellValue());
-	        }
-	    }
-
-
+		if (cell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
+			return String.valueOf(cell.getBooleanCellValue());
+		} else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+			return String.valueOf(cell.getNumericCellValue());
+		} else {
+			return String.valueOf(cell.getStringCellValue());
+		}
+	}
 
 }
-

@@ -1,7 +1,5 @@
 package dcc.evaluation.view;
 
-
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -12,12 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 
-
-
-
-
 public class NewTaskOverviewController {
-	//ĞèÇó·ÖÎö½×¶ÎµÄ°´Å¥
+	// éœ€æ±‚åˆ†æé˜¶æ®µçš„æŒ‰é’®
 	@FXML
 	private RadioButton rbSystemType1;
 	@FXML
@@ -36,9 +30,9 @@ public class NewTaskOverviewController {
 	private RadioButton rbDevelopmentEnvironment2;
 	@FXML
 	private RadioButton rbDevelopmentEnvironment3;
-	
-	//Éè¼Æ½×¶ÎµÄ°´Å¥
-	//ÖÊÁ¿ÆÀ¹ÀµÄ°´Å¥
+
+	// è®¾è®¡é˜¶æ®µçš„æŒ‰é’®
+	// è´¨é‡è¯„ä¼°çš„æŒ‰é’®
 	@FXML
 	private CheckBox cbQualityEvaluation1;
 	@FXML
@@ -65,7 +59,7 @@ public class NewTaskOverviewController {
 	private CheckBox cbQualityEvaluation12;
 	@FXML
 	private CheckBox cbQualityEvaluation13;
-	//Òì³£¹ÜÀíÆÀ¹À
+	// å¼‚å¸¸ç®¡ç†è¯„ä¼°
 	@FXML
 	private CheckBox cbExceptionManagement1;
 	@FXML
@@ -86,7 +80,7 @@ public class NewTaskOverviewController {
 	private CheckBox cbExceptionManagement9;
 	@FXML
 	private CheckBox cbExceptionManagement10;
-	//¿ÉËÜĞÔÆÀ¹À
+	// å¯å¡‘æ€§è¯„ä¼°
 	@FXML
 	private CheckBox cbLimbernessEvaluation1;
 	@FXML
@@ -95,70 +89,68 @@ public class NewTaskOverviewController {
 	private CheckBox cbLimbernessEvaluation3;
 	@FXML
 	private CheckBox cbLimbernessEvaluation4;
-	
 
-  
-	//¿ª·¢¹ı³ÌµÄÈí¼ş¿É¿¿ĞÔÔ¤²âÓë·ÖÎö-¿ª·¢¹ı³Ì¿É¿¿ĞÔ·ÖÎö-ĞèÇó·ÖÎö½×¶Î
-	//¶¨ÒåÆ½¾ù´íÎóÃÜ¶ÈA
+	// å¼€å‘è¿‡ç¨‹çš„è½¯ä»¶å¯é æ€§é¢„æµ‹ä¸åˆ†æ-å¼€å‘è¿‡ç¨‹å¯é æ€§åˆ†æ-éœ€æ±‚åˆ†æé˜¶æ®µ
+	// å®šä¹‰å¹³å‡é”™è¯¯å¯†åº¦A
 	double a;
-	//¶¨Òå¿ª·¢»·¾³¾ö¶¨µÄĞŞÕıÒò×ÓD
+	// å®šä¹‰å¼€å‘ç¯å¢ƒå†³å®šçš„ä¿®æ­£å› å­D
 	double d;
-	//¶¨ÒåĞèÇó½×¶ÎµÄ´íÎóÃÜ¶È
+	// å®šä¹‰éœ€æ±‚é˜¶æ®µçš„é”™è¯¯å¯†åº¦
 	double requirementAnalysisResult;
-	//¼ÆËãĞèÇó½×¶ÎµÄ´íÎóÃÜ¶È
-	
-	public double requirementAnalysis(){
-		
-		//È·¶¨Æ½¾ù´íÎóÃÜ¶ÈA(´íÎó/ĞĞ)
-		if(rbSystemType1.isSelected()){
+	// è®¡ç®—éœ€æ±‚é˜¶æ®µçš„é”™è¯¯å¯†åº¦
+
+	public double requirementAnalysis() {
+
+		// ç¡®å®šå¹³å‡é”™è¯¯å¯†åº¦A(é”™è¯¯/è¡Œ)
+		if (rbSystemType1.isSelected()) {
 			a = 0.0128;
-		}else if(rbSystemType2.isSelected()){
+		} else if (rbSystemType2.isSelected()) {
 			a = 0.0092;
-		}else if(rbSystemType3.isSelected()){
+		} else if (rbSystemType3.isSelected()) {
 			a = 0.0078;
-		}else if(rbSystemType4.isSelected()){
+		} else if (rbSystemType4.isSelected()) {
 			a = 0.0018;
-		}else if(rbSystemType5.isSelected()){
+		} else if (rbSystemType5.isSelected()) {
 			a = 0.0085;
-		}else if(rbSystemType6.isSelected()){
+		} else if (rbSystemType6.isSelected()) {
 			a = 0.0123;
 		}
-		
-		//¿ª·¢»·¾³¾ö¶¨µÄĞŞÕıÒò×ÓD
-		if(rbDevelopmentEnvironment1.isSelected()){
+
+		// å¼€å‘ç¯å¢ƒå†³å®šçš„ä¿®æ­£å› å­D
+		if (rbDevelopmentEnvironment1.isSelected()) {
 			d = 0.76;
-		}else if(rbDevelopmentEnvironment2.isSelected()){
+		} else if (rbDevelopmentEnvironment2.isSelected()) {
 			d = 1.0;
-		}else if(rbDevelopmentEnvironment3.isSelected()){
+		} else if (rbDevelopmentEnvironment3.isSelected()) {
 			d = 1.3;
 		}
-		
-		//·µ»Ø½á¹û£ºĞèÇó½×¶ÎµÄ´íÎóÃÜ¶È 	
-		return requirementAnalysisResult = a*d;
-		
+
+		// è¿”å›ç»“æœï¼šéœ€æ±‚åˆ†æé˜¶æ®µçš„é”™è¯¯å¯†åº¦
+		return requirementAnalysisResult = a * d;
+
 	}
-	
-	//¿ª·¢¹ı³ÌµÄÈí¼ş¿É¿¿ĞÔÔ¤²âÓë·ÖÎö-¿ª·¢¹ı³Ì¿É¿¿ĞÔ·ÖÎö-Éè¼Æ½×¶Î
-	//¶¨ÒåÖÊÁ¿ÆÀ¹À¶àÑ¡¿òÖĞ±»Ñ¡ÖĞµÄÑ¡Ïî¸öÊı
+
+	// å¼€å‘è¿‡ç¨‹çš„è½¯ä»¶å¯é æ€§é¢„æµ‹ä¸åˆ†æ-å¼€å‘è¿‡ç¨‹å¯é æ€§åˆ†æ-è®¾è®¡é˜¶æ®µ
+	// å®šä¹‰è´¨é‡è¯„ä¼°å¤šé€‰æ¡†ä¸­è¢«é€‰ä¸­çš„é€‰é¡¹ä¸ªæ•°
 	int qe = 0;
-	//¶¨ÒåÒì³£¹ÜÀíÆÀ¹À¶àÑ¡¿òÖĞ±»Ñ¡ÖĞµÄÑ¡Ïî¸öÊı
+	//å®šä¹‰å¼‚å¸¸ç®¡ç†è¯„ä¼°å¤šé€‰æ¡†ä¸­è¢«é€‰ä¸­çš„é€‰é¡¹ä¸ªæ•°
 	int em = 0;
-	//¶¨Òå¿ÉËÜĞÔÆÀ¹À¶àÑ¡¿òÖĞ±»Ñ¡ÖĞµÄÑ¡Ïî¸öÊı
+	//å®šä¹‰å¯å¡‘æ€§è¯„ä¼°å¤šé€‰æ¡†ä¸­è¢«é€‰ä¸­çš„é€‰é¡¹ä¸ªæ•°
 	int le = 0;
-	//³õÊ¼»¯ÖÊÁ¿ÆÀ¹ÀSQµÄÖµ
+	//åˆå§‹åŒ–è´¨é‡è¯„ä¼°SQçš„å€¼Öµ
 	double SQ = 1.0;
-	//³õÊ¼»¯ĞŞÕıÒò×ÓSAµÄÖµ
+	//åˆå§‹åŒ–ä¿®æ­£å› å­SAçš„å€¼Öµ
 	double SA = 0.9;
-	//³õÊ¼»¯¿ÉËÜĞÔÆÀ¹ÀSTµÄÖµ
+	//åˆå§‹åŒ–å¯å¡‘æ€§è¯„ä¼°STçš„å€¼Öµ
 	double ST = 1.1;
-	//¶¨ÒåÉè¼Æ½×¶Î¶ÔÈí¼şÊ§Ğ§ÂÊÔ¤²âµÄĞŞÕıÒò×Ó D
+	//å®šä¹‰è®¾è®¡é˜¶æ®µå¯¹è½¯ä»¶å¤±æ•ˆç‡é¢„æµ‹çš„ä¿®æ­£å› å­ D
 	double D;
-	//¶¨ÒåÈí¼şÉè¼Æ½×¶ÎµÄ´íÎóÃÜ¶È
+	//å®šä¹‰è½¯ä»¶è®¾è®¡é˜¶æ®µçš„é”™è¯¯å¯†åº¦
 	double designPhaseResult;
-	
-	//¼ÆËãĞèÇó½×¶ÎµÄ´íÎóÃÜ¶È
-	public double designPhase(){
-		
+
+	//è®¡ç®—è®¾è®¡é˜¶æ®µçš„é”™è¯¯å¯†åº¦
+	public double designPhase() {
+
 		ArrayList<CheckBox> qualityEvaluation = new ArrayList<CheckBox>();
 		qualityEvaluation.add(cbQualityEvaluation1);
 		qualityEvaluation.add(cbQualityEvaluation2);
@@ -173,18 +165,16 @@ public class NewTaskOverviewController {
 		qualityEvaluation.add(cbQualityEvaluation11);
 		qualityEvaluation.add(cbQualityEvaluation12);
 		qualityEvaluation.add(cbQualityEvaluation13);
-		for(CheckBox cb : qualityEvaluation){
-			if(cb.isSelected()){
+		for (CheckBox cb : qualityEvaluation) {
+			if (cb.isSelected()) {
 				qe++;
 			}
 		}
-		
-		
-		if(qe<6){
+
+		if (qe < 6) {
 			SQ = 1.1;
 		}
-		
-		
+
 		ArrayList<CheckBox> exceptionManagement = new ArrayList<CheckBox>();
 		exceptionManagement.add(cbExceptionManagement1);
 		exceptionManagement.add(cbExceptionManagement2);
@@ -196,63 +186,51 @@ public class NewTaskOverviewController {
 		exceptionManagement.add(cbExceptionManagement8);
 		exceptionManagement.add(cbExceptionManagement9);
 		exceptionManagement.add(cbExceptionManagement10);
-		for(CheckBox cb : exceptionManagement){
-			if(cb.isSelected()){
+		for (CheckBox cb : exceptionManagement) {
+			if (cb.isSelected()) {
 				em++;
 			}
 		}
-		
-		
-		if(em == 3){
+
+		if (em == 3) {
 			SA = 1;
-		}else if(em > 3){
+		} else if (em > 3) {
 			SA = 1.1;
 		}
-		
-		
+
 		ArrayList<CheckBox> limbernessEvaluation = new ArrayList<CheckBox>();
 		limbernessEvaluation.add(cbLimbernessEvaluation1);
 		limbernessEvaluation.add(cbLimbernessEvaluation2);
 		limbernessEvaluation.add(cbLimbernessEvaluation3);
 		limbernessEvaluation.add(cbLimbernessEvaluation4);
-		for(CheckBox cb : limbernessEvaluation){
-			if(cb.isSelected()){
+		for (CheckBox cb : limbernessEvaluation) {
+			if (cb.isSelected()) {
 				le++;
 			}
 		}
-		
-		
-		if(le ==4){
+
+		if (le == 4) {
 			ST = 1.0;
 		}
-		
-		//Èí¼şÉè¼Æ½×¶Î¶ÔÈí¼şÊ§Ğ§ÂÊÔ¤²âµÄĞŞÕıÒò×Ó D
-		D = SA*ST*SQ ;
-		
-		//·µ»Ø½á¹û£ºÈí¼şÉè¼Æ½×¶ÎµÄ´íÎóÃÜ¶È
-		
-		
-		return designPhaseResult = D*requirementAnalysisResult;
-		
-		
-		
+
+		//è½¯ä»¶è®¾è®¡é˜¶æ®µå¯¹è½¯ä»¶å¤±æ•ˆç‡é¢„æµ‹çš„ä¿®æ­£å› å­ D
+		D = SA * ST * SQ;
+
+		//è¿”å›ç»“æœï¼šè½¯ä»¶è®¾è®¡é˜¶æ®µçš„é”™è¯¯å¯†åº¦
+
+		return designPhaseResult = D * requirementAnalysisResult;
+
 	}
-	
-	@FXML
-	private void importFileWindow() throws FileNotFoundException, FileFormatException{
-		MainApp.showFileChooserOverview();
-	}
-	
 
 	@FXML
-	private void evaluateIsClicked(){
+	private void importFileWindow() throws FileNotFoundException, FileFormatException {
+		MainApp.showFileChooserOverview();
+	}
+
+	@FXML
+	private void evaluateIsClicked() {
 		System.out.println(requirementAnalysis());
 		System.out.println(designPhase());
 	}
-	
-	
-	
-	
 
-	
 }
