@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
+import org.apache.log4j.lf5.viewer.FilteredLogTableModel;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,6 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.computation.model.DefectAmount;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,6 +25,9 @@ public class InputFileController {
 
 	private static final String EXTENSION_XLS = "xls";
 	private static final String EXTENSION_XLSX = "xlsx";
+	
+	NewTaskOverviewController ntoc = new NewTaskOverviewController();
+	
 	
 	
 	
@@ -114,20 +120,39 @@ public class InputFileController {
 				System.out.println("");
 
 				// 读取数据行
-				for (int rowIndex = firstRowIndex + 1 , x = 1; rowIndex <= lastRowIndex; rowIndex++) {
+				ArrayList<String> al = new ArrayList<String>();
+				for (int rowIndex = firstRowIndex + 1 ; rowIndex <= lastRowIndex; rowIndex++) {
 					Row currentRow = sheet.getRow(rowIndex);// 当前行
 					int firstColumnIndex = currentRow.getFirstCellNum(); // 首列
 					int lastColumnIndex = currentRow.getLastCellNum();// 最后一列
 					for (int columnIndex = firstColumnIndex; columnIndex <= lastColumnIndex; columnIndex++) {
 						Cell currentCell = currentRow.getCell(columnIndex);// 当前单元格
 						String currentCellValue = this.getCellValue(currentCell, true);// 当前单元格的值ֵ
-						//System.out.print(currentCellValue + "\t");
-						defectData.add(new DefectAmount(Integer.toString(x),currentCellValue));
-						x++;
+						//System.out.print(currentCellValue + "---");
+
+						if(currentCellValue!=null && currentCellValue.length()!=0){
+							al.add(currentCellValue);
+						}
+
+//						defectData.add(new DefectAmount(Integer.toString(x),currentCellValue));
+//						for (DefectAmount da : defectData) {
+//							System.out.println(da.getMounth()+"---"+da.getDefectAmount());
+//						}
+						
 					}
 					//System.out.println("");
 				}
+					int x= 1;
+					for(String s : al){
+						defectData.add(new DefectAmount(Integer.toString(x),s));
+						x++;
+					}
 				
+//					for (DefectAmount da : defectData) {
+//					System.out.println(da.getMounth()+"---"+da.getDefectAmount());
+//				}
+				
+				NewTaskOverviewController.fillTable(defectData);
 				// System.out.println("======================================================");
 			}
 		} catch (Exception e) {
@@ -142,6 +167,7 @@ public class InputFileController {
 			}
 		}
 	}
+
 
 	/**
      * 取单元格的值

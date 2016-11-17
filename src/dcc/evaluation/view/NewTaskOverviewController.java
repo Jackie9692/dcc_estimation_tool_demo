@@ -7,14 +7,23 @@ import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.MainApp;
 import dcc.evaluation.computation.model.DefectAmount;
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.util.Callback;
 
 public class NewTaskOverviewController {
+	
+	
+	public NewTaskOverviewController() {
+		super();
+	}
+
 	// 需求分析阶段的按钮
 	@FXML
 	private RadioButton rbSystemType1;
@@ -234,14 +243,34 @@ public class NewTaskOverviewController {
 	//软件缺陷早期预测中缺陷数据表格
 	
 	@FXML
-	private TableView<DefectAmount> defectTable;
+	public static TableView<DefectAmount> defectTable ;
 	
 	@FXML
-	private TableColumn<DefectAmount, String> mounthColumn;
+	public static  TableColumn<DefectAmount, String> mounthColumn ;
 	@FXML
-	private TableColumn<DefectAmount, String> defectAmountColumn;
+	public static  TableColumn<DefectAmount, String> defectAmountColumn ;
 	
-
+	public static void fillTable(ObservableList<DefectAmount> defectData){
+		defectTable.setItems(defectData);
+		mounthColumn.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
+		     public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+		         // p.getValue() returns the Person instance for a particular TableView row
+		         return p.getValue().mounthProperty();
+		     }
+		  });
+		 
+	
+	defectAmountColumn.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
+	     public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+	         // p.getValue() returns the Person instance for a particular TableView row
+	         return p.getValue().defectAmountProperty();
+	     }
+	  });
+	 
+		
+//		mounthColumn.setCellValueFactory(cellData -> cellData.getValue().mounthProperty());
+//		defectAmountColumn.setCellValueFactory(cellData -> cellData.getValue().defectAmountProperty());
+	}
 	
 	
 
