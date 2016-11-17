@@ -61,10 +61,18 @@ public class ModelTest {
 	 * 测试数据来源：NTDS(制造阶段失效数据)
 	 */
 	@org.junit.Test
-	public void testSchneidewind() {
+	public void testSchneidewindModel() {
 		double[] time = new double[] { 9,21,32,36,43,45,50,58,63,70,71,77,78,87,91,92,95,98,104,105,116,149,156,247,249,250 };//NTDS，不完全失效数据
 		SchneidewindModel schneidewindModel = new SchneidewindModel(time);
 		schneidewindModel.calculate(0.000001);//设置计算阈值为0.000001
 		schneidewindModel.printResult();//输出计算结果到控制台
+	}
+	
+	@org.junit.Test
+	public void testWeibullModel(){
+		double[] time = new double[]{ 2,3,7,8,9,10,11,18,21,33,35,37,44,45,47,48,49,50,51,52,53,55,56,57,63,76,83,91,106 };
+		WeibullModel weibullModel = new WeibullModel(time);
+		weibullModel.calculate(0.000001);
+		weibullModel.printResult();
 	}
 }
