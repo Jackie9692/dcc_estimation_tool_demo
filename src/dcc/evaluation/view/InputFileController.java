@@ -25,18 +25,14 @@ public class InputFileController {
 
 	private static final String EXTENSION_XLS = "xls";
 	private static final String EXTENSION_XLSX = "xlsx";
-	
+
 	NewTaskOverviewController ntoc = new NewTaskOverviewController();
-	
-	
-	
-	
+
 	/*
 	 * 将导入的软件缺陷早期预测失效数据存储在集合中
 	 */
 	private ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
-	
-	
+
 	// public static void main(String[] args) throws FileNotFoundException,
 	// FileFormatException {
 	// ReadExcelTest ret = new ReadExcelTest();
@@ -115,44 +111,46 @@ public class InputFileController {
 				for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
 					Cell cell = firstRow.getCell(i);
 					String cellValue = this.getCellValue(cell, true);
-					//System.out.print(" " + cellValue + "\t");
+					// System.out.print(" " + cellValue + "\t");
 				}
 				System.out.println("");
 
 				// 读取数据行
 				ArrayList<String> al = new ArrayList<String>();
-				for (int rowIndex = firstRowIndex + 1 ; rowIndex <= lastRowIndex; rowIndex++) {
+				for (int rowIndex = firstRowIndex + 1; rowIndex <= lastRowIndex; rowIndex++) {
 					Row currentRow = sheet.getRow(rowIndex);// 当前行
 					int firstColumnIndex = currentRow.getFirstCellNum(); // 首列
 					int lastColumnIndex = currentRow.getLastCellNum();// 最后一列
 					for (int columnIndex = firstColumnIndex; columnIndex <= lastColumnIndex; columnIndex++) {
 						Cell currentCell = currentRow.getCell(columnIndex);// 当前单元格
 						String currentCellValue = this.getCellValue(currentCell, true);// 当前单元格的值ֵ
-						//System.out.print(currentCellValue + "---");
+						// System.out.print(currentCellValue + "---");
 
-						if(currentCellValue!=null && currentCellValue.length()!=0){
+						if (currentCellValue != null && currentCellValue.length() != 0) {
 							al.add(currentCellValue);
 						}
 
-//						defectData.add(new DefectAmount(Integer.toString(x),currentCellValue));
-//						for (DefectAmount da : defectData) {
-//							System.out.println(da.getMounth()+"---"+da.getDefectAmount());
-//						}
-						
+						// defectData.add(new
+						// DefectAmount(Integer.toString(x),currentCellValue));
+						// for (DefectAmount da : defectData) {
+						// System.out.println(da.getMounth()+"---"+da.getDefectAmount());
+						// }
+
 					}
-					//System.out.println("");
+					// System.out.println("");
 				}
-					int x= 1;
-					for(String s : al){
-						defectData.add(new DefectAmount(Integer.toString(x),s));
-						x++;
-					}
-				
-//					for (DefectAmount da : defectData) {
-//					System.out.println(da.getMounth()+"---"+da.getDefectAmount());
+				int x = 1;
+				for (String s : al) {
+					defectData.add(new DefectAmount(Integer.toString(x), s));
+					x++;
+				}
+
+//				for (DefectAmount da : defectData) {
+//					System.out.println(da.getMounth() + "---" + da.getDefectAmount());
 //				}
 				
-				NewTaskOverviewController.fillTable(defectData);
+				ntoc.fillTable(defectData);
+				//NewTaskOverviewController.fillTable(defectData);
 				// System.out.println("======================================================");
 			}
 		} catch (Exception e) {
@@ -168,21 +166,23 @@ public class InputFileController {
 		}
 	}
 
-
 	/**
-     * 取单元格的值
-     * @param cell 单元格对象
-     * @param treatAsStr 为true时，当做文本来取值 (取到的是文本，不会把“1”取成“1.0”)
-     * @return
-     */
+	 * 取单元格的值
+	 * 
+	 * @param cell
+	 *            单元格对象
+	 * @param treatAsStr
+	 *            为true时，当做文本来取值 (取到的是文本，不会把“1”取成“1.0”)
+	 * @return
+	 */
 	private String getCellValue(Cell cell, boolean treatAsStr) {
 		if (cell == null) {
 			return "";
 		}
 
 		if (treatAsStr) {
-			 // 虽然excel中设置的都是文本，但是数字文本还被读错，如“1”取成“1.0”
-            // 加上下面这句，临时把它当做文本来读取
+			// 虽然excel中设置的都是文本，但是数字文本还被读错，如“1”取成“1.0”
+			// 加上下面这句，临时把它当做文本来读取
 			cell.setCellType(Cell.CELL_TYPE_STRING);
 		}
 

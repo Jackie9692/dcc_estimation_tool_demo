@@ -18,8 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
 public class NewTaskOverviewController {
-	
-	
+
 	public NewTaskOverviewController() {
 		super();
 	}
@@ -146,22 +145,22 @@ public class NewTaskOverviewController {
 	// 开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
 	// 定义质量评估多选框中被选中的选项个数
 	int qe = 0;
-	//定义异常管理评估多选框中被选中的选项个数
+	// 定义异常管理评估多选框中被选中的选项个数
 	int em = 0;
-	//定义可塑性评估多选框中被选中的选项个数
+	// 定义可塑性评估多选框中被选中的选项个数
 	int le = 0;
-	//初始化质量评估SQ的值ֵ
+	// 初始化质量评估SQ的值ֵ
 	double SQ = 1.0;
-	//初始化修正因子SA的值ֵ
+	// 初始化修正因子SA的值ֵ
 	double SA = 0.9;
-	//初始化可塑性评估ST的值ֵ
+	// 初始化可塑性评估ST的值ֵ
 	double ST = 1.1;
-	//定义设计阶段对软件失效率预测的修正因子 D
+	// 定义设计阶段对软件失效率预测的修正因子 D
 	double D;
-	//定义软件设计阶段的错误密度
+	// 定义软件设计阶段的错误密度
 	double designPhaseResult;
 
-	//计算设计阶段的错误密度
+	// 计算设计阶段的错误密度
 	public double designPhase() {
 
 		ArrayList<CheckBox> qualityEvaluation = new ArrayList<CheckBox>();
@@ -226,10 +225,10 @@ public class NewTaskOverviewController {
 			ST = 1.0;
 		}
 
-		//软件设计阶段对软件失效率预测的修正因子 D
+		// 软件设计阶段对软件失效率预测的修正因子 D
 		D = SA * ST * SQ;
 
-		//返回结果：软件设计阶段的错误密度
+		// 返回结果：软件设计阶段的错误密度
 
 		return designPhaseResult = D * requirementAnalysisResult;
 
@@ -238,41 +237,49 @@ public class NewTaskOverviewController {
 	@FXML
 	private void importFileWindow() throws FileNotFoundException, FileFormatException {
 		MainApp.showFileChooserOverview();
+
 	}
-	
-	//软件缺陷早期预测中缺陷数据表格
-	
+
+	// 软件缺陷早期预测中缺陷数据表格
+
 	@FXML
-	public static TableView<DefectAmount> defectTable ;
-	
+	private TableView<DefectAmount> defectTable ;
+
 	@FXML
-	public static  TableColumn<DefectAmount, String> mounthColumn ;
+	private TableColumn<DefectAmount, String> mounthColumn ;
 	@FXML
-	public static  TableColumn<DefectAmount, String> defectAmountColumn ;
-	
-	public static void fillTable(ObservableList<DefectAmount> defectData){
+	private TableColumn<DefectAmount, String> defectAmountColumn ;
+
+	public void fillTable(ObservableList<DefectAmount> defectData) {
+		for (DefectAmount defectAmount : defectData) {
+			System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
+		}
+		System.out.println(defectTable);
 		defectTable.setItems(defectData);
-		mounthColumn.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
-		     public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
-		         // p.getValue() returns the Person instance for a particular TableView row
-		         return p.getValue().mounthProperty();
-		     }
-		  });
-		 
-	
-	defectAmountColumn.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
-	     public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
-	         // p.getValue() returns the Person instance for a particular TableView row
-	         return p.getValue().defectAmountProperty();
-	     }
-	  });
-	 
-		
-//		mounthColumn.setCellValueFactory(cellData -> cellData.getValue().mounthProperty());
-//		defectAmountColumn.setCellValueFactory(cellData -> cellData.getValue().defectAmountProperty());
+		System.out.println(defectTable);
+		mounthColumn
+				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
+					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+						// p.getValue() returns the Person instance for a
+						// particular TableView row
+						return p.getValue().mounthProperty();
+					}
+				});
+
+		defectAmountColumn
+				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
+					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+						// p.getValue() returns the Person instance for a
+						// particular TableView row
+						return p.getValue().defectAmountProperty();
+					}
+				});
+
+		// mounthColumn.setCellValueFactory(cellData ->
+		// cellData.getValue().mounthProperty());
+		// defectAmountColumn.setCellValueFactory(cellData ->
+		// cellData.getValue().defectAmountProperty());
 	}
-	
-	
 
 	@FXML
 	private void evaluateIsClicked() {
