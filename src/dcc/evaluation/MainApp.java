@@ -6,11 +6,8 @@ import java.io.IOException;
 
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
-import dcc.evaluation.computation.model.DefectAmount;
-import dcc.evaluation.view.InputFileController;
+import dcc.evaluation.view.NewTaskOverviewController;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -143,12 +140,16 @@ public class MainApp extends Application {
 	 *
 	 */
 	public static void showFileChooserOverview() throws FileNotFoundException, FileFormatException{
+		
+		
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(primaryStage);
 		if(file != null){
-			InputFileController ifc = new InputFileController();
-			ifc.readExcel(file.getAbsolutePath());
+			FXMLLoader loader = new FXMLLoader();
+			NewTaskOverviewController ntoc = new NewTaskOverviewController();
+					//loader.getController();
+			ntoc.readExcel(file.getAbsolutePath());
 		}
 	}
 	
