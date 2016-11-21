@@ -15,13 +15,12 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
-import dcc.evaluation.MainApp;
 import dcc.evaluation.computation.model.DefectAmount;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -252,10 +251,10 @@ public class NewTaskOverviewController {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(null);
-		if(file != null){
-			//FXMLLoader loader = new FXMLLoader();
-			//NewTaskOverviewController ntoc = new NewTaskOverviewController();
-					//loader.getController();
+		if (file != null) {
+			// FXMLLoader loader = new FXMLLoader();
+			// NewTaskOverviewController ntoc = new NewTaskOverviewController();
+			// loader.getController();
 			readExcel(file.getAbsolutePath());
 		}
 
@@ -264,20 +263,20 @@ public class NewTaskOverviewController {
 	// 软件缺陷早期预测中缺陷数据表格
 
 	@FXML
-	private TableView<DefectAmount> defectTable ;
-
+	private TableView<DefectAmount> defectTable;
+	
 	@FXML
-	private TableColumn<DefectAmount, String> mounthColumn ;
+	private TableColumn<DefectAmount, String> mounthColumn;
 	@FXML
-	private TableColumn<DefectAmount, String> defectAmountColumn ;
+	private TableColumn<DefectAmount, String> defectAmountColumn;
 
 	public void fillTable(ObservableList<DefectAmount> defectData) {
 		for (DefectAmount defectAmount : defectData) {
 			System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
 		}
-		System.out.println(defectTable);
+		//System.out.println(defectTable);
 		defectTable.setItems(defectData);
-		System.out.println(defectTable);
+		//System.out.println(defectTable);
 		mounthColumn
 				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
 					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
@@ -296,27 +295,20 @@ public class NewTaskOverviewController {
 					}
 				});
 
-		// mounthColumn.setCellValueFactory(cellData ->
-		// cellData.getValue().mounthProperty());
-		// defectAmountColumn.setCellValueFactory(cellData ->
-		// cellData.getValue().defectAmountProperty());
+		
 	}
-	
+
 	private static final String EXTENSION_XLS = "xls";
 	private static final String EXTENSION_XLSX = "xlsx";
 
-	//NewTaskOverviewController ntoc =new NewTaskOverviewController();
+	
 
 	/*
 	 * 将导入的软件缺陷早期预测失效数据存储在集合中
 	 */
 	private ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
 
-	// public static void main(String[] args) throws FileNotFoundException,
-	// FileFormatException {
-	// ReadExcelTest ret = new ReadExcelTest();
-	// ret.readExcel("C:\\Users\\admin\\Downloads\\project\\test.xlsx");
-	// }
+	
 
 	/***
 	 * <pre>
@@ -385,14 +377,14 @@ public class NewTaskOverviewController {
 				int firstRowIndex = sheet.getFirstRowNum();
 				int lastRowIndex = sheet.getLastRowNum();
 
-				// 读取首行，即表头
-				Row firstRow = sheet.getRow(firstRowIndex);
-				for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
-					Cell cell = firstRow.getCell(i);
-					String cellValue = this.getCellValue(cell, true);
-					// System.out.print(" " + cellValue + "\t");
-				}
-				System.out.println("");
+//				// 读取首行，即表头
+//				Row firstRow = sheet.getRow(firstRowIndex);
+//				for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
+//					Cell cell = firstRow.getCell(i);
+//					String cellValue = this.getCellValue(cell, true);
+//					// System.out.print(" " + cellValue + "\t");
+//				}
+//				//System.out.println("");
 
 				// 读取数据行
 				ArrayList<String> al = new ArrayList<String>();
@@ -409,11 +401,7 @@ public class NewTaskOverviewController {
 							al.add(currentCellValue);
 						}
 
-						// defectData.add(new
-						// DefectAmount(Integer.toString(x),currentCellValue));
-						// for (DefectAmount da : defectData) {
-						// System.out.println(da.getMounth()+"---"+da.getDefectAmount());
-						// }
+						
 
 					}
 					// System.out.println("");
@@ -424,13 +412,11 @@ public class NewTaskOverviewController {
 					x++;
 				}
 
-//				for (DefectAmount da : defectData) {
-//					System.out.println(da.getMounth() + "---" + da.getDefectAmount());
-//				}
 				
+
 				fillTable(defectData);
-				//NewTaskOverviewController.fillTable(defectData);
-				// System.out.println("======================================================");
+				
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -473,7 +459,23 @@ public class NewTaskOverviewController {
 			return String.valueOf(cell.getStringCellValue());
 		}
 	}
-
+	
+	
+	
+	
+	
+	
+	/**
+	 * 点击输入完毕按钮，计算出截止当月发现的累积缺陷数，并输出到缺陷发现历史表格中
+	 */
+	@FXML
+	private void inputCompleteIsClicked(){
+		
+	}
+	
+	
+	
+	
 
 	@FXML
 	private void evaluateIsClicked() {

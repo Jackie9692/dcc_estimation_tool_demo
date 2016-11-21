@@ -272,7 +272,7 @@
                                                                     <items>
                                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="374.0">
                                                                            <children>
-                                                                              <TableView fx:id="defectTable" layoutX="87.0" layoutY="71.0" prefHeight="524.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                              <TableView fx:id="defectTable" editable="true" layoutX="87.0" layoutY="71.0" prefHeight="524.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                                 <columns>
                                                                                   <TableColumn fx:id="mounthColumn" prefWidth="119.0" text="月数" />
                                                                                   <TableColumn fx:id="defectAmountColumn" prefWidth="243.0" text="当月发现的缺陷数" />
