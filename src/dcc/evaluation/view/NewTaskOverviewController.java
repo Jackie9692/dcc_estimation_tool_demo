@@ -20,13 +20,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.stage.FileChooser;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 public class NewTaskOverviewController {
@@ -277,6 +278,15 @@ public class NewTaskOverviewController {
 		//System.out.println(defectTable);
 		defectTable.setItems(defectData);
 		//System.out.println(defectTable);
+		
+		
+//		Callback<TableColumn<DefectAmount, String>, 
+//        TableCell<DefectAmount, String>> cellFactory
+//            = (TableColumn<DefectAmount, String> p) -> new EditingCell();
+//		
+		
+		
+		mounthColumn.setCellFactory(TextFieldTableCell.<DefectAmount>forTableColumn());
 		mounthColumn
 				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
 					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
@@ -285,7 +295,7 @@ public class NewTaskOverviewController {
 						return p.getValue().mounthProperty();
 					}
 				});
-
+		defectAmountColumn.setCellFactory(TextFieldTableCell.<DefectAmount>forTableColumn());
 		defectAmountColumn
 				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
 					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
