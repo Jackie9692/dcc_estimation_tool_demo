@@ -1,5 +1,4 @@
-package dcc.evaluation.computation.model;
-
+package dcc.evaluation.view.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -15,25 +14,30 @@ public class DefectAmount {
 
 	private final StringProperty mounth;
 	private final StringProperty defectAmount;
+	
 
 	/**
 	 * 无参构造
 	 */
-	public DefectAmount(){
-		this(null,null);
+	public DefectAmount() {
+		this(null, null);
 	}
 	
+
 	/**
 	 * 带参构造
+	 * 
 	 * @param mounth
 	 * @param defectAmount
 	 */
+	
 	public DefectAmount(String mounth, String defectAmount) {
 		this.mounth = new SimpleStringProperty(mounth);
 		this.defectAmount = new SimpleStringProperty(defectAmount);
 
 	}
 
+	
 	public String getMounth() {
 		return mounth.get();
 	}
@@ -49,6 +53,7 @@ public class DefectAmount {
 	public String getDefectAmount() {
 		return defectAmount.get();
 	}
+
 	public void setDefectAmount(String defectAmount) {
 		this.defectAmount.set(defectAmount);
 	}
@@ -57,4 +62,5 @@ public class DefectAmount {
 		return defectAmount;
 	}
 	
+
 }

@@ -15,11 +15,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
-import dcc.evaluation.computation.model.DefectAmount;
+import dcc.evaluation.view.model.DefectAmount;
+import dcc.evaluation.view.model.TotalDefectAmount;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
@@ -286,7 +288,7 @@ public class NewTaskOverviewController {
 //		
 		
 		
-		mounthColumn.setCellFactory(TextFieldTableCell.<DefectAmount>forTableColumn());
+		//mounthColumn.setCellFactory(TextFieldTableCell.<DefectAmount>forTableColumn());
 		mounthColumn
 				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
 					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
@@ -478,8 +480,38 @@ public class NewTaskOverviewController {
 	/**
 	 * 点击输入完毕按钮，计算出截止当月发现的累积缺陷数，并输出到缺陷发现历史表格中
 	 */
+	
+	
+	/*
+	 * 通过确认输入完毕后的缺陷数据计算出截止当前周期发现的累积缺陷数，并将其存储在集合中
+	 */
+	private ObservableList<TotalDefectAmount> totalDefectData = FXCollections.observableArrayList();
+	
+	
+	@FXML 
+	private TableView<TotalDefectAmount> historicDefectTable;
+
+	
 	@FXML
 	private void inputCompleteIsClicked(){
+		historicDefectTable.setItems(defectData);
+		mounthColumn
+		.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
+			public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+				// p.getValue() returns the Person instance for a
+				// particular TableView row
+				return p.getValue().mounthProperty();
+			}
+		});
+		defectAmountColumn
+		.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
+			public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+				// p.getValue() returns the Person instance for a
+				// particular TableView row
+				return p.getValue().defectAmountProperty();
+			}
+		});
+		
 		
 	}
 	

@@ -274,8 +274,8 @@
                                                                            <children>
                                                                               <TableView fx:id="defectTable" editable="true" layoutX="87.0" layoutY="71.0" prefHeight="524.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                                 <columns>
-                                                                                  <TableColumn fx:id="mounthColumn" prefWidth="119.0" text="月数" />
-                                                                                  <TableColumn fx:id="defectAmountColumn" prefWidth="243.0" text="当月发现的缺陷数" />
+                                                                                  <TableColumn fx:id="mounthColumn" prefWidth="119.0" sortable="false" text="周期数" />
+                                                                                  <TableColumn fx:id="defectAmountColumn" prefWidth="243.0" sortable="false" text="该周期发现的缺陷数" />
                                                                                 </columns>
                                                                                  <columnResizePolicy>
                                                                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -286,7 +286,7 @@
                                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
                                                                            <children>
                                                                               <Button layoutX="100.0" layoutY="8.0" mnemonicParsing="false" text="增加一行" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="8.0" />
-                                                                              <Button layoutX="147.0" layoutY="52.0" mnemonicParsing="false" text="输入完毕" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="38.0" />
+                                                                              <Button layoutX="147.0" layoutY="52.0" mnemonicParsing="false" onAction="#inputCompleteIsClicked" text="输入完毕" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="38.0" />
                                                                               <Button layoutX="179.0" layoutY="8.0" mnemonicParsing="false" text="清楚所有数据" AnchorPane.rightAnchor="50.0" />
                                                                            </children>
                                                                         </AnchorPane>
@@ -302,9 +302,9 @@
                                                    <children>
                                                       <TableView layoutX="195.0" layoutY="108.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
                                                         <columns>
-                                                          <TableColumn prefWidth="75.0" text="月数" />
-                                                          <TableColumn prefWidth="75.0" text="当月发现的缺陷数" />
-                                                            <TableColumn prefWidth="75.0" text="截止当月发现的累积缺陷数" />
+                                                          <TableColumn prefWidth="75.0" text="周期数" />
+                                                          <TableColumn prefWidth="75.0" text="该周期发现的缺陷数" />
+                                                            <TableColumn prefWidth="75.0" text="截止当前周期发现的累积缺陷数" />
                                                         </columns>
                                                          <columnResizePolicy>
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -16,8 +16,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
-import dcc.evaluation.computation.model.DefectAmount;
-
+import dcc.evaluation.view.model.DefectAmount;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
