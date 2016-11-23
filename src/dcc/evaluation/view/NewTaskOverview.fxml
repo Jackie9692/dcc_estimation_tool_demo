@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -20,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
    <children>
       <TabPane layoutX="237.0" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -264,9 +268,9 @@
                                                             </AnchorPane>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                                <children>
-                                                                  <SplitPane dividerPositions="0.8760907504363001" layoutX="74.0" layoutY="111.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="376.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <SplitPane dividerPositions="0.8708551483420593" layoutX="74.0" layoutY="111.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="376.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                     <items>
-                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="426.0" prefWidth="374.0">
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="374.0">
                                                                            <children>
                                                                               <TableView fx:id="defectTable" editable="true" layoutX="87.0" layoutY="71.0" prefHeight="524.0" prefWidth="374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                                 <columns>
@@ -279,11 +283,21 @@
                                                                               </TableView>
                                                                            </children>
                                                                         </AnchorPane>
-                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
                                                                            <children>
-                                                                              <Button layoutX="100.0" layoutY="8.0" mnemonicParsing="false" text="增加一行" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="8.0" />
-                                                                              <Button layoutX="147.0" layoutY="52.0" mnemonicParsing="false" onAction="#inputCompleteIsClicked" text="输入完毕" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="38.0" />
-                                                                              <Button layoutX="179.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearAllData" text="清楚所有数据" AnchorPane.rightAnchor="50.0" />
+                                                                              <HBox layoutX="90.0" layoutY="8.0" prefHeight="23.0" prefWidth="165.0" spacing="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0">
+                                                                                 <children>
+                                                                                    <TextField fx:id="tfinputDefectData" layoutX="115.0" layoutY="8.0" prefHeight="23.0" prefWidth="98.0" promptText="请输入缺陷数据" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="8.0" />
+                                                                                    <Button layoutX="184.0" layoutY="8.0" mnemonicParsing="false" onAction="#inputDefectData" text="添加" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="8.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox layoutX="58.0" layoutY="48.0" spacing="6.0" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="15.0">
+                                                                                 <children>
+                                                                                    <Button layoutX="58.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleDeleteDefect" text="删除该行" />
+                                                                                    <Button layoutX="157.0" layoutY="48.0" mnemonicParsing="false" onAction="#clearAllData" text="清除所有数据" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="48.0" />
+                                                                                    <Button layoutX="265.0" layoutY="48.0" mnemonicParsing="false" onAction="#inputCompleteIsClicked" text="输入完毕" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="45.0" />
+                                                                                 </children>
+                                                                              </HBox>
                                                                            </children>
                                                                         </AnchorPane>
                                                                     </items>

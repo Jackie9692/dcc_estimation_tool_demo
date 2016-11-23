@@ -16,15 +16,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.view.model.DefectAmount;
+
 import dcc.evaluation.view.model.TotalDefectAmount;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
-
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -159,7 +161,7 @@ public class NewTaskOverviewController {
 	}
 
 	// 开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
-	
+
 	@FXML
 	private TextField requirementAnalysisResultField;
 	// 定义质量评估多选框中被选中的选项个数
@@ -178,13 +180,13 @@ public class NewTaskOverviewController {
 	double D;
 	// 定义软件设计阶段的错误密度
 	double designPhaseResult;
-	
-	
-	
 
 	// 计算设计阶段的错误密度
 	public double designPhase() {
-		if((rbSystemType1.isSelected()||rbSystemType2.isSelected()||rbSystemType3.isSelected()||rbSystemType4.isSelected()||rbSystemType5.isSelected()||rbSystemType6.isSelected())&&(rbDevelopmentEnvironment1.isSelected()||rbDevelopmentEnvironment2.isSelected()||rbDevelopmentEnvironment3.isSelected())){
+		if ((rbSystemType1.isSelected() || rbSystemType2.isSelected() || rbSystemType3.isSelected()
+				|| rbSystemType4.isSelected() || rbSystemType5.isSelected() || rbSystemType6.isSelected())
+				&& (rbDevelopmentEnvironment1.isSelected() || rbDevelopmentEnvironment2.isSelected()
+						|| rbDevelopmentEnvironment3.isSelected())) {
 			requirementAnalysisResultField.setEditable(false);
 		}
 
@@ -254,7 +256,8 @@ public class NewTaskOverviewController {
 		D = SA * ST * SQ;
 
 		// 返回结果：软件设计阶段的错误密度
-		if(requirementAnalysisResultField.getText().trim().length()!=0&&requirementAnalysisResultField.getText().trim()!=null){
+		if (requirementAnalysisResultField.getText().trim().length() != 0
+				&& requirementAnalysisResultField.getText().trim() != null) {
 			requirementAnalysisResult = Double.parseDouble(requirementAnalysisResultField.getText());
 		}
 
@@ -280,7 +283,7 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private TableView<DefectAmount> defectTable;
-	
+
 	@FXML
 	private TableColumn<DefectAmount, String> mounthColumn;
 	@FXML
@@ -290,18 +293,16 @@ public class NewTaskOverviewController {
 		for (DefectAmount defectAmount : defectData) {
 			System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
 		}
-		//System.out.println(defectTable);
+		// System.out.println(defectTable);
 		defectTable.setItems(defectData);
-		//System.out.println(defectTable);
-		
-		
-//		Callback<TableColumn<DefectAmount, String>, 
-//        TableCell<DefectAmount, String>> cellFactory
-//            = (TableColumn<DefectAmount, String> p) -> new EditingCell();
-//		
-		
-		
-		//mounthColumn.setCellFactory(TextFieldTableCell.<DefectAmount>forTableColumn());
+		// System.out.println(defectTable);
+
+		// Callback<TableColumn<DefectAmount, String>,
+		// TableCell<DefectAmount, String>> cellFactory
+		// = (TableColumn<DefectAmount, String> p) -> new EditingCell();
+		//
+
+		// mounthColumn.setCellFactory(TextFieldTableCell.<DefectAmount>forTableColumn());
 		mounthColumn
 				.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
 					public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
@@ -320,20 +321,34 @@ public class NewTaskOverviewController {
 					}
 				});
 
-		
 	}
 
 	private static final String EXTENSION_XLS = "xls";
 	private static final String EXTENSION_XLSX = "xlsx";
 
-	
-
 	/*
 	 * 将导入的软件缺陷早期预测失效数据存储在集合中
 	 */
 	private ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
-
+	ArrayList<String> al = new ArrayList<String>();
 	
+	//int x= 1;
+//	private void readArrayList(ArrayList<String> al){
+//		for (String s : al) {
+//			makeDefectData(s);
+//			
+//		}
+//		
+//	}
+	private void makeDefectData(ArrayList<String> al){
+		int x = 1;
+		for (String s : al) {
+			defectData.add(new DefectAmount(Integer.toString(x), s));
+			x++;
+		}
+
+		fillTable(defectData);
+	}
 
 	/***
 	 * <pre>
@@ -402,17 +417,18 @@ public class NewTaskOverviewController {
 				int firstRowIndex = sheet.getFirstRowNum();
 				int lastRowIndex = sheet.getLastRowNum();
 
-//				// 读取首行，即表头
-//				Row firstRow = sheet.getRow(firstRowIndex);
-//				for (int i = firstRow.getFirstCellNum(); i <= firstRow.getLastCellNum(); i++) {
-//					Cell cell = firstRow.getCell(i);
-//					String cellValue = this.getCellValue(cell, true);
-//					// System.out.print(" " + cellValue + "\t");
-//				}
-//				//System.out.println("");
+				// // 读取首行，即表头
+				// Row firstRow = sheet.getRow(firstRowIndex);
+				// for (int i = firstRow.getFirstCellNum(); i <=
+				// firstRow.getLastCellNum(); i++) {
+				// Cell cell = firstRow.getCell(i);
+				// String cellValue = this.getCellValue(cell, true);
+				// // System.out.print(" " + cellValue + "\t");
+				// }
+				// //System.out.println("");
 
 				// 读取数据行
-				ArrayList<String> al = new ArrayList<String>();
+//				ArrayList<String> al = new ArrayList<String>();
 				for (int rowIndex = firstRowIndex + 1; rowIndex <= lastRowIndex; rowIndex++) {
 					Row currentRow = sheet.getRow(rowIndex);// 当前行
 					int firstColumnIndex = currentRow.getFirstCellNum(); // 首列
@@ -426,22 +442,17 @@ public class NewTaskOverviewController {
 							al.add(currentCellValue);
 						}
 
-						
-
 					}
 					// System.out.println("");
 				}
-				int x = 1;
-				for (String s : al) {
-					defectData.add(new DefectAmount(Integer.toString(x), s));
-					x++;
-				}
-
-				
-
-				fillTable(defectData);
-				
-				
+//				int x = 1;
+//				for (String s : al) {
+//					defectData.add(new DefectAmount(Integer.toString(x), s));
+//					x++;
+//				}
+//
+//				fillTable(defectData);
+				makeDefectData(al);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -486,29 +497,71 @@ public class NewTaskOverviewController {
 	}
 	
 	/**
-	 * 点击清除所有數據按钮，清除所有數據
+	 * 在“请输入缺陷数据”的文本框中输入数据，并将其添加至表格中
 	 */
+	@FXML
+	private TextField tfinputDefectData;
+	@FXML
+	private Button defectDataAdd;
+	
 	
 	@FXML
-	private void clearAllData(){
-		defectData.clear();
+	private void inputDefectData(){
+		
+		
+		
+		
+		//defectData.add(new DefectAmount(Integer.toString(x), tfinputDefectData.getText().trim()));
+		fillTable(defectData);
 	}
 	
 	
-	
-	
+
+	/**
+	 * 点击清除所有数据按钮，清除所有数据
+	 */
+
+	@FXML
+	private void clearAllData() {
+		defectData.clear();
+	}
+
+	/**
+	 * 点击删除该行按钮，删除该行数据
+	 */
+
+	@FXML
+	private void handleDeleteDefect() {
+		int selectedIndex = defectTable.getSelectionModel().getSelectedIndex();
+		System.out.println(selectedIndex);
+		if (selectedIndex >= 0) {
+			al.remove(selectedIndex);
+			defectData.clear();
+			makeDefectData(al);
+			//defectTable.getItems().remove(selectedIndex);
+			
+		} else {
+			// Nothing selected.
+			
+			 Alert alert = new Alert(AlertType.ERROR);
+			 alert.setTitle("错误");
+			 alert.setHeaderText(null);
+			 alert.setContentText("\r\n未选择要删除的缺陷数据");
+			
+			 alert.showAndWait();
+		}
+	}
+
 	/**
 	 * 点击输入完毕按钮，计算出截止当月发现的累积缺陷数，并输出到缺陷发现历史表格中
 	 */
-	
-	
+
 	/*
 	 * 通过确认输入完毕后的缺陷数据计算出截止当前周期发现的累积缺陷数，并将其存储在集合中
 	 */
 	private ObservableList<TotalDefectAmount> totalDefectData = FXCollections.observableArrayList();
-	
-	
-	@FXML 
+
+	@FXML
 	private TableView<TotalDefectAmount> historicDefectTable;
 	@FXML
 	private TableColumn<TotalDefectAmount, String> periodColumn;
@@ -517,48 +570,44 @@ public class NewTaskOverviewController {
 	@FXML
 	private TableColumn<TotalDefectAmount, String> totalDefectAmountColumn;
 
-	
 	@FXML
-	private void inputCompleteIsClicked(){
-		int x =0;
+	private void inputCompleteIsClicked() {
+		int x = 0;
 		for (DefectAmount defectAmount : defectData) {
-			//System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
-			x+= Integer.parseInt(defectAmount.getDefectAmount());
-			totalDefectData.add(new TotalDefectAmount(defectAmount.getMounth(), defectAmount.getDefectAmount(), Integer.toString(x)));
+			// System.out.println(defectAmount.getMounth() + "---" +
+			// defectAmount.getDefectAmount());
+			x += Integer.parseInt(defectAmount.getDefectAmount());
+			totalDefectData.add(new TotalDefectAmount(defectAmount.getMounth(), defectAmount.getDefectAmount(),
+					Integer.toString(x)));
 		}
-		
-		
-		
+
 		historicDefectTable.setItems(totalDefectData);
-		periodColumn
-		.setCellValueFactory(new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
-			public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
-				// p.getValue() returns the Person instance for a
-				// particular TableView row
-				return p.getValue().mounthProperty();
-			}
-		});
-		periodDefectAmountColumn
-		.setCellValueFactory(new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
-			public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
-				// p.getValue() returns the Person instance for a
-				// particular TableView row
-				return p.getValue().defectAmountProperty();
-			}
-		});
-		totalDefectAmountColumn.setCellValueFactory(new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
-			public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
-				// p.getValue() returns the Person instance for a
-				// particular TableView row
-				return p.getValue().totalDefectAmountProperty();
-			}
-		});
-		
+		periodColumn.setCellValueFactory(
+				new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
+					public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
+						// p.getValue() returns the Person instance for a
+						// particular TableView row
+						return p.getValue().mounthProperty();
+					}
+				});
+		periodDefectAmountColumn.setCellValueFactory(
+				new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
+					public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
+						// p.getValue() returns the Person instance for a
+						// particular TableView row
+						return p.getValue().defectAmountProperty();
+					}
+				});
+		totalDefectAmountColumn.setCellValueFactory(
+				new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
+					public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
+						// p.getValue() returns the Person instance for a
+						// particular TableView row
+						return p.getValue().totalDefectAmountProperty();
+					}
+				});
+
 	}
-	
-	
-	
-	
 
 	@FXML
 	private void evaluateIsClicked() {
