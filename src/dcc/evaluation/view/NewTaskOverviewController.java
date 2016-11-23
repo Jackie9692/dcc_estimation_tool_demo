@@ -21,13 +21,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableCell;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
@@ -158,6 +159,9 @@ public class NewTaskOverviewController {
 	}
 
 	// 开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
+	
+	@FXML
+	private TextField requirementAnalysisResultField;
 	// 定义质量评估多选框中被选中的选项个数
 	int qe = 0;
 	// 定义异常管理评估多选框中被选中的选项个数
@@ -174,9 +178,15 @@ public class NewTaskOverviewController {
 	double D;
 	// 定义软件设计阶段的错误密度
 	double designPhaseResult;
+	
+	
+	
 
 	// 计算设计阶段的错误密度
 	public double designPhase() {
+		if((rbSystemType1.isSelected()||rbSystemType2.isSelected()||rbSystemType3.isSelected()||rbSystemType4.isSelected()||rbSystemType5.isSelected()||rbSystemType6.isSelected())&&(rbDevelopmentEnvironment1.isSelected()||rbDevelopmentEnvironment2.isSelected()||rbDevelopmentEnvironment3.isSelected())){
+			requirementAnalysisResultField.setEditable(false);
+		}
 
 		ArrayList<CheckBox> qualityEvaluation = new ArrayList<CheckBox>();
 		qualityEvaluation.add(cbQualityEvaluation1);
@@ -244,6 +254,9 @@ public class NewTaskOverviewController {
 		D = SA * ST * SQ;
 
 		// 返回结果：软件设计阶段的错误密度
+		if(requirementAnalysisResultField.getText().trim().length()!=0&&requirementAnalysisResultField.getText().trim()!=null){
+			requirementAnalysisResult = Double.parseDouble(requirementAnalysisResultField.getText());
+		}
 
 		return designPhaseResult = D * requirementAnalysisResult;
 
@@ -472,7 +485,14 @@ public class NewTaskOverviewController {
 		}
 	}
 	
+	/**
+	 * 点击清除所有數據按钮，清除所有數據
+	 */
 	
+	@FXML
+	private void clearAllData(){
+		defectData.clear();
+	}
 	
 	
 	
@@ -490,28 +510,49 @@ public class NewTaskOverviewController {
 	
 	@FXML 
 	private TableView<TotalDefectAmount> historicDefectTable;
+	@FXML
+	private TableColumn<TotalDefectAmount, String> periodColumn;
+	@FXML
+	private TableColumn<TotalDefectAmount, String> periodDefectAmountColumn;
+	@FXML
+	private TableColumn<TotalDefectAmount, String> totalDefectAmountColumn;
 
 	
 	@FXML
 	private void inputCompleteIsClicked(){
-		historicDefectTable.setItems(defectData);
-		mounthColumn
-		.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
-			public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+		int x =0;
+		for (DefectAmount defectAmount : defectData) {
+			//System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
+			x+= Integer.parseInt(defectAmount.getDefectAmount());
+			totalDefectData.add(new TotalDefectAmount(defectAmount.getMounth(), defectAmount.getDefectAmount(), Integer.toString(x)));
+		}
+		
+		
+		
+		historicDefectTable.setItems(totalDefectData);
+		periodColumn
+		.setCellValueFactory(new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
+			public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
 				// p.getValue() returns the Person instance for a
 				// particular TableView row
 				return p.getValue().mounthProperty();
 			}
 		});
-		defectAmountColumn
-		.setCellValueFactory(new Callback<CellDataFeatures<DefectAmount, String>, ObservableValue<String>>() {
-			public ObservableValue<String> call(CellDataFeatures<DefectAmount, String> p) {
+		periodDefectAmountColumn
+		.setCellValueFactory(new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
+			public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
 				// p.getValue() returns the Person instance for a
 				// particular TableView row
 				return p.getValue().defectAmountProperty();
 			}
 		});
-		
+		totalDefectAmountColumn.setCellValueFactory(new Callback<CellDataFeatures<TotalDefectAmount, String>, ObservableValue<String>>() {
+			public ObservableValue<String> call(CellDataFeatures<TotalDefectAmount, String> p) {
+				// p.getValue() returns the Person instance for a
+				// particular TableView row
+				return p.getValue().totalDefectAmountProperty();
+			}
+		});
 		
 	}
 	
