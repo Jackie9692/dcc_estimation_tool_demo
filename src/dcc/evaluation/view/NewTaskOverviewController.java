@@ -333,7 +333,6 @@ public class NewTaskOverviewController {
 	private ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
 	ArrayList<String> al = new ArrayList<String>();
 	
-	//int x= 1;
 	int x= 1;
 //	private void readArrayList(ArrayList<String> al){
 //		for (String s : al) {
@@ -343,6 +342,7 @@ public class NewTaskOverviewController {
 //		
 //	}
 	private void makeDefectData(ArrayList<String> al){
+		//int x = 1;
 		for (String s : al) {
 			defectData.add(new DefectAmount(Integer.toString(x), s));
 			x++;
