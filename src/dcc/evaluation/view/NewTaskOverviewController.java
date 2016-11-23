@@ -267,6 +267,7 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private void importFileWindow() throws FileNotFoundException, FileFormatException {
+		clearAllData();
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(null);
@@ -333,6 +334,7 @@ public class NewTaskOverviewController {
 	ArrayList<String> al = new ArrayList<String>();
 	
 	//int x= 1;
+	int x= 1;
 //	private void readArrayList(ArrayList<String> al){
 //		for (String s : al) {
 //			makeDefectData(s);
@@ -341,7 +343,6 @@ public class NewTaskOverviewController {
 //		
 //	}
 	private void makeDefectData(ArrayList<String> al){
-		int x = 1;
 		for (String s : al) {
 			defectData.add(new DefectAmount(Integer.toString(x), s));
 			x++;
@@ -507,12 +508,43 @@ public class NewTaskOverviewController {
 	
 	@FXML
 	private void inputDefectData(){
+		String errorMessage = "";
+		
+		 if (tfinputDefectData.getText() == null || tfinputDefectData.getText().length() == 0) {
+	            errorMessage += "请输入缺陷数据！\n"; 
+	        } else {
+	            // try to parse the 缺陷数据 into an int.
+	            try {
+	                Integer.parseInt(tfinputDefectData.getText());
+	            } catch (NumberFormatException e) {
+	                errorMessage += "无效的缺陷数据 (必须为数字)!\n"; 
+	            }
+	        }
+		 if (errorMessage.length() == 0) {
+			 al.add(tfinputDefectData.getText().trim());
+				defectData.clear();
+				x=1;
+				makeDefectData(al);
+				//defectData.add(new DefectAmount(Integer.toString(x), tfinputDefectData.getText().trim()));
+				//fillTable(defectData);
+	        } else {
+	            // Show the error message.
+//	            Dialogs.create()
+//	                .title("Invalid Fields")
+//	                .masthead("Please correct invalid fields")
+//	                .message(errorMessage)
+//	                .showError();
+	           
+	            Alert alert = new Alert(AlertType.ERROR);
+				 alert.setTitle("错误");
+				 alert.setHeaderText(null);
+				 alert.setContentText("\r\n"+errorMessage);
+				
+				 alert.showAndWait();
+	        }
 		
 		
 		
-		
-		//defectData.add(new DefectAmount(Integer.toString(x), tfinputDefectData.getText().trim()));
-		fillTable(defectData);
 	}
 	
 	
@@ -523,7 +555,10 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private void clearAllData() {
+		x=1;
+		al.clear();
 		defectData.clear();
+		
 	}
 
 	/**
@@ -532,6 +567,7 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private void handleDeleteDefect() {
+		x=1;
 		int selectedIndex = defectTable.getSelectionModel().getSelectedIndex();
 		System.out.println(selectedIndex);
 		if (selectedIndex >= 0) {
@@ -546,7 +582,7 @@ public class NewTaskOverviewController {
 			 Alert alert = new Alert(AlertType.ERROR);
 			 alert.setTitle("错误");
 			 alert.setHeaderText(null);
-			 alert.setContentText("\r\n未选择要删除的缺陷数据");
+			 alert.setContentText("\r\n请选择要删除的缺陷数据！");
 			
 			 alert.showAndWait();
 		}
@@ -572,6 +608,7 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private void inputCompleteIsClicked() {
+		totalDefectData.clear();
 		int x = 0;
 		for (DefectAmount defectAmount : defectData) {
 			// System.out.println(defectAmount.getMounth() + "---" +
