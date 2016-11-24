@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -24,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
    <children>
       <TabPane layoutX="237.0" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -173,13 +169,13 @@
                                                             <GridPane layoutX="98.0" layoutY="34.0" prefHeight="185.0" prefWidth="273.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                                                                <children>
                                                                   <Label text="已完成的软件源代码行数" />
-                                                                  <TextField prefWidth="50.0" GridPane.columnIndex="1" />
+                                                                  <TextField fx:id="tfCodeAmount" prefWidth="50.0" GridPane.columnIndex="1" />
                                                                   <Label text="安装后并初步使用所需的开发月数" GridPane.rowIndex="2" />
-                                                                  <TextField prefHeight="23.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                  <TextField fx:id="tfAfterInstallMounth" prefHeight="23.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                   <Label text="设计阶段的错误密度" GridPane.rowIndex="3" />
-                                                                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                  <TextField fx:id="designPhaseResultField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                                   <Label text="软件已开发的月数" GridPane.rowIndex="1" />
-                                                                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                  <TextField fx:id="tfDevelopMounth" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                </children>
                                                                <columnConstraints>
                                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="217.0" />
@@ -234,9 +230,9 @@
                                                 <Label prefHeight="20.0" prefWidth="171.0" text="软件模块的千行代码数" />
                                                 <Label text="开发期CMM等级（1-5）" GridPane.rowIndex="1" />
                                                 <Label text="成熟期CMM等级（1-5）" GridPane.rowIndex="2" />
-                                                <TextField GridPane.columnIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="tfModuleCodeAmount" GridPane.columnIndex="1" />
+                                                <TextField fx:id="tfDevelopCMMLevel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="tfMatureCMMLevel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                              </children>
                                           </GridPane>
                                           <Button layoutX="610.0" layoutY="589.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
@@ -256,7 +252,7 @@
                                             <items>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                    <children>
-                                                      <TextField layoutX="109.0" layoutY="11.0" prefHeight="23.0" prefWidth="183.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="11.0" />
+                                                      <TextField fx:id="tfFileAddress" layoutX="109.0" layoutY="11.0" prefHeight="23.0" prefWidth="183.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="11.0" />
                                                       <Label layoutX="14.0" layoutY="19.0" text="请选择导入文件" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
                                                       <Button layoutX="294.0" layoutY="11.0" mnemonicParsing="false" onAction="#importFileWindow" text="浏览" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="15.0" />
                                                       <SplitPane dividerPositions="0.04950495049504951" layoutX="122.0" layoutY="52.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -380,11 +376,20 @@
                                                             </TableView>
                                                          </children>
                                                       </AnchorPane>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="374.0" SplitPane.resizableWithParent="false">
                                                          <children>
-                                                            <Button layoutX="100.0" layoutY="8.0" mnemonicParsing="false" text="增加一行" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="8.0" />
-                                                            <Button layoutX="147.0" layoutY="52.0" mnemonicParsing="false" text="输入完毕" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="38.0" />
-                                                            <Button layoutX="179.0" layoutY="8.0" mnemonicParsing="false" text="清楚所有数据" AnchorPane.rightAnchor="50.0" />
+                                                            <HBox prefHeight="23.0" prefWidth="165.0" spacing="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0">
+                                                               <children>
+                                                                  <TextField fx:id="tfinputDefectData1" layoutX="115.0" layoutY="8.0" prefHeight="23.0" prefWidth="98.0" promptText="请输入缺陷数据" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="8.0" />
+                                                                  <Button layoutX="184.0" layoutY="8.0" mnemonicParsing="false" onAction="#inputDefectData" text="添加" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="8.0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox layoutX="120.0" layoutY="36.0" spacing="10.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="20.0">
+                                                               <children>
+                                                                  <Button layoutX="58.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleDeleteDefect" text="删除该行" />
+                                                                  <Button layoutX="157.0" layoutY="48.0" mnemonicParsing="false" onAction="#clearAllData" text="清除所有数据" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="48.0" />
+                                                               </children>
+                                                            </HBox>
                                                          </children>
                                                       </AnchorPane>
                                                    </items>

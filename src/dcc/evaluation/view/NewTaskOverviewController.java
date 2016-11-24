@@ -60,6 +60,53 @@ public class NewTaskOverviewController {
 	private RadioButton rbDevelopmentEnvironment2;
 	@FXML
 	private RadioButton rbDevelopmentEnvironment3;
+	
+	
+	/**
+	 *  开发过程的软件可靠性预测与分析-开发过程可靠性分析-需求分析阶段
+	 */
+		// 定义平均错误密度A
+		double a;
+		// 定义开发环境决定的修正因子D
+		double d;
+		// 定义需求阶段的错误密度
+		double requirementAnalysisResult;
+		// 计算需求阶段的错误密度
+
+		public double requirementAnalysis() {
+
+			// 确定平均错误密度A(错误/行)
+			if (rbSystemType1.isSelected()) {
+				a = 0.0128;
+			} else if (rbSystemType2.isSelected()) {
+				a = 0.0092;
+			} else if (rbSystemType3.isSelected()) {
+				a = 0.0078;
+			} else if (rbSystemType4.isSelected()) {
+				a = 0.0018;
+			} else if (rbSystemType5.isSelected()) {
+				a = 0.0085;
+			} else if (rbSystemType6.isSelected()) {
+				a = 0.0123;
+			}
+
+			// 开发环境决定的修正因子D
+			if (rbDevelopmentEnvironment1.isSelected()) {
+				d = 0.76;
+			} else if (rbDevelopmentEnvironment2.isSelected()) {
+				d = 1.0;
+			} else if (rbDevelopmentEnvironment3.isSelected()) {
+				d = 1.3;
+			}
+
+			// 返回结果：需求分析阶段的错误密度
+			return requirementAnalysisResult = a * d;
+
+		}
+
+	
+	
+	
 
 	// 设计阶段的按钮
 	// 质量评估的按钮
@@ -119,51 +166,17 @@ public class NewTaskOverviewController {
 	private CheckBox cbLimbernessEvaluation3;
 	@FXML
 	private CheckBox cbLimbernessEvaluation4;
-
-	// 开发过程的软件可靠性预测与分析-开发过程可靠性分析-需求分析阶段
-	// 定义平均错误密度A
-	double a;
-	// 定义开发环境决定的修正因子D
-	double d;
-	// 定义需求阶段的错误密度
-	double requirementAnalysisResult;
-	// 计算需求阶段的错误密度
-
-	public double requirementAnalysis() {
-
-		// 确定平均错误密度A(错误/行)
-		if (rbSystemType1.isSelected()) {
-			a = 0.0128;
-		} else if (rbSystemType2.isSelected()) {
-			a = 0.0092;
-		} else if (rbSystemType3.isSelected()) {
-			a = 0.0078;
-		} else if (rbSystemType4.isSelected()) {
-			a = 0.0018;
-		} else if (rbSystemType5.isSelected()) {
-			a = 0.0085;
-		} else if (rbSystemType6.isSelected()) {
-			a = 0.0123;
-		}
-
-		// 开发环境决定的修正因子D
-		if (rbDevelopmentEnvironment1.isSelected()) {
-			d = 0.76;
-		} else if (rbDevelopmentEnvironment2.isSelected()) {
-			d = 1.0;
-		} else if (rbDevelopmentEnvironment3.isSelected()) {
-			d = 1.3;
-		}
-
-		// 返回结果：需求分析阶段的错误密度
-		return requirementAnalysisResult = a * d;
-
-	}
-
-	// 开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
-
+	
+	
 	@FXML
 	private TextField requirementAnalysisResultField;
+
+	
+	/**
+	 *  开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
+	 */
+
+	
 	// 定义质量评估多选框中被选中的选项个数
 	int qe = 0;
 	// 定义异常管理评估多选框中被选中的选项个数
@@ -264,18 +277,101 @@ public class NewTaskOverviewController {
 		return designPhaseResult = D * requirementAnalysisResult;
 
 	}
+	
+	
+	//编码阶段的输入框
+	
+	@FXML
+	private TextField tfCodeAmount;
+	@FXML
+	private TextField tfDevelopMounth;
+	@FXML
+	private TextField tfAfterInstallMounth;
+	@FXML
+	private TextField designPhaseResultField;
+	
+	
+	/**
+	 *  开发过程的软件可靠性预测与分析-开发过程可靠性分析-编码阶段
+	 */
+	public double codingPhase(){
+		int codeAmount = Integer.parseInt(tfCodeAmount.getText());
+		int developMounth = Integer.parseInt(tfDevelopMounth.getText());
+		int afterInstallMounth = Integer.parseInt(tfAfterInstallMounth.getText());
+		 
+		
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 *  开发过程的软件可靠性预测与分析-开发过程可靠性预测
+	 */
+	
+	
+	//开发过程可靠性预测输入框
+	
+		@FXML
+		private TextField tfModuleCodeAmount;
+		@FXML
+		private TextField tfDevelopCMMLevel;
+		@FXML
+		private TextField tfMatureCMMLevel;
+	
+	public double developReliabilityPrediction(){
+		int moduleCodeAmount = Integer.parseInt(tfModuleCodeAmount.getText());
+		int developCMMLevel = Integer.parseInt(tfDevelopCMMLevel.getText());
+		int matureCMMLevel = Integer.parseInt(tfMatureCMMLevel.getText());
+		
+		
+		
+		
+		
+		return 0;
+		
+	}
+	
+	
+	
+	
+	//
+	
+	/**
+	 *  开发过程的软件可靠性预测与分析-软件缺陷早期预测
+	 */
+	
+	//软件缺陷早期预测地址输入框
+	@FXML
+	private TextField tfFileAddress;
+	
 
 	@FXML
 	private void importFileWindow() throws FileNotFoundException, FileFormatException {
-		clearAllData();
+		
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(null);
+		clearAllData();
 		if (file != null) {
 			// FXMLLoader loader = new FXMLLoader();
 			// NewTaskOverviewController ntoc = new NewTaskOverviewController();
 			// loader.getController();
-			readExcel(file.getAbsolutePath());
+			String fileAddress = file.getAbsolutePath();
+			tfFileAddress.setText(fileAddress);
+			readExcel(fileAddress);
 		}
 
 	}
@@ -502,8 +598,8 @@ public class NewTaskOverviewController {
 	 */
 	@FXML
 	private TextField tfinputDefectData;
-	@FXML
-	private Button defectDataAdd;
+//	@FXML
+//	private Button defectDataAdd;
 	
 	
 	@FXML
