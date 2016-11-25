@@ -26,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -60,53 +61,48 @@ public class NewTaskOverviewController {
 	private RadioButton rbDevelopmentEnvironment2;
 	@FXML
 	private RadioButton rbDevelopmentEnvironment3;
-	
-	
+
 	/**
-	 *  开发过程的软件可靠性预测与分析-开发过程可靠性分析-需求分析阶段
+	 * 开发过程的软件可靠性预测与分析-开发过程可靠性分析-需求分析阶段
 	 */
-		// 定义平均错误密度A
-		double a;
-		// 定义开发环境决定的修正因子D
-		double d;
-		// 定义需求阶段的错误密度
-		double requirementAnalysisResult;
-		// 计算需求阶段的错误密度
+	// 定义平均错误密度A
+	double a;
+	// 定义开发环境决定的修正因子D
+	double d;
+	// 定义需求阶段的错误密度
+	double requirementAnalysisResult;
+	// 计算需求阶段的错误密度
 
-		public double requirementAnalysis() {
+	public double requirementAnalysis() {
 
-			// 确定平均错误密度A(错误/行)
-			if (rbSystemType1.isSelected()) {
-				a = 0.0128;
-			} else if (rbSystemType2.isSelected()) {
-				a = 0.0092;
-			} else if (rbSystemType3.isSelected()) {
-				a = 0.0078;
-			} else if (rbSystemType4.isSelected()) {
-				a = 0.0018;
-			} else if (rbSystemType5.isSelected()) {
-				a = 0.0085;
-			} else if (rbSystemType6.isSelected()) {
-				a = 0.0123;
-			}
-
-			// 开发环境决定的修正因子D
-			if (rbDevelopmentEnvironment1.isSelected()) {
-				d = 0.76;
-			} else if (rbDevelopmentEnvironment2.isSelected()) {
-				d = 1.0;
-			} else if (rbDevelopmentEnvironment3.isSelected()) {
-				d = 1.3;
-			}
-
-			// 返回结果：需求分析阶段的错误密度
-			return requirementAnalysisResult = a * d;
-
+		// 确定平均错误密度A(错误/行)
+		if (rbSystemType1.isSelected()) {
+			a = 0.0128;
+		} else if (rbSystemType2.isSelected()) {
+			a = 0.0092;
+		} else if (rbSystemType3.isSelected()) {
+			a = 0.0078;
+		} else if (rbSystemType4.isSelected()) {
+			a = 0.0018;
+		} else if (rbSystemType5.isSelected()) {
+			a = 0.0085;
+		} else if (rbSystemType6.isSelected()) {
+			a = 0.0123;
 		}
 
-	
-	
-	
+		// 开发环境决定的修正因子D
+		if (rbDevelopmentEnvironment1.isSelected()) {
+			d = 0.76;
+		} else if (rbDevelopmentEnvironment2.isSelected()) {
+			d = 1.0;
+		} else if (rbDevelopmentEnvironment3.isSelected()) {
+			d = 1.3;
+		}
+
+		// 返回结果：需求分析阶段的错误密度
+		return requirementAnalysisResult = a * d;
+
+	}
 
 	// 设计阶段的按钮
 	// 质量评估的按钮
@@ -166,17 +162,16 @@ public class NewTaskOverviewController {
 	private CheckBox cbLimbernessEvaluation3;
 	@FXML
 	private CheckBox cbLimbernessEvaluation4;
-	
-	
+
 	@FXML
 	private TextField requirementAnalysisResultField;
+	@FXML
+	private Label lRequirementAnalysisResult;
 
-	
 	/**
-	 *  开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
+	 * 开发过程的软件可靠性预测与分析-开发过程可靠性分析-设计阶段
 	 */
 
-	
 	// 定义质量评估多选框中被选中的选项个数
 	int qe = 0;
 	// 定义异常管理评估多选框中被选中的选项个数
@@ -196,12 +191,15 @@ public class NewTaskOverviewController {
 
 	// 计算设计阶段的错误密度
 	public double designPhase() {
-		if ((rbSystemType1.isSelected() || rbSystemType2.isSelected() || rbSystemType3.isSelected()
-				|| rbSystemType4.isSelected() || rbSystemType5.isSelected() || rbSystemType6.isSelected())
-				&& (rbDevelopmentEnvironment1.isSelected() || rbDevelopmentEnvironment2.isSelected()
-						|| rbDevelopmentEnvironment3.isSelected())) {
-			requirementAnalysisResultField.setEditable(false);
-		}
+		// if ((rbSystemType1.isSelected() || rbSystemType2.isSelected() ||
+		// rbSystemType3.isSelected()
+		// || rbSystemType4.isSelected() || rbSystemType5.isSelected() ||
+		// rbSystemType6.isSelected())
+		// && (rbDevelopmentEnvironment1.isSelected() ||
+		// rbDevelopmentEnvironment2.isSelected()
+		// || rbDevelopmentEnvironment3.isSelected())) {
+		// requirementAnalysisResultField.setEditable(false);
+		// }
 
 		ArrayList<CheckBox> qualityEvaluation = new ArrayList<CheckBox>();
 		qualityEvaluation.add(cbQualityEvaluation1);
@@ -277,10 +275,9 @@ public class NewTaskOverviewController {
 		return designPhaseResult = D * requirementAnalysisResult;
 
 	}
-	
-	
-	//编码阶段的输入框
-	
+
+	// 编码阶段的输入框
+
 	@FXML
 	private TextField tfCodeAmount;
 	@FXML
@@ -289,78 +286,57 @@ public class NewTaskOverviewController {
 	private TextField tfAfterInstallMounth;
 	@FXML
 	private TextField designPhaseResultField;
-	
-	
+	@FXML
+	private Label lDesignPhaseResult;
+
 	/**
-	 *  开发过程的软件可靠性预测与分析-开发过程可靠性分析-编码阶段
+	 * 开发过程的软件可靠性预测与分析-开发过程可靠性分析-编码阶段
 	 */
-	public double codingPhase(){
-		int codeAmount = Integer.parseInt(tfCodeAmount.getText());
-		int developMounth = Integer.parseInt(tfDevelopMounth.getText());
-		int afterInstallMounth = Integer.parseInt(tfAfterInstallMounth.getText());
-		 
+	public double codingPhase() {
+		double codeAmount = Double.parseDouble(tfCodeAmount.getText());
+		double developMounth = Double.parseDouble(tfDevelopMounth.getText());
+		double afterInstallMounth = Double.parseDouble(tfAfterInstallMounth.getText());
 		
+		
+
 		return 0;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/**
-	 *  开发过程的软件可靠性预测与分析-开发过程可靠性预测
+	 * 开发过程的软件可靠性预测与分析-开发过程可靠性预测
 	 */
-	
-	
-	//开发过程可靠性预测输入框
-	
-		@FXML
-		private TextField tfModuleCodeAmount;
-		@FXML
-		private TextField tfDevelopCMMLevel;
-		@FXML
-		private TextField tfMatureCMMLevel;
-	
-	public double developReliabilityPrediction(){
+
+	// 开发过程可靠性预测输入框
+
+	@FXML
+	private TextField tfModuleCodeAmount;
+	@FXML
+	private TextField tfDevelopCMMLevel;
+	@FXML
+	private TextField tfMatureCMMLevel;
+
+	public double developReliabilityPrediction() {
 		int moduleCodeAmount = Integer.parseInt(tfModuleCodeAmount.getText());
 		int developCMMLevel = Integer.parseInt(tfDevelopCMMLevel.getText());
 		int matureCMMLevel = Integer.parseInt(tfMatureCMMLevel.getText());
-		
-		
-		
-		
-		
+
 		return 0;
-		
+
 	}
-	
-	
-	
-	
+
 	//
-	
+
 	/**
-	 *  开发过程的软件可靠性预测与分析-软件缺陷早期预测
+	 * 开发过程的软件可靠性预测与分析-软件缺陷早期预测
 	 */
-	
-	//软件缺陷早期预测地址输入框
+
+	// 软件缺陷早期预测地址输入框
 	@FXML
 	private TextField tfFileAddress;
-	
 
 	@FXML
 	private void importFileWindow() throws FileNotFoundException, FileFormatException {
-		
+
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(null);
@@ -428,17 +404,18 @@ public class NewTaskOverviewController {
 	 */
 	private ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
 	ArrayList<String> al = new ArrayList<String>();
-	
-	int x= 1;
-//	private void readArrayList(ArrayList<String> al){
-//		for (String s : al) {
-//			makeDefectData(s);
-//			
-//		}
-//		
-//	}
-	private void makeDefectData(ArrayList<String> al){
-		//int x = 1;
+
+	int x = 1;
+
+	// private void readArrayList(ArrayList<String> al){
+	// for (String s : al) {
+	// makeDefectData(s);
+	//
+	// }
+	//
+	// }
+	private void makeDefectData(ArrayList<String> al) {
+		// int x = 1;
 		for (String s : al) {
 			defectData.add(new DefectAmount(Integer.toString(x), s));
 			x++;
@@ -525,7 +502,7 @@ public class NewTaskOverviewController {
 				// //System.out.println("");
 
 				// 读取数据行
-//				ArrayList<String> al = new ArrayList<String>();
+				// ArrayList<String> al = new ArrayList<String>();
 				for (int rowIndex = firstRowIndex + 1; rowIndex <= lastRowIndex; rowIndex++) {
 					Row currentRow = sheet.getRow(rowIndex);// 当前行
 					int firstColumnIndex = currentRow.getFirstCellNum(); // 首列
@@ -542,13 +519,13 @@ public class NewTaskOverviewController {
 					}
 					// System.out.println("");
 				}
-//				int x = 1;
-//				for (String s : al) {
-//					defectData.add(new DefectAmount(Integer.toString(x), s));
-//					x++;
-//				}
-//
-//				fillTable(defectData);
+				// int x = 1;
+				// for (String s : al) {
+				// defectData.add(new DefectAmount(Integer.toString(x), s));
+				// x++;
+				// }
+				//
+				// fillTable(defectData);
 				makeDefectData(al);
 			}
 		} catch (Exception e) {
@@ -592,58 +569,54 @@ public class NewTaskOverviewController {
 			return String.valueOf(cell.getStringCellValue());
 		}
 	}
-	
+
 	/**
 	 * 在“请输入缺陷数据”的文本框中输入数据，并将其添加至表格中
 	 */
 	@FXML
 	private TextField tfinputDefectData;
-//	@FXML
-//	private Button defectDataAdd;
-	
-	
+	// @FXML
+	// private Button defectDataAdd;
+
 	@FXML
-	private void inputDefectData(){
+	private void inputDefectData() {
 		String errorMessage = "";
-		
-		 if (tfinputDefectData.getText() == null || tfinputDefectData.getText().length() == 0) {
-	            errorMessage += "请输入缺陷数据！\n"; 
-	        } else {
-	            // try to parse the 缺陷数据 into an int.
-	            try {
-	                Integer.parseInt(tfinputDefectData.getText());
-	            } catch (NumberFormatException e) {
-	                errorMessage += "无效的缺陷数据 (必须为数字)!\n"; 
-	            }
-	        }
-		 if (errorMessage.length() == 0) {
-			 al.add(tfinputDefectData.getText().trim());
-				defectData.clear();
-				x=1;
-				makeDefectData(al);
-				//defectData.add(new DefectAmount(Integer.toString(x), tfinputDefectData.getText().trim()));
-				//fillTable(defectData);
-	        } else {
-	            // Show the error message.
-//	            Dialogs.create()
-//	                .title("Invalid Fields")
-//	                .masthead("Please correct invalid fields")
-//	                .message(errorMessage)
-//	                .showError();
-	           
-	            Alert alert = new Alert(AlertType.ERROR);
-				 alert.setTitle("错误");
-				 alert.setHeaderText(null);
-				 alert.setContentText("\r\n"+errorMessage);
-				
-				 alert.showAndWait();
-	        }
-		
-		
-		
+
+		if (tfinputDefectData.getText() == null || tfinputDefectData.getText().length() == 0) {
+			errorMessage += "请输入缺陷数据！\n";
+		} else {
+			// try to parse the 缺陷数据 into an int.
+			try {
+				Integer.parseInt(tfinputDefectData.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "无效的缺陷数据 (必须为数字)!\n";
+			}
+		}
+		if (errorMessage.length() == 0) {
+			al.add(tfinputDefectData.getText().trim());
+			defectData.clear();
+			x = 1;
+			makeDefectData(al);
+			// defectData.add(new DefectAmount(Integer.toString(x),
+			// tfinputDefectData.getText().trim()));
+			// fillTable(defectData);
+		} else {
+			// Show the error message.
+			// Dialogs.create()
+			// .title("Invalid Fields")
+			// .masthead("Please correct invalid fields")
+			// .message(errorMessage)
+			// .showError();
+
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("错误");
+			alert.setHeaderText(null);
+			alert.setContentText("\r\n" + errorMessage);
+
+			alert.showAndWait();
+		}
+
 	}
-	
-	
 
 	/**
 	 * 点击清除所有数据按钮，清除所有数据
@@ -651,10 +624,10 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private void clearAllData() {
-		x=1;
+		x = 1;
 		al.clear();
 		defectData.clear();
-		
+
 	}
 
 	/**
@@ -663,24 +636,24 @@ public class NewTaskOverviewController {
 
 	@FXML
 	private void handleDeleteDefect() {
-		x=1;
+		x = 1;
 		int selectedIndex = defectTable.getSelectionModel().getSelectedIndex();
 		System.out.println(selectedIndex);
 		if (selectedIndex >= 0) {
 			al.remove(selectedIndex);
 			defectData.clear();
 			makeDefectData(al);
-			//defectTable.getItems().remove(selectedIndex);
-			
+			// defectTable.getItems().remove(selectedIndex);
+
 		} else {
 			// Nothing selected.
-			
-			 Alert alert = new Alert(AlertType.ERROR);
-			 alert.setTitle("错误");
-			 alert.setHeaderText(null);
-			 alert.setContentText("\r\n请选择要删除的缺陷数据！");
-			
-			 alert.showAndWait();
+
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("错误");
+			alert.setHeaderText(null);
+			alert.setContentText("\r\n请选择要删除的缺陷数据！");
+
+			alert.showAndWait();
 		}
 	}
 
@@ -746,6 +719,45 @@ public class NewTaskOverviewController {
 	private void evaluateIsClicked() {
 		System.out.println(requirementAnalysis());
 		System.out.println(designPhase());
+	}
+
+	@FXML
+	private void designInitialize() {
+		if ((rbSystemType1.isSelected() || rbSystemType2.isSelected() || rbSystemType3.isSelected()
+				|| rbSystemType4.isSelected() || rbSystemType5.isSelected() || rbSystemType6.isSelected())
+				&& (rbDevelopmentEnvironment1.isSelected() || rbDevelopmentEnvironment2.isSelected()
+						|| rbDevelopmentEnvironment3.isSelected())) {
+			lRequirementAnalysisResult.setVisible(false);
+			requirementAnalysisResultField.setVisible(false);
+
+		}else{
+			lRequirementAnalysisResult.setVisible(true);
+			requirementAnalysisResultField.setVisible(true);
+		}
+	}
+
+	@FXML
+	private void codingInitialize() {
+		if ((cbQualityEvaluation1.isSelected() || cbQualityEvaluation2.isSelected() || cbQualityEvaluation3.isSelected()
+				|| cbQualityEvaluation4.isSelected() || cbQualityEvaluation9.isSelected()
+				|| cbQualityEvaluation5.isSelected() || cbQualityEvaluation10.isSelected()
+				|| cbQualityEvaluation6.isSelected() || cbQualityEvaluation11.isSelected()
+				|| cbQualityEvaluation7.isSelected() || cbQualityEvaluation12.isSelected()
+				|| cbQualityEvaluation8.isSelected() || cbQualityEvaluation13.isSelected())
+				&& (cbLimbernessEvaluation1.isSelected() || cbLimbernessEvaluation2.isSelected()
+						|| cbLimbernessEvaluation3.isSelected() || cbLimbernessEvaluation4.isSelected())
+				&& (cbExceptionManagement1.isSelected() || cbExceptionManagement2.isSelected()
+						|| cbExceptionManagement3.isSelected() || cbExceptionManagement4.isSelected()
+						|| cbExceptionManagement7.isSelected() || cbExceptionManagement9.isSelected()
+						|| cbExceptionManagement5.isSelected() || cbExceptionManagement8.isSelected()
+						|| cbExceptionManagement10.isSelected() || cbExceptionManagement6.isSelected())) {
+			lDesignPhaseResult.setVisible(false);
+			designPhaseResultField.setVisible(false);
+
+		}else{
+			lDesignPhaseResult.setVisible(true);
+			designPhaseResultField.setVisible(true);
+		}
 	}
 
 }

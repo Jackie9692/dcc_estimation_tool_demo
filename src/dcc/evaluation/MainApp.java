@@ -93,6 +93,7 @@ public class MainApp extends Application {
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(newTasksOverview);
 			dialogStage.setScene(scene);
+			dialogStage.setResizable(false);
 
 			//展示新建项目对话框直到用户关闭它
 			dialogStage.showAndWait();
@@ -139,19 +140,19 @@ public class MainApp extends Application {
 	 * @throws FileNotFoundException 
 	 *
 	 */
-	public static void showFileChooserOverview() throws FileNotFoundException, FileFormatException{
-		
-		
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("选择导入文件");
-		File file = fileChooser.showOpenDialog(primaryStage);
-		if(file != null){
-			FXMLLoader loader = new FXMLLoader();
-			NewTaskOverviewController ntoc = new NewTaskOverviewController();
-					//loader.getController();
-			ntoc.readExcel(file.getAbsolutePath());
-		}
-	}
+//	public static void showFileChooserOverview() throws FileNotFoundException, FileFormatException{
+//		
+//		
+//		FileChooser fileChooser = new FileChooser();
+//		fileChooser.setTitle("选择导入文件");
+//		File file = fileChooser.showOpenDialog(primaryStage);
+//		if(file != null){
+//			FXMLLoader loader = new FXMLLoader();
+//			NewTaskOverviewController ntoc = new NewTaskOverviewController();
+//					//loader.getController();
+//			ntoc.readExcel(file.getAbsolutePath());
+//		}
+//	}
 	
 
 	
