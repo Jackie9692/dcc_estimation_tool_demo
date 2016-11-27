@@ -1,5 +1,7 @@
 package dcc.evaluation.computation.model;
 
+import java.util.ArrayList;
+
 import dcc.evaluation.computation.model.*;
 
 public class ModelTest {
@@ -12,8 +14,9 @@ public class ModelTest {
 	 */
 	@org.junit.Test
 	public void testJMModel() {
-		double[] time = new double[] { 9, 12, 11, 4, 7, 2, 5, 8, 5, 7, 1, 6, 1, 9, 4, 1, 3, 3, 6, 1, 11, 33, 7, 91, 2, 1 };//NTDS，完全失效数据
-		JMModel jmModel = new JMModel(time);
+		
+		double[] time1 = new double[] { 9, 12, 11, 4, 7, 2, 5, 8, 5, 7, 1, 6, 1, 9, 4, 1, 3, 3, 6, 1, 11, 33, 7, 91, 2, 1 };//NTDS，完全失效数据
+		JMModel jmModel = new JMModel(time1);
 		jmModel.calculate(0.000001);//设置计算阈值为0.000001
 		jmModel.printResult();//输出计算结果到控制台
 	}

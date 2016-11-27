@@ -41,7 +41,7 @@ public class FillTableActions {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择导入文件");
 		File file = fileChooser.showOpenDialog(null);
-		//clearAllData();
+		deleteAll(tfFileAddress);
 		if (file != null) {
 			// FXMLLoader loader = new FXMLLoader();
 			// NewTaskOverviewController ntoc = new NewTaskOverviewController();
@@ -61,7 +61,7 @@ public class FillTableActions {
 	 * 将导入的软件缺陷早期预测失效数据存储在集合中
 	 */
 	public ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
-	ArrayList<String> al = new ArrayList<String>();
+	public ArrayList<String> al = new ArrayList<String>();
 
 	int x = 1;
 
@@ -270,7 +270,7 @@ public class FillTableActions {
 	
 	
 	
-	public void inputData(TextField tfinputDefectData){
+	public void inputData(TextField tfinputDefectData,TableView<DefectAmount> defectTable,TableColumn<DefectAmount, String> mounthColumn,TableColumn<DefectAmount, String> defectAmountColumn){
 		String errorMessage = "";
 
 		if (tfinputDefectData.getText() == null || tfinputDefectData.getText().length() == 0) {
@@ -288,6 +288,7 @@ public class FillTableActions {
 			defectData.clear();
 			x = 1;
 			makeDefectData(al);
+			fillTable(defectData,defectTable,mounthColumn,defectAmountColumn);
 			// defectData.add(new DefectAmount(Integer.toString(x),
 			// tfinputDefectData.getText().trim()));
 			// fillTable(defectData);
@@ -308,10 +309,12 @@ public class FillTableActions {
 		}
 	}
 	
-	public void deleteAll(){
+	public void deleteAll(TextField tfFileAddress){
 		x = 1;
 		al.clear();
 		defectData.clear();
+		tfFileAddress.clear();
+		
 	}
 	
 	public void deleteOne(TableView<DefectAmount> defectTable){

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -20,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
    <children>
       <TabPane layoutX="237.0" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -199,7 +203,7 @@
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
                                                    <children>
-                                                      <Button layoutX="609.0" layoutY="14.0" mnemonicParsing="false" onAction="#evaluateIsClicked" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
+                                                      <Button layoutX="609.0" layoutY="14.0" mnemonicParsing="false" onAction="#developmentAnalysisEvaluateIsClicked" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="45.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -290,7 +294,7 @@
                                                                               <HBox layoutX="58.0" layoutY="48.0" spacing="6.0" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="15.0">
                                                                                  <children>
                                                                                     <Button layoutX="58.0" layoutY="48.0" mnemonicParsing="false" onAction="#developmentHandleDeleteDefect" text="删除该行" />
-                                                                                    <Button layoutX="157.0" layoutY="48.0" mnemonicParsing="false" onAction="#clearAllData" text="清除所有数据" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="48.0" />
+                                                                                    <Button layoutX="157.0" layoutY="48.0" mnemonicParsing="false" onAction="#developmentClearAllData" text="清除所有数据" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="48.0" />
                                                                                     <Button layoutX="265.0" layoutY="48.0" mnemonicParsing="false" onAction="#inputCompleteIsClicked" text="输入完毕" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="45.0" />
                                                                                  </children>
                                                                               </HBox>
@@ -387,7 +391,7 @@
                                                             <HBox layoutX="120.0" layoutY="36.0" spacing="10.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="20.0">
                                                                <children>
                                                                   <Button layoutX="58.0" layoutY="48.0" mnemonicParsing="false" onAction="#testHandleDeleteDefect" text="删除该行" />
-                                                                  <Button layoutX="157.0" layoutY="48.0" mnemonicParsing="false" onAction="#clearAllData" text="清除所有数据" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="48.0" />
+                                                                  <Button layoutX="157.0" layoutY="48.0" mnemonicParsing="false" onAction="#testClearAllData" text="清除所有数据" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="48.0" />
                                                                </children>
                                                             </HBox>
                                                          </children>
@@ -402,7 +406,7 @@
                               </AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <Button layoutX="417.0" layoutY="593.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="35.0">
+                                    <Button layoutX="417.0" layoutY="593.0" mnemonicParsing="false" onAction="#testEvaluationIsClicked" prefHeight="30.0" prefWidth="60.0" text="评估" AnchorPane.bottomAnchor="35.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

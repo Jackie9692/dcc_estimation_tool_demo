@@ -1,20 +1,12 @@
 package dcc.evaluation.view;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
+import dcc.evaluation.computation.model.JMModel;
+import dcc.evaluation.computation.model.ModelTest;
 import dcc.evaluation.view.model.DefectAmount;
 import dcc.evaluation.view.model.FillTableActions;
 import dcc.evaluation.view.model.TotalDefectAmount;
@@ -22,9 +14,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -32,8 +21,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 public class NewTaskOverviewController extends FillTableActions {
@@ -363,7 +350,7 @@ public class NewTaskOverviewController extends FillTableActions {
 	@FXML
 	private void developmentInputDefectData() {		
 		
-		inputData(tfDevelopmentInputDefectData);
+		inputData(tfDevelopmentInputDefectData,developmentDefectTable,developmentMounthColumn,developmentDefectAmountColumn);
 
 	}
 
@@ -372,9 +359,9 @@ public class NewTaskOverviewController extends FillTableActions {
 	 */
 
 	@FXML
-	private void clearAllData() {
+	private void developmentClearAllData() {
 
-		deleteAll();
+		deleteAll(tfDevelopmentFileAddress);
 
 	}
 
@@ -483,7 +470,7 @@ public class NewTaskOverviewController extends FillTableActions {
 	@FXML
 	private void testInputDefectData() {		
 		
-		inputData(tfTestInputDefectData);
+		inputData(tfTestInputDefectData,testDefectTable,testMounthColumn,testDefectAmountColumn);
 
 	}
 	
@@ -498,7 +485,16 @@ public class NewTaskOverviewController extends FillTableActions {
 
 	}
 	
-	
+	/**
+	 * 点击清除所有数据按钮，清除所有数据
+	 */
+
+	@FXML
+	private void testClearAllData() {
+
+		deleteAll(tfTestFileAddress);
+
+	}
 	
 	
 	
@@ -545,11 +541,23 @@ public class NewTaskOverviewController extends FillTableActions {
 	
 	
 	@FXML
-	private void evaluateIsClicked() {
+	private void developmentAnalysisEvaluateIsClicked() {
 		System.out.println(requirementAnalysis());
 		System.out.println(designPhase());
 	}
 	
+	
+	@FXML
+	private void testEvaluationIsClicked(){
+		double[] time = new double[al.size()];
+		for(int x = 0 ; x<al.size();x++){
+			time[x] = Double.parseDouble(al.get(x));
+		}
+		//double[] time1 = new double[] { 9, 12, 11, 4, 7, 2, 5, 8, 5, 7, 1, 6, 1, 9, 4, 1, 3, 3, 6, 1, 11, 33, 7, 91, 2, 1 };//NTDS，完全失效数据
+		JMModel jmModel = new JMModel(time);
+		jmModel.calculate(0.000001);//设置计算阈值为0.000001
+		jmModel.printResult();//输出计算结果到控制台
+	}
 	
 	
 	
