@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
+<AnchorPane prefHeight="550.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.NewTaskOverviewController">
    <children>
       <HBox layoutX="91.0" layoutY="12.0" spacing="3.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="15.0">
          <children>
@@ -44,10 +28,10 @@
          <children>
             <RadioButton layoutX="40.0" layoutY="63.0" mnemonicParsing="false" text="软件缺陷早期预测">
                <toggleGroup>
-                  <ToggleGroup fx:id="developmentTasksGroup" />
+                  <ToggleGroup fx:id="taskGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="40.0" layoutY="93.0" mnemonicParsing="false" text="开发过程可靠性预测" toggleGroup="$developmentTasksGroup" />
+            <RadioButton layoutX="40.0" layoutY="93.0" mnemonicParsing="false" text="开发过程可靠性预测" toggleGroup="$taskGroup" />
          </children>
       </VBox>
       <RadioButton layoutX="39.0" layoutY="69.0" mnemonicParsing="false" onAction="#developmentPeriodChoosed" text="开发过程的软件可靠性预测" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="100.0">
@@ -58,12 +42,8 @@
       <RadioButton layoutX="50.0" layoutY="226.0" mnemonicParsing="false" onAction="#testPeriodChoosed" text="测试阶段的软件可靠性评估" toggleGroup="$differentPeriodGroup" AnchorPane.leftAnchor="65.0" />
       <VBox fx:id="modelChooseBox" disable="true" layoutX="68.0" layoutY="258.0" spacing="15.0" AnchorPane.leftAnchor="83.0">
          <children>
-            <RadioButton layoutX="68.0" layoutY="318.0" mnemonicParsing="false" selected="true" text="自动选择最优模型（默认）">
-               <toggleGroup>
-                  <ToggleGroup fx:id="modelChoiceGroup" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton layoutX="68.0" layoutY="355.0" mnemonicParsing="false" onAction="#selfDetermineModelChoosed" text="自定义模型" toggleGroup="$modelChoiceGroup" />
+            <RadioButton fx:id="defaultDetermineModelButton" layoutX="68.0" layoutY="318.0" mnemonicParsing="false" onAction="#defaultDetermineModelChoosed" selected="true" text="自动选择最优模型（默认）" toggleGroup="$taskGroup" />
+            <RadioButton layoutX="68.0" layoutY="355.0" mnemonicParsing="false" onAction="#selfDetermineModelChoosed" text="自定义模型" toggleGroup="$taskGroup" />
          </children>
       </VBox>
       <HBox layoutX="309.0" layoutY="505.0" spacing="10.0" AnchorPane.rightAnchor="25.0">

@@ -88,7 +88,7 @@ public class MainApp extends Application {
 			//创建新建项目对话框
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("新建项目");
+			dialogStage.setTitle("新建任务");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(newTasksOverview);
@@ -119,7 +119,7 @@ public class MainApp extends Application {
 			//创建新建项目对话框
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("历史项目");
+			dialogStage.setTitle("历史任务");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(HistoricTasksOverview);

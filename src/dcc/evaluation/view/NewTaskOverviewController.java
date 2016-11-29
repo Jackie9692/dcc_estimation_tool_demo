@@ -562,22 +562,43 @@ public class NewTaskOverviewController extends FillTableActions {
 //		jmModel.printResult();//输出计算结果到控制台
 //	}
 //	
+	
+	//
 	@FXML
-	VBox developmentPeriodTasksBox;
+	private VBox developmentPeriodTasksBox;
+	//
 	@FXML
-	VBox modelChooseBox;
+	private VBox modelChooseBox;
+	//
 	@FXML
-	VBox selfDetermineModelTypeBox;
+	private VBox selfDetermineModelTypeBox;
+	//
+	@FXML
+	private RadioButton defaultDetermineModelButton;
+	//
+	
+	
 	
 	
 	
 	@FXML
 	private void developmentPeriodChoosed(){
 		developmentPeriodTasksBox.setDisable(false);
+		modelChooseBox.setDisable(true);
+		selfDetermineModelTypeBox.setVisible(false);
+		//testPeriodButton.setDisable(true);
 	}
 	@FXML
 	private void testPeriodChoosed(){
 		modelChooseBox.setDisable(false);
+		developmentPeriodTasksBox.setDisable(true);
+		defaultDetermineModelButton.setSelected(true);
+		selfDetermineModelTypeBox.setVisible(false);
+		//developmentPeriodButton.setDisable(true);
+	}
+	@FXML
+	private void defaultDetermineModelChoosed(){
+		selfDetermineModelTypeBox.setVisible(false);
 	}
 	@FXML
 	private void selfDetermineModelChoosed(){
