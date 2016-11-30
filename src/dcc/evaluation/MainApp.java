@@ -134,6 +134,71 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	/**
+	 * 打开"开发过程的软件可靠性预测-开发过程可靠性预测"数据输入界面
+	 */
+	public static void showDevelopmentReliabilityPredictDataInputOverview(String name){
+		try {
+			//从fxml文件中加载开发过程可靠性预测数据输入界面
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/DevelopmentReliabilityPredictDataInputOverview.fxml"));
+			AnchorPane DevelopmentReliabilityPredictDataInputOverview = (AnchorPane)loader.load();
+			
+			//创建开发过程可靠性预测数据输入界面
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle(name);
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(DevelopmentReliabilityPredictDataInputOverview);
+			dialogStage.setScene(scene);
+			dialogStage.setResizable(false);
+			
+			//展示开发过程可靠性预测数据输入界面直到用户关闭它
+			dialogStage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * 打开"开发过程的软件可靠性预测-软件缺陷早期预测"数据输入界面
+	 */
+	public static void showSoftwareDefectPredictDataInputOverview(String name){
+		try {
+			//从fxml文件中加载软件缺陷早期预测数据输入界面
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/SoftwareDefectPredictDataInputOverview.fxml"));
+			AnchorPane SoftwareDefectPredictDataInputOverview = (AnchorPane)loader.load();
+			
+			//创建软件缺陷早期预测数据输入界面
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle(name);
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(SoftwareDefectPredictDataInputOverview);
+			dialogStage.setScene(scene);
+			dialogStage.setResizable(false);
+			
+			//展示软件缺陷早期预测数据输入界面直到用户关闭它
+			dialogStage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
 	/**
 	 *打开导入文件框
 	 * @throws FileFormatException 
@@ -153,7 +218,6 @@ public class MainApp extends Application {
 //			ntoc.readExcel(file.getAbsolutePath());
 //		}
 //	}
-	
 
 	
 	

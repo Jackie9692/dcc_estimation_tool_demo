@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
+import dcc.evaluation.MainApp;
 import dcc.evaluation.computation.model.JMModel;
 import dcc.evaluation.computation.model.ModelTest;
 import dcc.evaluation.view.model.DefectAmount;
@@ -572,15 +573,25 @@ public class NewTaskOverviewController extends FillTableActions {
 	//
 	@FXML
 	private VBox selfDetermineModelTypeBox;
+	
+	//
+	@FXML
+	private RadioButton softwareDefectPredictionButton;
+	//
+	@FXML
+	private RadioButton developmentReliabilityPredictionButton;
 	//
 	@FXML
 	private RadioButton defaultDetermineModelButton;
+
 	//
+	@FXML
+	private TextField newTaskNameField;
 	
-	
-	
-	
-	
+		
+	/**
+	 * 
+	 */
 	@FXML
 	private void developmentPeriodChoosed(){
 		developmentPeriodTasksBox.setDisable(false);
@@ -588,6 +599,10 @@ public class NewTaskOverviewController extends FillTableActions {
 		selfDetermineModelTypeBox.setVisible(false);
 		//testPeriodButton.setDisable(true);
 	}
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private void testPeriodChoosed(){
 		modelChooseBox.setDisable(false);
@@ -596,15 +611,35 @@ public class NewTaskOverviewController extends FillTableActions {
 		selfDetermineModelTypeBox.setVisible(false);
 		//developmentPeriodButton.setDisable(true);
 	}
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private void defaultDetermineModelChoosed(){
 		selfDetermineModelTypeBox.setVisible(false);
 	}
+	
+	/**
+	 * 
+	 */
 	@FXML
 	private void selfDetermineModelChoosed(){
 		selfDetermineModelTypeBox.setVisible(true);
 	}
 	
-	
+	/**
+	 * 
+	 */
+	@FXML
+	private void handleOKButton(){
+		String taskName = newTaskNameField.getText();
+		if(developmentReliabilityPredictionButton.isSelected()){
+			MainApp.showDevelopmentReliabilityPredictDataInputOverview(taskName);
+		}else if(softwareDefectPredictionButton.isSelected()){
+			MainApp.showSoftwareDefectPredictDataInputOverview(taskName);
+		}
+		
+	}
 	
 }
