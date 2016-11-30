@@ -1,31 +1,11 @@
 package dcc.evaluation.view;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
-import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
-
 import dcc.evaluation.MainApp;
-import dcc.evaluation.computation.model.JMModel;
-import dcc.evaluation.computation.model.ModelTest;
-import dcc.evaluation.view.model.DefectAmount;
 import dcc.evaluation.view.model.FillTableActions;
-import dcc.evaluation.view.model.TotalDefectAmount;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 
 public class NewTaskOverviewController extends FillTableActions {
 
