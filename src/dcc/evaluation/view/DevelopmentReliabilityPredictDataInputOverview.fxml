@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane prefHeight="320.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="320.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcc.evaluation.view.DevelopmentReliabilityPredictDataInputOverviewController">
    <children>
       <Button layoutX="133.0" layoutY="272.0" mnemonicParsing="false" prefWidth="55.0" text="评估" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="228.0" layoutX="22.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="277.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="21.0" />
@@ -25,9 +27,9 @@
             <Label text="软件模块的千行代码数" />
             <Label text="开发期CMM等级（1-5）" GridPane.rowIndex="1" />
             <Label text="成熟期CMM等级（1-5）" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField prefHeight="23.0" prefWidth="84.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfModuleCodeAmount" GridPane.columnIndex="1" />
+            <TextField fx:id="tfDevelopCMMLevel" prefHeight="23.0" prefWidth="84.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfMatureCMMLevel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

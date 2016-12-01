@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class SoftwareDefectPredictDataInputOverviewController extends FillTableActions{
-	 	//软件缺陷早期预测地址输入框
+	 	//软件缺陷早期预测数据源地址输入框
 		@FXML
 		private TextField tfDevelopmentFileAddress;
 		
