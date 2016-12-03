@@ -34,7 +34,7 @@ public class FillTableActions {
 //	private TableColumn<DefectAmount, String> mounthColumn;
 //	private TableColumn<DefectAmount, String> defectAmountColumn;
 	
-	public void openImportFileWindow(TextField tfFileAddress,TableView<DefectAmount> defectTable,TableColumn<DefectAmount, String> mounthColumn,TableColumn<DefectAmount, String> defectAmountColumn) throws FileNotFoundException, FileFormatException{
+	public void openImportFileWindow(TextField tfFileAddress,TableView defectTable,TableColumn mounthColumn,TableColumn defectAmountColumn) throws FileNotFoundException, FileFormatException{
 		
 		
 		
@@ -60,7 +60,7 @@ public class FillTableActions {
 	/*
 	 * 将导入的软件缺陷早期预测失效数据存储在集合中
 	 */
-	public ObservableList<DefectAmount> defectData = FXCollections.observableArrayList();
+	public ObservableList defectData = FXCollections.observableArrayList();
 	public ArrayList<String> al = new ArrayList<String>();
 
 	int x = 1;
@@ -229,10 +229,10 @@ public class FillTableActions {
 	
 	
 	
-	public void fillTable(ObservableList<DefectAmount> defectData,TableView<DefectAmount> defectTable,TableColumn<DefectAmount, String> mounthColumn,TableColumn<DefectAmount, String> defectAmountColumn) {
-		for (DefectAmount defectAmount : defectData) {
-			System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
-		}
+	public void fillTable(ObservableList defectData,TableView defectTable,TableColumn mounthColumn,TableColumn defectAmountColumn) {
+//		for (DefectAmount defectAmount : defectData) {
+//			System.out.println(defectAmount.getMounth() + "---" + defectAmount.getDefectAmount());
+//		}
 		// System.out.println(defectTable);
 		defectTable.setItems(defectData);
 		// System.out.println(defectTable);
@@ -266,7 +266,7 @@ public class FillTableActions {
 	
 	
 	
-	public void inputData(TextField tfinputDefectData,TableView<DefectAmount> defectTable,TableColumn<DefectAmount, String> mounthColumn,TableColumn<DefectAmount, String> defectAmountColumn){
+	public void inputData(TextField tfinputDefectData,TableView defectTable,TableColumn mounthColumn,TableColumn defectAmountColumn){
 		String errorMessage = "";
 
 		if (tfinputDefectData.getText() == null || tfinputDefectData.getText().length() == 0) {
@@ -313,7 +313,7 @@ public class FillTableActions {
 		
 	}
 	
-	public void deleteOne(TableView<DefectAmount> defectTable){
+	public void deleteOne(TableView defectTable){
 		x = 1;
 		int selectedIndex = defectTable.getSelectionModel().getSelectedIndex();
 		System.out.println(selectedIndex);

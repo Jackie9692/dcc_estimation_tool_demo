@@ -196,7 +196,34 @@ public class MainApp extends Application {
 		
 	}
 	
-	
+	/**
+	 * 打开"测试阶段软件可靠性评估-自动选择模型"数据输入界面
+	 */
+	public static void showDefaultDetermineModelDataInputOverview(String name){
+		try {
+			//从fxml文件中加载自动选择模型数据输入界面
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/DefaultDetermineModelDataInputOverview.fxml"));
+			AnchorPane DefaultDetermineModelDataInputOverview = (AnchorPane)loader.load();
+			
+			//创建自动选择模型数据输入界面
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle(name);
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(DefaultDetermineModelDataInputOverview);
+			dialogStage.setScene(scene);
+			dialogStage.setResizable(false);
+			
+			//展示自动选择模型数据输入界面直到用户关闭它
+			dialogStage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	/**

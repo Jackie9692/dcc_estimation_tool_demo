@@ -618,6 +618,8 @@ public class NewTaskOverviewController extends FillTableActions {
 			MainApp.showDevelopmentReliabilityPredictDataInputOverview(taskName);
 		}else if(softwareDefectPredictionButton.isSelected()){
 			MainApp.showSoftwareDefectPredictDataInputOverview(taskName);
+		}else if(defaultDetermineModelButton.isSelected()){
+			MainApp.showDefaultDetermineModelDataInputOverview(taskName);
 		}
 		
 	}
