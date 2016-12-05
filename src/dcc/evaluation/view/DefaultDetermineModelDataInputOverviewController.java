@@ -63,10 +63,10 @@ public class DefaultDetermineModelDataInputOverviewController extends FillTableA
 	@FXML
 	private void developmentInputDefectData() {
 		if (testCompleteFailureTable.isVisible() && testIncompleteFailureTable.isDisable()) {
-			inputData(tfTestFileAddress, testCompleteFailureTable, testFailureTimesColumn,
+			inputData(tfTestInputFailureData, testCompleteFailureTable, testFailureTimesColumn,
 					testTimeBetweenFailuresColumn);
 		} else if (testIncompleteFailureTable.isVisible() && testCompleteFailureTable.isDisable()) {
-			inputData(tfTestFileAddress, testIncompleteFailureTable, testIntervalTimeColumn, testFailureAmountColumn);
+			inputData(tfTestInputFailureData, testIncompleteFailureTable, testIntervalTimeColumn, testFailureAmountColumn);
 		}
 
 	}
