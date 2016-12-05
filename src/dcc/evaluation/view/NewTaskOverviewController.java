@@ -1,13 +1,13 @@
 package dcc.evaluation.view;
 
 import dcc.evaluation.MainApp;
-import dcc.evaluation.view.model.FillTableActions;
+import dcc.evaluation.view.model.ImportFileActions;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class NewTaskOverviewController extends FillTableActions {
+public class NewTaskOverviewController extends ImportFileActions {
 
 	public NewTaskOverviewController() {
 		super();

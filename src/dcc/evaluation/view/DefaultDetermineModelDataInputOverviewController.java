@@ -6,7 +6,7 @@ import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.computation.model.JMModel;
 import dcc.evaluation.view.model.DefectAmount;
-import dcc.evaluation.view.model.FillTableActions;
+import dcc.evaluation.view.model.ImportFileActions;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class DefaultDetermineModelDataInputOverviewController extends FillTableActions {
+public class DefaultDetermineModelDataInputOverviewController extends ImportFileActions {
 
 	// 测试阶段软件可靠性评估-自动选择模型-选择失效数据类型
 	@FXML
@@ -112,11 +112,13 @@ public class DefaultDetermineModelDataInputOverviewController extends FillTableA
 					testCompleteFailureTable.setVisible(false);
 					testIncompleteFailureTable.setDisable(false);
 					testIncompleteFailureTable.setVisible(true);
+					deleteAll(tfTestFileAddress);
 				} else if (newValue.equals("完全失效数据")) {
 					testIncompleteFailureTable.setDisable(true);
 					testIncompleteFailureTable.setVisible(false);
 					testCompleteFailureTable.setDisable(false);
 					testCompleteFailureTable.setVisible(true);
+					deleteAll(tfTestFileAddress);
 				}
 			}
 

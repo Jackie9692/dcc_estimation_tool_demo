@@ -5,13 +5,13 @@ import java.io.FileNotFoundException;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
 import dcc.evaluation.view.model.DefectAmount;
-import dcc.evaluation.view.model.FillTableActions;
+import dcc.evaluation.view.model.ImportFileActions;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class SoftwareDefectPredictDataInputOverviewController extends FillTableActions{
+public class SoftwareDefectPredictDataInputOverviewController extends ImportFileActions{
 	 	//软件缺陷早期预测数据源地址输入框
 		@FXML
 		private TextField tfDevelopmentFileAddress;

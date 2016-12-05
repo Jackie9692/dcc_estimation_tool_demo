@@ -28,7 +28,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
-public class FillTableActions {
+public class ImportFileActions {
 	//private TextField tfFileAddress;
 //	private TableView<DefectAmount> defectTable;
 //	private TableColumn<DefectAmount, String> mounthColumn;
@@ -60,8 +60,8 @@ public class FillTableActions {
 	/*
 	 * 将导入的软件缺陷早期预测失效数据存储在集合中
 	 */
-	public ObservableList defectData = FXCollections.observableArrayList();
-	public ArrayList<String> al = new ArrayList<String>();
+	public  static ObservableList defectData = FXCollections.observableArrayList();
+	public static ArrayList<String> al = new ArrayList<String>();
 
 	int x = 1;
 
