@@ -145,13 +145,13 @@ public class ImportFileActions {
 				int lastRowIndex = sheet.getLastRowNum();
 
 				// // 读取首行，即表头
-				// Row firstRow = sheet.getRow(firstRowIndex);
-				// for (int i = firstRow.getFirstCellNum(); i <=
-				// firstRow.getLastCellNum(); i++) {
-				// Cell cell = firstRow.getCell(i);
-				// String cellValue = this.getCellValue(cell, true);
+				 Row firstRow = sheet.getRow(firstRowIndex);
+				 for (int i = firstRow.getFirstCellNum(); i <=
+				 firstRow.getLastCellNum(); i++) {
+				 Cell cell = firstRow.getCell(i);
+				 String cellValue = this.getCellValue(cell, true);
 				// // System.out.print(" " + cellValue + "\t");
-				// }
+				 }
 				// //System.out.println("");
 
 				// 读取数据行

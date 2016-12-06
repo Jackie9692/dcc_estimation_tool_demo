@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
 
+import dcc.evaluation.MainApp;
 import dcc.evaluation.computation.model.JMModel;
 import dcc.evaluation.view.model.DefectAmount;
 import dcc.evaluation.view.model.ImportFileActions;
@@ -126,6 +127,8 @@ public class DefaultDetermineModelDataInputOverviewController extends ImportFile
 	}
 	@FXML
 	private void testEvaluationIsClicked(){
+		
+		MainApp.showDefaultDetermineModelResultOverview();
 		double[] time = new double[al.size()];
 		for(int x = 0 ; x<al.size();x++){
 			time[x] = Double.parseDouble(al.get(x));

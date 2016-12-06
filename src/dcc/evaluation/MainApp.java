@@ -225,6 +225,34 @@ public class MainApp extends Application {
 		
 	}
 	
+	/**
+	 * 打开"测试阶段软件可靠性评估-自动选择模型"评估结果界面
+	 */
+	public static void showDefaultDetermineModelResultOverview(){
+		try {
+			//从fxml文件中加载自动选择模型评估结果界面
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/DefaultDetermineModelResultOverview.fxml"));
+			AnchorPane DefaultDetermineModelResultOverview = (AnchorPane)loader.load();
+			
+			//创建自动选择模型评估结果界面
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("评估结果");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(DefaultDetermineModelResultOverview);
+			dialogStage.setScene(scene);
+			dialogStage.setResizable(false);
+			
+			//展示自动选择模型评估结果界面直到用户关闭它
+			dialogStage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	/**
 	 *打开导入文件框
