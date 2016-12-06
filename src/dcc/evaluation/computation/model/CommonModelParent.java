@@ -7,13 +7,13 @@ import javafx.beans.property.IntegerProperty;
  * @author daxu
  */
 class FailureDataSet{
-	
-	public double []time;
+
+	public double []time;//间隔时间或者累积失效时间
 	public int []number;
 	public double terminateTime;//测试终止时间
 
 
-	
+
 
 	/**
 	 * 完全失效时间构造器
@@ -23,7 +23,7 @@ class FailureDataSet{
 		this.time = time;
 		this.terminateTime = time[time.length-1];//默认测试终止时间为最后一次失效发生的时间
 	}
-	
+
 	/**
 	 * 完全失效时间构造器
 	 * @param time: 失效间隔时间
@@ -33,7 +33,7 @@ class FailureDataSet{
 		this.time = time;
 		this.terminateTime = terminateTime;
 	}
-	
+
 	/**
 	 * 不完全失效时间构造器
 	 * @param time: 失效间隔时间
@@ -65,7 +65,7 @@ class EstimationResults{
 public class CommonModelParent {
 	public FailureDataSet failureDate;//失效数据
 	public EstimationResults estimationResults;//评估结果
-	
+
 	/**
 	 * 完全失效时间模型父类构造器
 	 * @param time 失效间隔时间
@@ -74,7 +74,7 @@ public class CommonModelParent {
 		this.failureDate = new FailureDataSet(time);
 		this.estimationResults = new EstimationResults();
 	}
-	
+
 	/**
 	 * 完全失效时间模型父类构造器
 	 * @param time 失效间隔时间
