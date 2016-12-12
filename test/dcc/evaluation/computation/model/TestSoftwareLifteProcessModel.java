@@ -9,28 +9,26 @@ public class TestSoftwareLifteProcessModel {
 		double SLOC = 120000;
 		double td = 5;
 		double t = 6;
+		double K = 4.2e-7;
+		double ER = 3;
+		double B = 10.6;
+		int R = 8000;
 		double result;
 		
+		//编码阶段
 		double sum = 0;
 		for (int i = 1; i <= (int)t; i++) {
 			sum += lambda*SLOC/1000/(td*td) * i * Math.exp( -3*i*i/(td*td) );
 			System.out.println("sum:" + sum);
 		}
-//		System.out.println("\nsum:" + sum);
-		
-//		double tmp = t * lambda*SLOC/1000/(td*td) * t * Math.exp( -3*t*t/(td*td) );
-		
-//		double N = lambda * SLOC / 1000;
-//		int count = (int)t*1 + 1;
-//		double sum = 0;
-//		while(count>1){
-//			double tmp = -3 * Math.pow(count-1, 2) / Math.pow(td, 2);
-//			sum = N / Math.pow(td, 2) * (count-1) * Math.exp(tmp) + sum;
-//			count = count - 1;
-//		}
 		
 		System.out.println("\nsum:" + sum);
 		result = lambda * ( 1 - sum );
 		System.out.println("lambda:" + result);
+		
+		//早期预测
+//		double lambda1 = K * lambda * SLOC * SLOC * ER;
+		double lambda1 = R * K / ER * lambda * SLOC / SLOC;
+		System.out.println("\nlambda1:" + lambda1);
 	}
 }
