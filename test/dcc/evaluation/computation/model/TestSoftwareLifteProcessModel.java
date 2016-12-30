@@ -27,8 +27,8 @@ public class TestSoftwareLifteProcessModel {
 		System.out.println("lambda:" + result);
 		
 		//早期预测
-//		double lambda1 = K * lambda * SLOC * SLOC * ER;
-		double lambda1 = R * K / ER * lambda * SLOC / SLOC;
+		double lambda1 = K * lambda * SLOC * SLOC * ER;
+//		double lambda1 = R * K / ER * lambda * SLOC / SLOC;
 		System.out.println("\nlambda1:" + lambda1);
 	}
 }
