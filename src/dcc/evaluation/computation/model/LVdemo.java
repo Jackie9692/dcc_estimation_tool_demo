@@ -2,6 +2,13 @@ package dcc.evaluation.computation.model;
 
 public class LVdemo {
 	
+	public static void main(String[] args) {
+		LVdemo demo = new LVdemo();
+		double[] DAT = new double[]{ 10, 8, 14, 17, 15, 22, 19, 27, 35, 40 };
+		//SLAVMD(DAT, ESF, MAXIC, NS, N, PHIIND, BETA)
+		demo.SLAVMD(DAT, 3, 100000, DAT.length, 3, PHIIND, BETA);
+	}
+	
 	public LVdemo() {
 		
 	}
@@ -32,6 +39,24 @@ public class LVdemo {
 		double[] Y = new double[3];
 		double[][] U;
 		double[] NEWSTP;
+		double[] S = new double[3];
+		double R;
+		double RTMP = 0;
+		int IRED;
+		double FY = 0;
+		double FUNUP = 0;
+		double TMPMI;
+		double TMPMX;
+		double[] TMIN = new double[3];
+		double[] TMAX = new double[3];
+		double GPROD;
+		double RNEW = 0;
+		double FACT;
+		double TAU;
+		double NDIFF;
+		double NGRAD;
+		double HPROD;
+		double ERR;
 		
 		if(ESF > 1){
 			/**
@@ -103,12 +128,143 @@ public class LVdemo {
 			FX = SLAVFN(DAT, ESF, N, NS, PHIIND, XP);
 			G = SLAVGD(DAT, N, NS, PHIIND, XP);
 			H = SLAVHS(DAT, N, NS, PHIIND, XP);
-			
 			//COMPUTE THE NEWTON STEP.
 			U = FACTOR(H, N);
 			NEWSTP = SOLVE(N, U, G);
-			
+			//COMPUTE THE DIAGONALS OF H INVERSE.
+			for(int i = 1; i <= N; i++){
+				for(int j = 1; j <= N; j++){
+					Y[j-1] = 0;
+				}
+				Y[i-1]	= 1;
+				Y = SOLVE(N, U, Y);
+				S[i-1] = Math.sqrt(Y[i-1]);
+			}
+			R = 0;
+			for(int i = 1; i <= N; i++){
+				RTMP = Math.abs(NEWSTP[i-1] / S[i-1]);
+				R = Math.max(R, RTMP);
+			}
+			R *= 0.5;
+			while(RFLAG == -1){
+				IRED = 0;
+				if(COUNT != 1)
+					H = SLAVHS(DAT, N, NS, PHIIND, XP);
+				/**
+				 * COMPUTE  THE  MINIMUM  WITHIN THE  TRUST  REGION OF THE
+				 * QUADRATIC MODEL.
+				 */
+				do{
+					//SET UP THE TRUST REGION BOUNDARIES.
+					for(int i = 1; i <= N; i++){
+						TMPMI = XP[i-1] -R * S[i-1];
+						TMPMX = XP[i-1] + R * S[i-1];
+						TMIN[i-1] = Math.max(XMIN[i-1], TMPMI);
+						TMAX[i-1] = Math.min(XMAX[i-1], TMPMX);
+					}
+					//COMPUTE THE MINIMUM WITHIN THE TRUST REGION.
+					Y = CONMIN(G, H, N, TMAX, TMIN, XP);
+					FY = SLAVFN(DAT, ESF, N, NS, PHIIND, Y);
+					//CHECK WHETHER  THE FUNCTION HAS  DECREASED  SUFFICIENTLY.
+					GPROD = 0;
+					for(int i = 1; i <= N; i++)
+						GPROD += G[i-1] * (Y[i-1] - XP[i-1]);
+					FUNUP = FX + 0.0001 * GPROD;
+					if(FY > FUNUP){
+						//REDUCE THE TRUST REGION AND TRY AGAIN.
+						IRED = IRED + 1;
+						if(Math.abs(IRED-1) < 1.0e-30){
+							/**
+							 *  MAKE SURE THE FIRST REDUCTION  IS ENOUGH TO
+							 *  CAUSE A  CHANGE IN THE CONSTRAINED MINIMUM.
+							 */
+							RNEW = R;
+							for(int i = 1; i <= N; i++){
+								FACT = Math.abs(XP[i-1] - Y[i-1]);
+								if(Math.abs(FACT) > 1.0e-30)
+									if(FACT < (RNEW * S[i-1]))
+										RNEW = FACT / S[i-1];
+							}
+							RTMP = R;
+							if(RNEW < R)
+								R = 0.9 * RNEW;
+						}
+						//REDUCE THE TRUST REGION RADIUS.
+						if((Math.abs(IRED-1)<1.0e-30 && RNEW>=RTMP) ||
+								(IRED>1 && IRED<=10)){
+							TAU = -1 * GPROD / (2 * (FY - FX - GPROD));
+							FACT = TAU;
+							if(TAU <= 0.1)
+								FACT = 0.1;
+							if(TAU > 0.5)
+								FACT = 0.5;
+							R *= FACT;
+						}
+					}
+				}while(IRED <= 10 && FY > FUNUP);
+				//SET RFLAG IF TRUST REGION COULD NOT BE ADJUSTED PROPERLY.
+				if(IRED > 10)
+					RFLAG = 2;
+				else{
+					/**
+					 * AN ACCEPTABLE POINT, Y HAS BEEN FOUND. SET RFLAG IF
+					 * MAXIMUM ITERATIONS WAS REACHED.
+					 */
+					COUNT++;
+					if(COUNT > MAXIC)
+						RFLAG = 1;
+					else{
+						//EVALUATE THE GRADIENT AT THE NEW POINT.
+						G = SLAVGD(DAT, N, NS, PHIIND, Y);
+						/**
+						 * TO  TEST FOR CONVERGENCE,  COMPUTE THE  NORM OF
+						 * THE GRADIENT AND THE NORM OF THE DIFFERENCE BE-
+						 * TWEEN THIS POINT AND THE PREVIOUS POINT.
+						 */
+						NDIFF = 0;
+						NGRAD = 0;
+						for(int i = 1; i <= N; i++){
+							NDIFF += Math.pow((XP[i-1] - Y[i-1]), 2);
+							NGRAD += Math.pow(G[i-1], 2);
+						}
+						NDIFF = Math.sqrt(NDIFF);
+						NGRAD = Math.sqrt(NGRAD);
+						//SET RFLAG IF CONVERGENCE OCCURRED.
+						if(NDIFF < EPSD || NGRAD < EPSG)
+							RFLAG = 0;
+						else{
+							//ADJUST THE TRUST REGION.
+							HPROD = 0;
+							for(int i = 1; i <= N; i++)
+								for(int j = 1; j <= N; j++)
+									HPROD += H[i-1][j-1] * (Y[i-1] - XP[i-1]) * (Y[j-1]- XP[j-1]);
+							ERR = Math.abs(FX + GPROD + 0.5 * HPROD - FY);
+							if(ERR <= (0.1 * Math.abs(FY)))
+								R *= 2;
+							if(ERR >= (0.75 * Math.abs(FY)))
+								R *= 0.5;
+							//SWAP POINTS AND FUNCTION VALUES.
+							for(int i = 1; i <= N; i++)
+								XP[i-1] = Y[i-1];
+							FX = FY;
+						}
+					}
+				}
+			}
+			//SET THE RESULTANT STATISTICS.
+			ALPHA = XP[0];
+			X[0] = XP[1];
+			X[1] = XP[2];
 		}
+		//IF MAXIMUM LIKELIHOOD  OR  LEAST SQUARES, COMPUTE THE MINIMIZED FUNCTION VALUE.
+		if(ESF < 3)
+			Z = SLAVFN(DAT, ESF, N, NS, PHIIND, XP);
+		/**
+		 * RESET THE ERROR FLAG IF THE ESTIMATES DO NOT ALLOW FOR THE PRE-
+		 * DICTIONS TO BE MADE.
+		 */
+		if(Math.abs(RFLAG) < 1.0e-30 && (X[0] + X[1]) < 0)
+			RFLAG = 4;
 	}
 	
 	
@@ -213,7 +369,7 @@ public class LVdemo {
 		 * ELEMENTS OF THE  HESSIAN WITH THE  HESSIAN  VALUE + EMIN.  THIS
 		 * FORCES THE HESSIAN TO BE POSITIVE DEFINITE.
 		 */
-		if(Math.abs(D[0]) < 1.0e-10){
+		if(D[0] <= 1.0e-10){
 			double EMIN = Math.abs(D[0]) + D[N-1] * 0.0001;
 			for(int i = 1; i <= N; i++){
 				H[i-1][i-1] += EMIN;
@@ -279,36 +435,6 @@ public class LVdemo {
 			X[i-1] /= U[i-1][i-1];
 		}
 		//END SOLVE
-		//CONTINUE SLAVMD
-		//COMPUTE THE DIAGONALS OF H INVERSE.
-		for(int i = 1; i <= N; i++){
-			for(int j = 1; j <= N; j++){
-				Y[j-1] = 0;
-			}
-			Y[i-1]	= 1;
-			/**
-			 * SOLVE
-			 * TO SOLVE THE SYSTEM OF EQUATIONS HX = Y FOR X.
-			 */
-			//SOLVE THE SYSTEM OF EQUATIONS HX = Y  FOR  X  USING  THE  UPPER
-			//TRIANGULAR FACTORS-U OF MATRIX-H.
-			for(int I = N; I >= 1; I--){
-				X[I-1] = Y[I-1];
-				if(I != N)
-					for(int J = I+1; J <= N; J++)
-						X[I-1] -= U[I-1][J-1] * X[J-1];
-				X[I-1] /= U[I-1][I-1];
-			}
-			for(int I = 1; I <= N; I++){
-				if(I != 1)
-					for(int J = 1; J <= I-1; J++)
-						X[I] -= U[J-1][I-1] * X[J-1];
-				X[I-1] /= U[I-1][I-1];
-			}
-			for(int I = 1; I <= N; I++){
-				
-			}
-		}
 		return X;
 	}
 	
@@ -349,7 +475,7 @@ public class LVdemo {
 				for(int k = 1; k <= l; k++){
 					SCALE += Math.abs(A[i-1][k-1]);
 				}
-				if(Math.abs(SCALE) < 1.0e-10){
+				if(Math.abs(SCALE) < 1.0e-30){
 					E[i-1] = 0;
 					E2[i-1] = 0;
 				}
@@ -441,7 +567,7 @@ public class LVdemo {
 			while(E2[M-1] > C && M < N)
 				M++;
 			if(M != l){
-				while(Math.abs(E2[l-1]) < 1.0e-10){
+				while(Math.abs(E2[l-1]) > 1.0e-30){
 					j++;
 					//FORM SHIFT.
 					int l1 = l + 1;
@@ -456,7 +582,7 @@ public class LVdemo {
 					F += h;
 					//RATIONAL QL TRANSFORMATION.
 					g = D[M-1];
-					if(Math.abs(g) < 1.0e-10)
+					if(Math.abs(g) < 1.0e-30)
 						g = B;
 					h = g;
 					S = 0;
@@ -469,14 +595,14 @@ public class LVdemo {
 						S = E2[i-1] / R;
 						D[i] = h + S * (h + D[i-1]);
 						g = D[i-1] -E2[i-1] / g;
-						if(Math.abs(g) < 1.0e-10)
+						if(Math.abs(g) < 1.0e-30)
 							g = B;
 						h = g * P / R;
 					}
 					E2[l-1] = S * g;
 					D[l-1] = h;
 					//GUARD AGAINST UNDERFLOW IN CONVERGENCE TEST.
-					if(Math.abs(h) < 1.0e-10)
+					if(Math.abs(h) > 1.0e-30)
 						if(Math.abs(E2[l-1]) > Math.abs(C/h))
 							E2[l-1] = h * E2[l-1];
 				}
@@ -499,4 +625,182 @@ public class LVdemo {
 		}
 		//END TQLRAT
 	}
+	
+	
+	/**
+	 * CONMIN
+	 * TO FIND THE CONSTRAINED MINIMUM OF A  QUADRATIC FUNCTION WITHIN
+	 * A TRUST REGION.
+	 */
+	private double[] CONMIN(double[] G, double[][] H, int N, double[] TMAX, double[] TMIN, double[] X) {
+		int[] ICONS = new int[3];
+		double[] Y = new double[3];
+		int IRELES;
+		int IFLAG;
+		double[] XTMP = new double[3];
+		double[] GQ = new double[3];
+		//INITIALIZE THE CONSTRAINT VECTOR  AND  SET THE CURRENT POINT TO POINT X.
+		for (int i = 1; i <= N; i++) {
+			ICONS[i-1] = 0;
+			Y[i-1] = X[i-1];
+		}
+		//INITIALIZE THE CONSTRAINT RELEASE FLAG.
+		IRELES = 1;
+		while(IRELES == 1){
+			//INITIALIZE THE CONSTRAINT STATUS FLAG.
+			IFLAG = 1;
+			while(IFLAG == 1){
+				//SAVE THE CURRENT CONSTRAINED POINT.
+				for (int i = 1; i <= N; i++) {
+					XTMP[i-1] = Y[i-1];
+				}
+				//FIND THE  CONSTRAINED MINIMUM ON THE SURFACE DEFINED BY THE CONSTRAINT VECTOR.
+				CONSOP(G, H, ICONS, N, TMAX, TMIN, X, Y);
+				//CHECK TO SEE IF CONSTRAINTS  ARE  VIOLATED BY THIS  NEW MINIMUM.
+				IFLAG = CONSTR(N, TMAX, TMIN, XTMP, Y, ICONS);
+			}
+			//COMPUTE THE GRADIENT OF THE QUADRATIC FUNCTION.
+			for (int i = 1; i <= N; i++) {
+				GQ[i-1] = G[i-1];
+				for(int j = 1; j <= N; j++)
+					GQ[i-1] += H[i-1][j-1] * (Y[j-1] - X[j-1]);
+			}
+			//CHECK TO SEE IF CONSTRAINTS CAN BE RELEASED.
+			IRELES = RELESE(GQ, N, ICONS);
+		}
+		return Y;
+	}
+	
+	private void CONSOP(double[] G, double[][] H, int[] ICONS, int N, double[] TMAX, double[] TMIN,
+			double[]X, double[] Y) {
+		int IFLAG;
+		double[] TMP1 = new double[3];
+		double[][] U = new double[3][3];
+		double[][] HTMP = new double[3][3];
+		double[] DXCONS = new double[3];
+		double[] TMP2 = new double[3];
+		double[] TMP3 = new double[3];
+		//DETERMINE IF ANY CONSTRAINTS EXIST.
+		IFLAG = 0;
+		for (int i = 1; i <= N; i++) {
+			if(ICONS[i-1] != 0){
+				IFLAG = 1;
+			}
+		}
+		if(IFLAG == 0){
+			//CONSTRAINTS DO NOT EXIST.  SET  MINIMUM  OF  THE  QUADRATIC
+			//FUNCTION TO THE COMPUTED NEWTON POINT.<<SEE RESTRICTIONS <<
+			U = FACTOR(H, N);
+			TMP1 = SOLVE(N, U, G);
+			for (int i = 1; i <= N; i++) 
+				Y[i-1] = X[i-1] - TMP1[i-1];
+		}else{
+			//CONSTRAINTS DO EXIST. STORE  THE HESSIAN IN AN INTERMEDIATE MATRIX.
+			for (int i = 1; i <= N; i++)
+				for (int j = 1; j <= N; j++)
+					HTMP[i-1][j-1] = H[i-1][j-1];
+			//DETERMINE THE STEP TO THE BOUNDARY.
+			for (int i = 1; i <= N; i++)
+				if(ICONS[i-1] == 0)
+					DXCONS[i-1] = 0;
+				else
+					DXCONS[i-1] = Y[i-1] - X[i-1];
+			//COMPUTE THE PRODUCT OF THE HESSIAN AND THE STEP VECTOR.
+			for (int i = 1; i <= N; i++){
+				double SM = 0;
+				for (int j = 1; j <= N; j++)
+					SM += H[i-1][j-1] * DXCONS[j-1];
+				TMP1[i-1] = SM;
+			}
+			//ADJUST THE GRADIENT FOR ALL  CONSTRAINED  ELEMENTS  OF  THE CONSTRAINT VECTOR.
+			for (int i = 1; i <= N; i++)
+				if(ICONS[i-1] != 0)
+					TMP2[i-1] = 0;
+				else
+					TMP2[i-1] = G[i-1] + TMP1[i-1];
+			//ADJUST THE HESSIAN FOR  ALL  CONSTRAINED  ELEMENTS  OF  THE CONSTRAINT VECTOR.
+			for (int i = 1; i <= N; i++)
+				if(ICONS[i-1] != 0){
+					for (int j = 1; j <= N; j++){
+						HTMP[i-1][j-1] = 0;
+						HTMP[j-1][i-1] = 0;
+					}
+					HTMP[i-1][i-1] = 1.0e30;
+				}
+			// COMPUTE THE CONSTRAINED MINIMUM OF THE QUADRATIC FUNCTION.
+			U = FACTOR(HTMP, N);
+			TMP3 = SOLVE(N, U, TMP2);
+			for (int i = 1; i <= N; i++)
+				if(ICONS[i-1] == 1)
+					Y[i-1] = TMAX[i-1];
+				else
+					if(ICONS[i-1] == -1)
+						Y[i-1] = TMIN[i-1];
+					else
+						Y[i-1] = X[i-1] - TMP3[i-1];
+		}
+	}
+	
+	
+	/**
+	 * CONSTR
+	 *  TO CONSTRAIN THE POINT Y TO BE ON THE LINE FROM X  TO  Y INSIDE
+	 *  OR ON THE BOUNDARIES OF THE TRUST REGION.
+	 */
+	private int CONSTR(int N, double[] TMAX, double[] TMIN, double[] X, double[] Y, int[] ICONS) {
+		int COMPY = 0;
+		double[] DELP = new double[3];
+		int IFLAG;
+		double TMPNEW;
+		//NITIALIZE THE NEWTON POINT ADJUSTMENT.
+		double NEWT = 1;
+		//DETERMINE IF THE COMPONENTS OF POINT Y HAVE TO BE CONSTRAINED.
+		for (int i = 1; i <= N; i++){
+			DELP[i-1] = Y[i-1] - X[i-1];
+			if(Math.abs(DELP[i-1]) > 1.0e-30){
+				if(DELP[i-1] < 0)
+					TMPNEW = (TMIN[i-1] - X[i-1]) / DELP[i-1];
+				else
+					TMPNEW = (TMAX[i-1] - X[i-1]) / DELP[i-1];
+				if(TMPNEW <= NEWT){
+					NEWT = TMPNEW;
+					COMPY = i-1;
+				}
+			}
+		}
+		if(Math.abs(NEWT -1) > 1.0e-30){
+			//SET THE CONSTRAINTS STATUS  FLAG  TO  INDICATE  CONSTRAINTS DO EXIST.
+			IFLAG = 1;
+			//ADJUST THE COMPONENTS  OF Y BY THE NEWTON POINT ADJUSTMENT.
+			for (int i = 1; i <= N; i++)
+				Y[i-1] = X[i-1] + NEWT * DELP[i-1];
+			/**
+			 * SET THE CONSTRAINT VECTOR FOR THE COMPONENT OF Y WHICH  HAS
+			 * VIOLATED ITS TRUST REGION BOUNDARIES BY THE  GREATEST  MAR-GIN.
+			 */
+			if(DELP[COMPY-1] < 0)
+				ICONS[COMPY-1] = -1;
+			else
+				ICONS[COMPY] = 1;
+		}else{
+			//SET THE CONSTRAINT STATUS FLAG TO  INDICATE  CONSTRAINTS DO NOT EXIST.
+			IFLAG = 0;
+		}
+		return IFLAG;
+	}
+	
+	
+	private int RELESE(double[] G, int N, int[] ICONS) {
+		//INITIALIZE THE CONSTRAINT RELEASE FLAG.
+		int IRELES = 0;
+		//DETERMINE IF ANY CONSTRAINTS CAN BE RELEASED.
+		for (int i = 1; i <= N; i++)
+			if((Math.abs(ICONS[i-1]+1)<1.0e-30 && G[i-1]<0) ||
+					(Math.abs(ICONS[i-1]-1)<1.0e-30) && G[i-1]>0){
+				ICONS[i-1] = 0;
+				IRELES = 1;
+			}
+		return IRELES;
+	}
 }
+
