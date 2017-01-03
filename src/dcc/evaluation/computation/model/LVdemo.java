@@ -6,16 +6,21 @@ public class LVdemo {
 		LVdemo demo = new LVdemo();
 		double[] DAT = new double[]{ 10, 8, 14, 17, 15, 22, 19, 27, 35, 40 };
 		//SLAVMD(DAT, ESF, MAXIC, NS, N, PHIIND, BETA)
-		demo.SLAVMD(DAT, 3, 100000, DAT.length, 3, PHIIND, BETA);
+		double[] BETA = new double[2];
+		double ALPHA = demo.SLAVMD(DAT, 0, 100000, DAT.length, 3, 1, BETA);
+		System.out.println("The LittleWood-Verrall Model:");
+		System.out.println("ALPHA = " + ALPHA);
+		System.out.println("BETA1 = " + BETA[0]);
+		System.out.println("BETA2 = " + BETA[1]);
 	}
 	
 	public LVdemo() {
 		
 	}
 	
-	public void SLAVMD(double[] DAT, int ESF, int MAXIC, int NS, int N, int PHIIND, double[] BETA){
+	public double SLAVMD(double[] DAT, int ESF, int MAXIC, int NS, int N, int PHIIND, double[] BETA){
 		//YIELD
-		double ALPHA;
+		double ALPHA = 0;
 		int COUNT;
 		int RFLAG;
 		double[] X = new double[2];//BETA0, BETA1
@@ -255,6 +260,8 @@ public class LVdemo {
 			ALPHA = XP[0];
 			X[0] = XP[1];
 			X[1] = XP[2];
+			BETA[0] = XP[1];
+			BETA[1] = XP[2];
 		}
 		//IF MAXIMUM LIKELIHOOD  OR  LEAST SQUARES, COMPUTE THE MINIMIZED FUNCTION VALUE.
 		if(ESF < 3)
@@ -265,6 +272,7 @@ public class LVdemo {
 		 */
 		if(Math.abs(RFLAG) < 1.0e-30 && (X[0] + X[1]) < 0)
 			RFLAG = 4;
+		return ALPHA;
 	}
 	
 	
@@ -431,7 +439,7 @@ public class LVdemo {
 		for(int i = 1; i <= N; i++){
 			if(i != 1)
 				for(int j = 1; j <= i-1; j++)
-					X[i] -= U[j-1][i-1] * X[j-1];
+					X[i-1] -= U[j-1][i-1] * X[j-1];
 			X[i-1] /= U[i-1][i-1];
 		}
 		//END SOLVE
@@ -564,8 +572,9 @@ public class LVdemo {
 			}
 			//LOOK FOR SMALL SQUARED SUB-DIAGONAL ELEMENT.
 			int M = l - 1;
-			while(E2[M-1] > C && M < N)
+			do{
 				M++;
+			}while(E2[M-1] > C && M < N);
 			if(M != l){
 				while(Math.abs(E2[l-1]) > 1.0e-30){
 					j++;
@@ -573,7 +582,7 @@ public class LVdemo {
 					int l1 = l + 1;
 					double S = Math.sqrt(E2[l-1]);
 					double g = D[l-1];
-					double P = (D[l1] -g) / (2 * S);
+					double P = (D[l1-1] -g) / (2 * S);
 					double R = Math.sqrt(P * P + 1);
 					D[l-1] = S / (P + Math.copySign(R, P));
 					h = g - D[l-1];
@@ -646,6 +655,10 @@ public class LVdemo {
 		}
 		//INITIALIZE THE CONSTRAINT RELEASE FLAG.
 		IRELES = 1;
+		/**
+		 * 死循环
+		 * 20170102
+		 */
 		while(IRELES == 1){
 			//INITIALIZE THE CONSTRAINT STATUS FLAG.
 			IFLAG = 1;
@@ -764,7 +777,7 @@ public class LVdemo {
 					TMPNEW = (TMAX[i-1] - X[i-1]) / DELP[i-1];
 				if(TMPNEW <= NEWT){
 					NEWT = TMPNEW;
-					COMPY = i-1;
+					COMPY = i;
 				}
 			}
 		}
@@ -781,7 +794,7 @@ public class LVdemo {
 			if(DELP[COMPY-1] < 0)
 				ICONS[COMPY-1] = -1;
 			else
-				ICONS[COMPY] = 1;
+				ICONS[COMPY-1] = 1;
 		}else{
 			//SET THE CONSTRAINT STATUS FLAG TO  INDICATE  CONSTRAINTS DO NOT EXIST.
 			IFLAG = 0;
